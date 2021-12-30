@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jose Ayala
  */
+//comentario
 public class frmventas extends javax.swing.JInternalFrame {
 
     public static DefaultTableModel modelo = new DefaultTableModel();

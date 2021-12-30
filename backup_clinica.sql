@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.20, for Win64 (x86_64)
 --
--- Host: localhost    Database: ventas
+-- Host: localhost    Database: clinica_nutricional
 -- ------------------------------------------------------
 -- Server version	5.6.20
 
@@ -57,7 +57,7 @@ CREATE TABLE `categorias` (
   `categoria` varchar(60) DEFAULT NULL,
   `estado` varchar(15) NOT NULL,
   PRIMARY KEY (`idcategorias`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'MUEBLESs','INACTIVO'),(2,'MUEBLES','ACTIVO'),(3,'AAA','INACTIVO'),(4,'PINTURAS','ACTIVO');
+INSERT INTO `categorias` VALUES (1,'MUEBLESs','INACTIVO'),(2,'MUEBLES','ACTIVO'),(3,'AAA','INACTIVO');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +148,7 @@ CREATE TABLE `detalle_venta` (
   KEY `fk_detalle_venta_servicios1_idx` (`idservicios`),
   CONSTRAINT `fk_detalle_venta_servicios` FOREIGN KEY (`idservicios`) REFERENCES `productos` (`idservicios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idventa` FOREIGN KEY (`idventa`) REFERENCES `venta` (`idventa`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,6 @@ CREATE TABLE `detalle_venta` (
 
 LOCK TABLES `detalle_venta` WRITE;
 /*!40000 ALTER TABLE `detalle_venta` DISABLE KEYS */;
-INSERT INTO `detalle_venta` VALUES (1,2,9,1,150000,150000),(2,2,9,1,150000,150000),(3,3,9,1,150000,150000),(4,3,12,1,35000,35000),(5,3,11,1,150000,150000),(6,3,9,1,150000,150000),(7,3,13,2,50000,100000),(8,5,11,1,150000,150000),(9,5,9,1,150000,150000),(10,5,13,2,50000,100000);
 /*!40000 ALTER TABLE `detalle_venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +220,6 @@ CREATE TABLE `factura` (
 
 LOCK TABLES `factura` WRITE;
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
-INSERT INTO `factura` VALUES (1,300000,300000,0,2),(2,185000,200000,15000,3),(3,400000,40000,-360000,5);
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,7 +278,6 @@ CREATE TABLE `paciente` (
 
 LOCK TABLES `paciente` WRITE;
 /*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
-INSERT INTO `paciente` VALUES (25,NULL,'ACTIVO');
 /*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,7 +298,7 @@ CREATE TABLE `persona` (
   `genero` varchar(45) DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idpersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +307,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (24,'JOSE','AYALA','4419747','0699','CALLE','MASCULINO','ACTIVO'),(25,'jose','ayala','4419747','0982568965','calle san roque','MASCULINO	','ACTIVO');
+INSERT INTO `persona` VALUES (24,'JOSE','AYALA','4419747','0699','CALLE','MASCULINO','ACTIVO');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,13 +326,9 @@ CREATE TABLE `productos` (
   `precio_mayor` bigint(20) NOT NULL,
   `precio_costo` bigint(20) DEFAULT NULL,
   `stock` double NOT NULL,
-  `cod_barra` varchar(45) DEFAULT NULL,
   `estado` varchar(45) NOT NULL,
-  `idcategorias` int(11) NOT NULL,
-  PRIMARY KEY (`idservicios`),
-  KEY `fk_productos_categorias1_idx` (`idcategorias`),
-  CONSTRAINT `fk_productos_categorias1` FOREIGN KEY (`idcategorias`) REFERENCES `categorias` (`idcategorias`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idservicios`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,7 +337,6 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (9,'MESA','MESA 1X3 METROS',150000,130000,90000,14,'09839324','ACTIVO',2),(10,'SILLA','SILLA PEQUEÑA',50000,40000,30000,10,'0393949494','INACTIVO',1),(11,'MESA REDONDA','MESA PARA PATIO REDONDO',150000,130000,100000,10,'090898980','ACTIVO',2),(12,'PINTURA AL ACEITE','PINTURA AL ACEITE AMANECER DE 1 LTS',35000,30000,25000,15,'090898909','ACTIVO',4),(13,'SILLA','SILLA DE MADERA PARA JARDIN',50000,45000,30000,12,'98848383','ACTIVO',2);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,7 +455,7 @@ CREATE TABLE `venta` (
   CONSTRAINT `fk_venta_movimiento_caja1` FOREIGN KEY (`idmovimiento`) REFERENCES `movimiento_caja` (`idmovimiento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venta_paciente1` FOREIGN KEY (`idpaciente`) REFERENCES `paciente` (`idpaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venta_usuarios1` FOREIGN KEY (`idusuarios`) REFERENCES `usuarios` (`idusuarios`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -472,7 +464,6 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (2,24,25,300000,'2021-12-30','0000001','CONTADO','FINALIZADO',67),(3,24,25,185000,'2021-12-30','0000002','CONTADO','FINALIZADO',67),(5,24,25,400000,'2021-12-30','0000003','CONTADO','FINALIZADO',67);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -485,4 +476,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-30 12:42:43
+-- Dump completed on 2021-12-30 12:14:34
