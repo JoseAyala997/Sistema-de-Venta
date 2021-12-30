@@ -7,13 +7,12 @@ package Presentacion;
 
 import Datos.vmovimiento_caja;
 import Logica.fmovimiento_caja;
-import static Presentacion.frmapertura.x;
+
 
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
