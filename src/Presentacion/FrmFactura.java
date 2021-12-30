@@ -204,7 +204,7 @@ public class FrmFactura extends javax.swing.JFrame {
     
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+        // codigo
           insertarfactura();
           frmventas.NroFctura();
            imprimir();
