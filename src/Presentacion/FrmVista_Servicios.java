@@ -85,7 +85,7 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         setSize(new java.awt.Dimension(1024, 660));
@@ -239,7 +239,7 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
                     
             frmventas.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
             frmventas.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
-            frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 2).toString());
+            frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 3).toString());
             frmventas.txtcantidad.setText("1");
             frmventas.txtcantidad.requestFocus();
             this.dispose();
@@ -252,7 +252,7 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
             frmventas.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
            
             frmventas.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
-            frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 2).toString());
+            frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 3).toString());
             frmventas.txtcantidad.setText("1");
             frmventas.txtcantidad.requestFocus();
             this.dispose();       

@@ -11,7 +11,6 @@ import Logica.StyloTabla;
 import Logica.freserva;
 import Logica.fproductos;
 import Logica.fventa;
-import static Presentacion.frmprincipal.jDesktopPane1;
 import java.awt.Color;
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -44,6 +43,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         lblidproducto.setVisible(false);
         txtcodcliente.setVisible(false);
+        txtcodigo.requestFocus();
 
         jPanel1.setBackground(new Color(0, 102, 100, 200));//le damos transparencia y color a los paneles 
         jPanel2.setBackground(new Color(0, 102, 100, 200));//le damos transparencia y color a los paneles 
@@ -56,7 +56,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
 
         modelo.addColumn("ID");
-        modelo.addColumn("SERVICIO");
+        modelo.addColumn("PRODUCTO");
         modelo.addColumn("PRECIO");
         modelo.addColumn("CANTIDAD");
         modelo.addColumn("SUB TOTAL");
@@ -107,6 +107,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         datos.setFecha(new Date(a, m, d));
         datos.setNro_factura(txtnrofactura.getText());
         datos.setTipo(jComboBox1.getSelectedItem().toString());
+       
 
         if (funcion.insertarVentas(datos)) {
 
@@ -180,20 +181,20 @@ public class frmventas extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -296,7 +297,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         txtprecio.setEnabled(false);
         jPanel2.add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 160, -1));
-        jPanel2.add(lblidproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 120, 20));
+        jPanel2.add(lblidproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 50, 20));
 
         jButton2.setText("Servicios");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

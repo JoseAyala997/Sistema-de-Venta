@@ -14,6 +14,7 @@ import static Presentacion.frmventas.dcfecha;
 import static Presentacion.frmventas.imsertarDetalle;
 import static Presentacion.frmventas.jComboBox1;
 import static Presentacion.frmventas.txtcodcliente;
+import static Presentacion.frmventas.txtcodigo;
 import static Presentacion.frmventas.txtnrofactura;
 import static Presentacion.frmventas.txttotal;
 
@@ -211,6 +212,7 @@ public class FrmFactura extends javax.swing.JFrame {
            vaciartabla(frmventas.tablaventas);
            frmventas.sumarsubtotal();
            frmventas.cliente();
+           frmventas.txtcodigo.requestFocus();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     void imprimir (){
