@@ -32,10 +32,10 @@ public class fproductos {
 
     public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
-        String[] titulos = {"ID", "PRODUCTO", "DESCRIPCION", "PRECIO UNT.", "PRECIO MAYOR", "PRECIO COSTO", "STOCK", "IDCAT", "CATEGORIA", "COD. BARRA"};
-        String[] registro = new String[10];
+        String[] titulos = {"ID", "PRODUCTO", "DESCRIPCION", "PRECIO UNT.", "PRECIO MAYOR", "PRECIO COSTO", "STOCK","PULGADAS", "IDCAT", "CATEGORIA"};
+        String[] registro = new String[11];
         modelo = new DefaultTableModel(null, titulos);
-        SQL = "SELECT p.idservicios, p.nombre_producto,p.descripcion,p.precio_unitario,p.precio_mayor,p.precio_costo,p.stock,c.idcategorias,c.categoria, p.cod_barra\n"
+        SQL = "SELECT p.idservicios, p.nombre_producto,p.descripcion,p.precio_unitario,p.precio_mayor,p.precio_costo,p.stock,p.pulgadas, c.idcategorias,c.categoria, p.cod_barra\n"
                 + " FROM productos p inner join categorias c on p.idcategorias=c.idcategorias\n"
                 + "where (p.nombre_producto like '%" + buscar + "%' ||  p.cod_barra like '%"+ buscar +"%') and p.estado = 'ACTIVO'  order by p.idservicios desc";
 
@@ -53,9 +53,10 @@ public class fproductos {
                 registro[4] = rs.getString("precio_mayor");
                 registro[5] = rs.getString("precio_costo");
                 registro[6] = rs.getString("stock");
-                registro[7] = rs.getString("idcategorias");
-                registro[8] = rs.getString("categoria");
-                registro[9] = rs.getString("cod_barra");
+                registro[7] = rs.getString("pulgadas");
+                registro[8] = rs.getString("idcategorias");
+                registro[9] = rs.getString("categoria");
+           
 
                 TotalRegistros = TotalRegistros + 1;
 
@@ -125,7 +126,7 @@ public class fproductos {
 //    
 //    }
     public boolean insertar(vproductos dts) {
-        SQL = "INSERT INTO productos (nombre_producto, descripcion, precio_unitario, precio_mayor, precio_costo, stock, cod_barra, estado, idcategorias)"
+        SQL = "INSERT INTO productos (nombre_producto, descripcion, precio_unitario, precio_mayor, precio_costo, stock, pulgadas, estado, idcategorias)"
                 + " values (upper(?),upper(?),?,?,?,?,?,?,?)";
 
         try {
@@ -137,7 +138,7 @@ public class fproductos {
             pst.setLong(5, dts.getPrecio_costo());
             pst.setDouble(6, dts.getStock());
 
-            pst.setString(7, dts.getCod_barra());
+            pst.setDouble(7, dts.getPulgadas());
             pst.setString(8, "ACTIVO");
             pst.setInt(9, dts.getIdcategorias());
             int n = pst.executeUpdate();
@@ -180,7 +181,7 @@ public class fproductos {
     }
 
     public boolean editar(vproductos dts) {
-        SQL = " update productos set  nombre_producto=upper(?), descripcion=upper(?), precio_unitario=?, precio_mayor=?, precio_costo=?, stock=?, cod_barra=?, estado=?, idcategorias=? "
+        SQL = " update productos set  nombre_producto=upper(?), descripcion=upper(?), precio_unitario=?, precio_mayor=?, precio_costo=?, stock=?, pulgadas=?, estado=?, idcategorias=? "
                 + "where idservicios=?";
 
         try {
@@ -192,7 +193,7 @@ public class fproductos {
             pst.setLong(5, dts.getPrecio_costo());
             pst.setDouble(6, dts.getStock());
 
-            pst.setString(7, dts.getCod_barra());
+            pst.setDouble(7, dts.getPulgadas());
             pst.setString(8, "ACTIVO");
             pst.setInt(9, dts.getIdcategorias());
             pst.setInt(10, dts.getIdservicios());
@@ -210,6 +211,24 @@ public class fproductos {
 
     public boolean restarStock(double cantidad, int idservicios) {
         SQL = " update servicios set stock=stock-'" + cantidad + "' "
+                + " where idservicios='" + idservicios + "'";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(SQL);
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    public boolean restarpulgadas(double pulgada, int idservicios) {
+        SQL = " update servicios set pulgadas=pulgadas-'" + pulgada + "' "
                 + " where idservicios='" + idservicios + "'";
 
         try {

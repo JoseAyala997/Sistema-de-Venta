@@ -25,18 +25,19 @@ import javax.swing.table.DefaultTableModel;
  * @author Jose Ayala
  */
 public class frmproducto2 extends javax.swing.JInternalFrame {
-public static String x;
+
+    public static String x;
+
     public frmproducto2() {
         initComponents();
-        
-        
-        
+
         jtable();
         centrar();
         mostrar("");
         cancelar();
 
         txtid.setVisible(false);
+//        txtpulgadas.setText("0");
 
         jPanel1.setBackground(new Color(0, 102, 100, 200));
         jPanel2.setBackground(new Color(0, 102, 100, 200));
@@ -46,6 +47,37 @@ public static String x;
 //        st.stylotabla(tablalistado);
         setSize(1331, 650);
         setTitle("PRODUCTOS");
+    }
+
+    void ocultar_columna() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        tablalistado.getColumnModel().getColumn(1).setMaxWidth(250);
+        tablalistado.getColumnModel().getColumn(1).setMinWidth(250);
+        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(250);
+
+        tablalistado.getColumnModel().getColumn(2).setMaxWidth(250);
+        tablalistado.getColumnModel().getColumn(2).setMinWidth(250);
+        tablalistado.getColumnModel().getColumn(2).setPreferredWidth(250);
+
+        tablalistado.getColumnModel().getColumn(3).setMaxWidth(100);
+        tablalistado.getColumnModel().getColumn(3).setMinWidth(250);
+        tablalistado.getColumnModel().getColumn(3).setPreferredWidth(100);
+
+        tablalistado.getColumnModel().getColumn(4).setMaxWidth(100);
+        tablalistado.getColumnModel().getColumn(4).setMinWidth(250);
+        tablalistado.getColumnModel().getColumn(4).setPreferredWidth(100);
+        
+        tablalistado.getColumnModel().getColumn(5).setMaxWidth(110);
+        tablalistado.getColumnModel().getColumn(5).setMinWidth(250);
+        tablalistado.getColumnModel().getColumn(5).setPreferredWidth(110);
+        
+        tablalistado.getColumnModel().getColumn(8).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setPreferredWidth(0);
+
     }
 
     void centrar() {
@@ -87,7 +119,7 @@ public static String x;
         txtprecio.setEnabled(true);
         txtcantidadstock.setEnabled(true);
         txtcategoria.setEnabled(true);
-        txtcodigo.setEnabled(true);
+        txtpulgadas.setEnabled(true);
         txtid.setVisible(false);
         txtidcategoria.setVisible(false);
         txtcategoria.setEnabled(false);
@@ -105,7 +137,7 @@ public static String x;
         txtdescripcion.setText("");
         txtprecio_mayor.setText("");
         txtprecio_costo.setText("");
-        txtcodigo.setText("");
+        txtpulgadas.setText("");
         txtcategoria.setText("");
         txtidcategoria.setText("");
     }
@@ -118,7 +150,7 @@ public static String x;
         txtprecio.setEnabled(false);
         txtcantidadstock.setEnabled(false);
         txtcategoria.setEnabled(false);
-        txtcodigo.setEnabled(false);
+        txtpulgadas.setEnabled(false);
         txtcategoria.setEnabled(false);
         txtid.setVisible(false);
         txtidcategoria.setVisible(false);
@@ -136,7 +168,7 @@ public static String x;
         txtdescripcion.setText("");
         txtprecio_mayor.setText("");
         txtprecio_costo.setText("");
-        txtcodigo.setText("");
+        txtpulgadas.setText("");
         txtcategoria.setText("");
         txtidcategoria.setText("");
     }
@@ -144,22 +176,42 @@ public static String x;
     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
+            for (int c = 0; c < tablalistado.getColumnCount(); c++) {
 
-            fproductos Funcion = new fproductos();
+                Class<?> col_class = tablalistado.getColumnClass(c);
 
-            modelo = Funcion.mostrar(buscar);
-
-            int total = Funcion.TotalRegistros;
-
-            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
+                tablalistado.setDefaultEditor(col_class, null); // remove editor
+            }
+            fproductos func = new fproductos();
+            modelo = func.mostrar(buscar);
 
             tablalistado.setModel(modelo);
+            ocultar_columna();
+            lbltotalregistros.setText("Total Registros: " + Integer.toString(func.TotalRegistros));
 
         } catch (Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, e);
         }
-
     }
 
+//    void mostrar(String buscar) {
+//        try {
+//            DefaultTableModel modelo;
+//
+//            fproductos Funcion = new fproductos();
+//
+//            modelo = Funcion.mostrar(buscar);
+//
+//            int total = Funcion.TotalRegistros;
+//
+//            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
+//
+//            tablalistado.setModel(modelo);
+//
+//        } catch (Exception e) {
+//        }
+//
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,7 +246,7 @@ public static String x;
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtcodigo = new javax.swing.JTextField();
+        txtpulgadas = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtidcategoria = new javax.swing.JTextField();
         txtcategoria = new javax.swing.JTextField();
@@ -206,20 +258,20 @@ public static String x;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -319,7 +371,7 @@ public static String x;
             }
         });
 
-        jLabel2.setText("BUSCAR POR CODIGO O POR NOMBRE");
+        jLabel2.setText("BUSCAR POR  NOMBRE");
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -354,7 +406,7 @@ public static String x;
 
         jLabel11.setText("PRECIO COSTO");
 
-        jLabel12.setText("COD. BARRA");
+        jLabel12.setText("PULGADAS");
 
         btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar1 - copia.png"))); // NOI18N
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -385,16 +437,14 @@ public static String x;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(29, 29, 29))
-                        .addComponent(txtproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(72, 72, 72)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(24, 24, 24)
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtpulgadas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,7 +516,7 @@ public static String x;
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtpulgadas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -541,7 +591,7 @@ public static String x;
         dts.setPrecio_costo(Long.parseLong(txtprecio_costo.getText()));
         dts.setPrecio_mayor(Long.parseLong(txtprecio_mayor.getText()));
         dts.setDescripcion(txtdescripcion.getText());
-        dts.setCod_barra(txtcodigo.getText());
+        dts.setPulgadas(Double.parseDouble(txtpulgadas.getText()));
         dts.setIdcategorias(Integer.parseInt(txtidcategoria.getText()));
         dts.setStock(Double.parseDouble(txtcantidadstock.getText()));
 
@@ -610,10 +660,10 @@ public static String x;
             txtprecio_mayor.setText(tablalistado.getValueAt(fila, 4).toString());
             txtprecio_costo.setText(tablalistado.getValueAt(fila, 5).toString());
             txtcantidadstock.setText(tablalistado.getValueAt(fila, 6).toString());
-            txtidcategoria.setText(tablalistado.getValueAt(fila, 7).toString());
-            txtcategoria.setText(tablalistado.getValueAt(fila, 8).toString());
+            txtidcategoria.setText(tablalistado.getValueAt(fila, 8).toString());
+            txtcategoria.setText(tablalistado.getValueAt(fila, 9).toString());
             //            cbocategoria.setSelectedItem(tablalistado.getValueAt(fila, 8).toString());
-            txtcodigo.setText(tablalistado.getValueAt(fila, 9).toString());
+            txtpulgadas.setText(tablalistado.getValueAt(fila, 7).toString());
 
         } catch (Exception e) {
         }
@@ -691,7 +741,6 @@ public static String x;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtcantidadstock;
     public static javax.swing.JTextField txtcategoria;
-    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtdescripcion;
     private javax.swing.JTextField txtid;
     public static javax.swing.JTextField txtidcategoria;
@@ -699,5 +748,6 @@ public static String x;
     private javax.swing.JTextField txtprecio_costo;
     private javax.swing.JTextField txtprecio_mayor;
     private javax.swing.JTextField txtproducto;
+    private javax.swing.JTextField txtpulgadas;
     // End of variables declaration//GEN-END:variables
 }

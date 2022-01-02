@@ -8,7 +8,6 @@ package Presentacion;
 import Datos.vmovimiento_caja;
 import Logica.fmovimiento_caja;
 
-
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -30,6 +29,8 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
         txtID.setVisible(false);
         txtIDCaja.setVisible(false);
         cargarpasodefocus();
+        txtNroCaja.setText("1");
+        btnnuevo.requestFocus();
     }
 
     void centrar_Frm() {
@@ -43,7 +44,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
 
     void cargarpasodefocus() {
 
-        txtMontoApertura.setNextFocusableComponent(txtmontocierre);
+        txtMontoApertura.setNextFocusableComponent(btnguardar);
         txtmontocierre.setNextFocusableComponent(jFechaApertura);
         jFechaApertura.setNextFocusableComponent(jFechaCierre);
         jFechaCierre.setNextFocusableComponent(txtDocumento);
@@ -62,8 +63,11 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
 //        txtnombreapellido.setEnabled(false);
 //        jButton5.setEnabled(true);
         cboestado.setEnabled(true);
+        btneliminar.setEnabled(true);
+        btnguardar.setEnabled(true);
+        btncancelar.setEnabled(true);
         txtIDCaja.setText("");
-        txtNroCaja.setText("");
+        txtNroCaja.setText("1");
         txtMontoApertura.setText("0");
         txtmontocierre.setText("0");
 //        txtDocumento.setText("");
@@ -85,7 +89,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
 
             }
 
-            txtNroCaja.requestFocus();
+            txtMontoApertura.requestFocus();
         }
 
     }
@@ -99,16 +103,21 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
         txtNroCaja.setEnabled(false);
 //        jButton5.setEnabled(false);
         cboestado.setEnabled(false);
+
+        btneliminar.setEnabled(false);
+        btnguardar.setEnabled(false);
+        btncancelar.setEnabled(false);
+
         txtnombreapellido.setEnabled(false);
 //        txtmontoacumulado.setEnabled(false);
         txtMontoApertura.setText("0");
         txtmontocierre.setText("0");
-        txtNroCaja.setText("");
+        txtNroCaja.setText("1");
 //        txtmontoacumulado.setText("0");
         cboestado.setSelectedItem("ACTIVO");
         txtIDCaja.setText("");
 //        txtID.setText("");
-        txtNroCaja.requestFocus();
+
     }
 
     /**
@@ -145,7 +154,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
         btnguardar = new javax.swing.JButton();
         btnnuevo = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
-        btneliminar1 = new javax.swing.JButton();
+        btncancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -366,6 +375,11 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
                 btnguardarActionPerformed(evt);
             }
         });
+        btnguardar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnguardarKeyPressed(evt);
+            }
+        });
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevocopia.png"))); // NOI18N
@@ -375,6 +389,11 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnnuevoActionPerformed(evt);
+            }
+        });
+        btnnuevo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnnuevoKeyPressed(evt);
             }
         });
 
@@ -389,14 +408,19 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
             }
         });
 
-        btneliminar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btneliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar1.png"))); // NOI18N
-        btneliminar1.setText("Cancelar");
-        btneliminar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btneliminar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btneliminar1.addActionListener(new java.awt.event.ActionListener() {
+        btncancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar1.png"))); // NOI18N
+        btncancelar.setText("Cancelar");
+        btncancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneliminar1ActionPerformed(evt);
+                btncancelarActionPerformed(evt);
+            }
+        });
+        btncancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btncancelarKeyPressed(evt);
             }
         });
 
@@ -412,7 +436,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btneliminar1)
+                .addComponent(btncancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -423,7 +447,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
                     .addComponent(btneliminar)
                     .addComponent(btnguardar)
                     .addComponent(btnnuevo)
-                    .addComponent(btneliminar1))
+                    .addComponent(btncancelar))
                 .addContainerGap())
         );
 
@@ -600,14 +624,26 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
         guardareditar();
     }//GEN-LAST:event_btneliminarActionPerformed
 
-    private void btneliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminar1ActionPerformed
+    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
         inhabilitar();
-    }//GEN-LAST:event_btneliminar1ActionPerformed
+    }//GEN-LAST:event_btncancelarActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         x = null;
         // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameClosing
+
+    private void btnnuevoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnnuevoKeyPressed
+        habilitar(true);
+    }//GEN-LAST:event_btnnuevoKeyPressed
+
+    private void btnguardarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnguardarKeyPressed
+        guardareditar();
+    }//GEN-LAST:event_btnguardarKeyPressed
+
+    private void btncancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btncancelarKeyPressed
+        inhabilitar();
+    }//GEN-LAST:event_btncancelarKeyPressed
     static void guardareditar() {
         if (txtNroCaja.getText().length() <= 0) {
             JOptionPane.showMessageDialog(null, "FALTO EL NRO DE CAJA");
@@ -4824,8 +4860,8 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btncancelar;
     public static javax.swing.JButton btneliminar;
-    public static javax.swing.JButton btneliminar1;
     public static javax.swing.JButton btnguardar;
     public static javax.swing.JButton btnnuevo;
     public static javax.swing.JComboBox cboestado;

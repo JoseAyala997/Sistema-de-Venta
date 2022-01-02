@@ -20,12 +20,13 @@ public class vproductos {
     private String cod_barra;
     private String estado;
     private int idcategorias;
+    private Double pulgadas;
     
 
     public vproductos() {
     }
 
-    public vproductos(int idservicios, String nombre_producto, String descripcion, Long precio_unitario, Long precio_mayor, Long precio_costo, Double stock, String cod_barra, String estado, int idcategorias) {
+    public vproductos(int idservicios, String nombre_producto, String descripcion, Long precio_unitario, Long precio_mayor, Long precio_costo, Double stock, String cod_barra, String estado, int idcategorias, Double pulgadas) {
         this.idservicios = idservicios;
         this.nombre_producto = nombre_producto;
         this.descripcion = descripcion;
@@ -36,6 +37,7 @@ public class vproductos {
         this.cod_barra = cod_barra;
         this.estado = estado;
         this.idcategorias = idcategorias;
+        this.pulgadas = pulgadas;
     }
 
     public int getIdservicios() {
@@ -118,8 +120,15 @@ public class vproductos {
         this.idcategorias = idcategorias;
     }
 
-    
-    
+    public Double getPulgadas() {
+        return pulgadas;
+    }
+
+    public void setPulgadas(Double pulgadas) {
+        this.pulgadas = pulgadas;
+    }
+
+  
     
             
     

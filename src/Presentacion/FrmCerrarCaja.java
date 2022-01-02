@@ -7,9 +7,6 @@ package Presentacion;
 
 import Datos.vmovimiento_caja;
 import Logica.fmovimiento_caja;
-import static Presentacion.FrmApertura_Caja.x;
-import static Presentacion.frmcierre_caja1.x;
-
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -111,6 +108,7 @@ public class FrmCerrarCaja extends javax.swing.JInternalFrame {
         txtcapitalcaja.setText("0");
         txtIDCaja.setText("");
         txtID.setText("");
+        txtNroCaja.setText("");
         btnguardar.setEnabled(false);
         txtNroCaja.requestFocus();
     }
@@ -343,7 +341,7 @@ public class FrmCerrarCaja extends javax.swing.JInternalFrame {
                 txtIDActionPerformed(evt);
             }
         });
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 20, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 10, -1));
 
         txtIDCaja.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         txtIDCaja.addActionListener(new java.awt.event.ActionListener() {
@@ -606,6 +604,8 @@ public class FrmCerrarCaja extends javax.swing.JInternalFrame {
 
         String montoApertura = txtMontoApertura.getText();
         String montoCierre = txtmontocierre.getText();
+        String montototal = txtcapitalcaja.getText();
+        
 
         try {
 
@@ -618,11 +618,15 @@ public class FrmCerrarCaja extends javax.swing.JInternalFrame {
 
             montoCierre = montoCierre.replace(".", "");
             montoCierre = montoCierre.replace(",", ".");
-            if (Double.parseDouble(montoCierre) < 0) {
-                JOptionPane.showMessageDialog(null, "EL COSTO NO PUEDE SER MENOR A 0");
+            montototal = montototal.replace(".", "");
+            montoCierre = montoCierre.replace(",", ".");
+            
+            if (Double.parseDouble(montototal) != Double.parseDouble(montoCierre)) {
+                JOptionPane.showMessageDialog(null, "EL COSTO NO PUEDE SER MENOR A 0 NI DIFERENTE AL CAPITAL DE LA CAJA");
                 return;
             }
-
+           
+         
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "LA CANTIDAD INGRESADA DEL MONTO APERTURA O MONTO CIERRE ES INVALIDO");
             return;

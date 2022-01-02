@@ -286,8 +286,10 @@ public class FrmVista2 extends javax.swing.JFrame {
             double ingreso = func.mostrarTotalAcumuladoPagosVentas(jTable1.getValueAt(fila, 0).toString());
             double egreso = func.mostrarTotalegreso(jTable1.getValueAt(fila, 0).toString());
             double acumulado = ingreso + apertura;
+            double caja = ingreso;
             double capital = acumulado - egreso;
-            FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) acumulado))));
+//            FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) acumulado))));
+            FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
             FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
             FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));
             this.dispose();
