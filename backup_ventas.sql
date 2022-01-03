@@ -253,7 +253,11 @@ CREATE TABLE `movimiento_caja` (
 
 LOCK TABLES `movimiento_caja` WRITE;
 /*!40000 ALTER TABLE `movimiento_caja` DISABLE KEYS */;
+<<<<<<< Updated upstream
 INSERT INTO `movimiento_caja` VALUES (67,24,'1','2021-12-27','2021-12-30',100000,1020000,'CERRADO'),(68,24,'3','2021-12-30','2021-12-30',100000,100000,'CERRADO'),(69,24,'1','2021-12-30','2021-12-30',200000,0,'CERRADO'),(70,24,'1','2021-12-30','2021-12-30',100000,0,'CERRADO'),(71,24,'1','2021-12-30','2021-12-30',100000,550000,'CERRADO'),(72,24,'1','2022-01-02','2022-01-02',100000,250000,'CERRADO'),(73,24,'1','2022-01-02','2022-01-02',100000,0,'ACTIVO');
+=======
+INSERT INTO `movimiento_caja` VALUES (67,24,'1','2021-12-27','2021-12-31',100000,0,'CERRADO');
+>>>>>>> Stashed changes
 /*!40000 ALTER TABLE `movimiento_caja` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -486,4 +490,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< Updated upstream
 -- Dump completed on 2022-01-02 23:40:42
+=======
+-- Dump completed on 2022-01-03  9:06:49
+>>>>>>> Stashed changes
