@@ -6,10 +6,12 @@
 package Presentacion;
 
 import Datos.vdetalle_venta;
+import Datos.vproductos;
 import Datos.vventas;
 import Logica.StyloTabla;
 import Logica.freserva;
 import Logica.fproductos;
+import static Logica.fproductos.cantidadproducto;
 import Logica.fventa;
 import java.awt.Color;
 import java.sql.Date;
@@ -32,7 +34,7 @@ public class frmventas extends javax.swing.JInternalFrame {
     public frmventas() {
         initComponents();
         x = "x";
-        
+
         centrar_frm();
 
         cliente();
@@ -59,6 +61,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         modelo.addColumn("ID");
         modelo.addColumn("PRODUCTO");
         modelo.addColumn("PRECIO");
+        modelo.addColumn("PULGADAS");
         modelo.addColumn("CANTIDAD");
         modelo.addColumn("SUB TOTAL");
 
@@ -70,8 +73,10 @@ public class frmventas extends javax.swing.JInternalFrame {
         //asignamos un cliente general
         txtcodcliente.setText("3");
         txtcliente.setText("CLIENTE GENERAL");
+        txtpulgadas.setText("0");
     }
-    void centrar_frm(){
+
+    void centrar_frm() {
         int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
         int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
         setLocation(a / 2, b / 2);
@@ -92,13 +97,13 @@ public class frmventas extends javax.swing.JInternalFrame {
     void insertarVenta() {
         vventas datos = new vventas();
         fventa funcion = new fventa();
-        
+
         datos.setIdusuarios(Integer.parseInt(frmprincipal.lblcodusuario.getText()));
         datos.setIdpaciente(Integer.parseInt(txtcodcliente.getText()));
         //datos.setIdusuarios(Integer.parseInt(FRMPRINCIPAL.lblCod_Usuario.getText()));
         datos.setTotal(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
         datos.setIdmovimiento(Integer.parseInt(frmprincipal.idcaja1));
-        
+
         Calendar cal = dcfecha.getCalendar();
         int a, m, d;
         a = cal.get(cal.YEAR) - 1900;
@@ -108,7 +113,6 @@ public class frmventas extends javax.swing.JInternalFrame {
         datos.setFecha(new Date(a, m, d));
         datos.setNro_factura(txtnrofactura.getText());
         datos.setTipo(jComboBox1.getSelectedItem().toString());
-       
 
         if (funcion.insertarVentas(datos)) {
 
@@ -122,16 +126,26 @@ public class frmventas extends javax.swing.JInternalFrame {
         fventa funcion = new fventa();
         fproductos cd = new fproductos();
         freserva rs = new freserva();
+        if (true) {
+            
+        }
         for (int i = 0; i < tablaventas.getRowCount(); i++) {
 
+// modelo.addColumn("ID");
+//        modelo.addColumn("PRODUCTO");
+//        modelo.addColumn("PRECIO");
+//        modelo.addColumn("PULGADAS");
+//        modelo.addColumn("CANTIDAD");
+//        modelo.addColumn("SUB TOTAL");
             datos.setIdservicios(Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
-            datos.setCantidad(Integer.parseInt(tablaventas.getValueAt(i, 3).toString()));
+            datos.setCantidad(Integer.parseInt(tablaventas.getValueAt(i, 4).toString()));
             datos.setPrecio(Long.parseLong(tablaventas.getValueAt(i, 2).toString().replaceAll("\\.", "")));
-            datos.setSub_total(Long.parseLong(tablaventas.getValueAt(i, 4).toString().replaceAll("\\.", "")));
-            cd.restarStock(Double.parseDouble(tablaventas.getValueAt(i, 3).toString()), Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
+            datos.setSub_total(Long.parseLong(tablaventas.getValueAt(i, 5).toString().replaceAll("\\.", "")));
+            cd.restarpulgadas(Double.parseDouble(tablaventas.getValueAt(i, 3).toString()), Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
+            cd.restarStock(Double.parseDouble(tablaventas.getValueAt(i, 4).toString()), Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
 
             funcion.insertarDetalle(datos);
-            
+
         }
 //        JOptionPane.showMessageDialog(null, "Venta Finalizada");
     }
@@ -356,7 +370,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                             .addComponent(txtpulgadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43))
+                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,9 +471,9 @@ public class frmventas extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
@@ -488,7 +502,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         }
         if (txtnrofactura.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NRO DE FACTURA");//validamos que el num de factura no este vacio
-            
+
             return;
         }
 
@@ -498,7 +512,6 @@ public class frmventas extends javax.swing.JInternalFrame {
         } else {
 
             //mandamos los datos al frm factura
-            
             FrmFactura frm = new FrmFactura();
             frm.txtFactura.setText(txtnrofactura.getText());
             frm.txtMonto.setText(txttotal.getText());
@@ -513,10 +526,10 @@ public class frmventas extends javax.swing.JInternalFrame {
     private void btnquitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitarActionPerformed
         int fila = tablaventas.getSelectedRow();
         if (fila < 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes Seleccionar el Servicio");
+            JOptionPane.showMessageDialog(rootPane, "Debes Seleccionar el Producto");
 
         } else {
-            int confirmacion = JOptionPane.showConfirmDialog(null, "?Deseas Eliminar el Servicio de la lista?");
+            int confirmacion = JOptionPane.showConfirmDialog(null, "?Deseas Eliminar el Producto de la lista?");
             if (JOptionPane.OK_OPTION == confirmacion) {
                 modelo.removeRow(fila);
                 sumarsubtotal();
@@ -527,31 +540,49 @@ public class frmventas extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String[] agregar = new String[5];
+
+        String[] agregar = new String[6];
         if (txtproducto.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes seleccionar el Servicio");
+            JOptionPane.showMessageDialog(rootPane, "Debes seleccionar el Producto");
 //            btn.requestFocus();
             return;
         }
         if (txtcantidad.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ponel la cantidad");
+            JOptionPane.showMessageDialog(rootPane, "Debes poner la cantidad");
             txtcantidad.requestFocus();
             return;
         }
-        agregar[0] = lblidproducto.getText();
-        agregar[1] = txtproducto.getText();
-        agregar[2] = String.valueOf(format.format(Integer.parseInt(txtprecio.getText())));
-        agregar[3] = txtcantidad.getText();
-        int subttotal = Integer.parseInt(txtcantidad.getText()) * Integer.parseInt(txtprecio.getText());
-        agregar[4] = String.valueOf(format.format(Integer.parseInt("" + subttotal)));
-        modelo.addRow(agregar);
-        sumarsubtotal();
+        int cant;
+        cant = Integer.parseInt(txtcantidad.getText());
+        if (cant > cantidadproducto) {
+//            if (fproductos.categoria) {
+//                
+//            }
+            int respuesta
+                    = JOptionPane.showConfirmDialog(rootPane, "La cantidad deseada supera la cantidad del producto desea agragarlo de todas formas? ", "Seleccionar Opcion", JOptionPane.YES_NO_OPTION);
+            if (respuesta == JOptionPane.YES_OPTION) {
 
-        txtprecio.setText("");
-        txtcantidad.setText("");
-        lblidproducto.setText("");
-        txtproducto.setText("");
-        txtprecio.setText("");
+                agregar[0] = lblidproducto.getText();
+                agregar[1] = txtproducto.getText();
+                agregar[2] = String.valueOf(format.format(Integer.parseInt(txtprecio.getText())));
+                agregar[3] = txtpulgadas.getText();
+                agregar[4] = txtcantidad.getText();
+                int subttotal = Integer.parseInt(txtcantidad.getText()) * Integer.parseInt(txtprecio.getText());
+                agregar[5] = String.valueOf(format.format(Integer.parseInt("" + subttotal)));
+                modelo.addRow(agregar);
+                sumarsubtotal();
+
+                txtprecio.setText("");
+                txtcantidad.setText("");
+                lblidproducto.setText("");
+                txtproducto.setText("");
+                txtprecio.setText("");
+                txtpulgadas.setText("0");
+            }
+
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnvistaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvistaproducto1ActionPerformed
@@ -590,7 +621,7 @@ public class frmventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void txtpulgadasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpulgadasKeyTyped
-         char key = evt.getKeyChar();
+        char key = evt.getKeyChar();
         if (txtpulgadas.getText().length() > 4) {
             evt.consume();
         }
@@ -603,13 +634,15 @@ public class frmventas extends javax.swing.JInternalFrame {
     public static DecimalFormat format = new DecimalFormat("###,###.###");
     public static float sumatoria;
     public static float sumador;
+    public static float pulgadas;
 
     public static void sumarsubtotal() {
         int totalrow = tablaventas.getRowCount();
         totalrow -= 1;
         sumatoria = 0;
+        pulgadas = 0;
         for (int i = 0; i <= (totalrow); i++) {
-            sumador = Float.valueOf(tablaventas.getValueAt(i, 4).toString().replaceAll("\\.", ""));
+            sumador = Float.valueOf(tablaventas.getValueAt(i, 5).toString().replaceAll("\\.", ""));
             sumatoria += sumador;
 
         }

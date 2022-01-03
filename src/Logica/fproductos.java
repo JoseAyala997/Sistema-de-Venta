@@ -32,12 +32,12 @@ public class fproductos {
 
     public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
-        String[] titulos = {"ID", "PRODUCTO", "DESCRIPCION", "PRECIO UNT.", "PRECIO MAYOR", "PRECIO COSTO", "STOCK","PULGADAS", "IDCAT", "CATEGORIA"};
+        String[] titulos = {"ID", "PRODUCTO", "DESCRIPCION", "PRECIO UNT.", "PRECIO MAYOR", "PRECIO COSTO", "STOCK", "PULGADAS", "IDCAT", "CATEGORIA"};
         String[] registro = new String[11];
         modelo = new DefaultTableModel(null, titulos);
         SQL = "SELECT p.idservicios, p.nombre_producto,p.descripcion,p.precio_unitario,p.precio_mayor,p.precio_costo,p.stock,p.pulgadas, c.idcategorias,c.categoria, p.cod_barra\n"
                 + " FROM productos p inner join categorias c on p.idcategorias=c.idcategorias\n"
-                + "where (p.nombre_producto like '%" + buscar + "%' ||  p.cod_barra like '%"+ buscar +"%') and p.estado = 'ACTIVO'  order by p.idservicios desc";
+                + "where (p.nombre_producto like '%" + buscar + "%' ||  p.cod_barra like '%" + buscar + "%') and p.estado = 'ACTIVO'  order by p.idservicios desc";
 
         TotalRegistros = 0;
         ValorTotal = 0;
@@ -56,7 +56,6 @@ public class fproductos {
                 registro[7] = rs.getString("pulgadas");
                 registro[8] = rs.getString("idcategorias");
                 registro[9] = rs.getString("categoria");
-           
 
                 TotalRegistros = TotalRegistros + 1;
 
@@ -86,6 +85,25 @@ public class fproductos {
             while (rs.next()) {
 
                 cantidadproducto = rs.getInt("stock");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    /*funcion para determinar si es servicio o producto*/
+    public static String categoria;
+
+    public static void vercategoria(String cat) {
+
+        SQL = "SELECT c.categoria from categorias c inner join productos p \n"
+                + "on c.idcategorias = p.idcategorias where c.categoria= '" + cat + "' ";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+
+                categoria = rs.getString("categoria");
             }
 
         } catch (Exception e) {
@@ -210,7 +228,7 @@ public class fproductos {
     }
 
     public boolean restarStock(double cantidad, int idservicios) {
-        SQL = " update servicios set stock=stock-'" + cantidad + "' "
+        SQL = " update productos set stock=stock-'" + cantidad + "' "
                 + " where idservicios='" + idservicios + "'";
 
         try {
@@ -227,8 +245,9 @@ public class fproductos {
             return false;
         }
     }
+
     public boolean restarpulgadas(double pulgada, int idservicios) {
-        SQL = " update servicios set pulgadas=pulgadas-'" + pulgada + "' "
+        SQL = " update productos set pulgadas=pulgadas-'" + pulgada + "' "
                 + " where idservicios='" + idservicios + "'";
 
         try {
