@@ -612,17 +612,19 @@ public class frmventas extends javax.swing.JInternalFrame {
             txtcantidad.requestFocus();
             return;
         }
-        int cant;
-        cant = Integer.parseInt(txtcantidad.getText());
-        if (cant > cantidadproducto) {
+//        int cant;
+//        cant = Integer.parseInt(txtcantidad.getText());
+//        if (cant > cantidadproducto) {
 //            if (fproductos.categoria) {
 //                
 //            }
-            int respuesta
-                    = JOptionPane.showConfirmDialog(rootPane, "La cantidad deseada supera la cantidad del producto desea agragarlo de todas formas? ", "Seleccionar Opcion", JOptionPane.YES_NO_OPTION);
-            if (respuesta == JOptionPane.YES_OPTION) {
-
-                agregar[0] = lblidproducto.getText();
+//            int respuesta
+//                    = JOptionPane.showConfirmDialog(rootPane, "La cantidad deseada supera la cantidad del producto desea agragarlo de todas formas? ", "Seleccionar Opcion", JOptionPane.YES_NO_OPTION);
+//            if (respuesta == JOptionPane.YES_OPTION) {
+//
+//               
+//            }
+             agregar[0] = lblidproducto.getText();
                 agregar[1] = txtproducto.getText();
                 agregar[2] = String.valueOf(format.format(Integer.parseInt(txtprecio.getText())));
                 agregar[3] = txtpulgadas.getText();
@@ -638,9 +640,8 @@ public class frmventas extends javax.swing.JInternalFrame {
                 txtproducto.setText("");
                 txtprecio.setText("");
                 txtpulgadas.setText("0");
-            }
 
-        }
+//        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
