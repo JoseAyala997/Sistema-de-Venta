@@ -33,13 +33,13 @@ public static String x;
     public void restaurar_copia(){
          JOptionPane.showMessageDialog(rootPane, "Esto puede tardar unos minutos por favor espere");
         try {
-            Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 5.6\\bin\\mysql  -uroot -p12345 clinica_nutricional");
+            Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 5.6\\bin\\mysql  -uroot -p12345 ventas");
 
             new HiloLector(p.getErrorStream()).start();
             
             OutputStream os = p.getOutputStream();//Pedimos la entrada
 
-            FileInputStream fis = new FileInputStream("backup_clinica.sql"); //creamos el archivo para le respaldo
+            FileInputStream fis = new FileInputStream("backup_ventas.sql"); //creamos el archivo para le respaldo
 
             byte[] buffer = new byte[1000]; //Creamos una variable de tipo byte para el buffer
 

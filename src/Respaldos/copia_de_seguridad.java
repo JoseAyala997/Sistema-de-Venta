@@ -19,13 +19,13 @@ import javax.swing.JOptionPane;
 public class copia_de_seguridad {
     public static void main(String[] args){
          try {
-            Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 5.6\\bin\\mysqldump -uroot -p12345 clinica_nutricional");
+            Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 5.6\\bin\\mysqldump -uroot -p12345 ventas");
 
             new HiloLector(p.getErrorStream()).start();
 
             InputStream is = p.getInputStream();//Pedimos la entrada
 
-            FileOutputStream fos = new FileOutputStream("backup_clinica.sql"); //creamos el archivo para le respaldo
+            FileOutputStream fos = new FileOutputStream("backup_ventas.sql"); //creamos el archivo para le respaldo
 
             byte[] buffer = new byte[1000]; //Creamos una variable de tipo byte para el buffer
 

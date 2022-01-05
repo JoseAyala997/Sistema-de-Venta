@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptventasclinica" language="groovy" pageWidth="620" pageHeight="1000" columnWidth="580" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="967c5821-a8f3-4268-bba2-a3a23f22f1bd">
-	<property name="ireport.zoom" value="1.2100000000000202"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -227,17 +227,17 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 					<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="170" y="2" width="38" height="16" uuid="579e1b5b-0528-41a3-a6dc-de74f84e340b"/>
+					<reportElement x="170" y="1" width="38" height="16" uuid="579e1b5b-0528-41a3-a6dc-de74f84e340b"/>
 					<textElement>
 						<font size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Total:]]></text>
 				</staticText>
 				<line>
-					<reportElement x="-2" y="-3" width="260" height="4" uuid="d0dc00cb-a1b4-4d94-9e6d-1c514f0c0f0b"/>
+					<reportElement x="-2" y="-1" width="260" height="1" uuid="d0dc00cb-a1b4-4d94-9e6d-1c514f0c0f0b"/>
 				</line>
 				<line>
-					<reportElement x="296" y="3" width="281" height="1" uuid="9086c305-d681-473b-a5b7-9faf606fcd73"/>
+					<reportElement x="296" y="1" width="281" height="1" uuid="9086c305-d681-473b-a5b7-9faf606fcd73"/>
 				</line>
 				<line>
 					<reportElement x="296" y="20" width="281" height="1" uuid="afd15596-2ddd-49a6-b8d8-318881b989b6"/>
@@ -250,15 +250,15 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 					<text><![CDATA[Total:]]></text>
 				</staticText>
 				<line>
-					<reportElement x="-2" y="17" width="260" height="4" uuid="a3df2b49-e5f5-493a-b1b2-dafb3864bdbd"/>
+					<reportElement x="-2" y="18" width="260" height="1" uuid="a3df2b49-e5f5-493a-b1b2-dafb3864bdbd"/>
 				</line>
 			</band>
 		</groupFooter>
 	</group>
 	<title>
-		<band height="149" splitType="Stretch">
+		<band height="141" splitType="Stretch">
 			<staticText>
-				<reportElement x="31" y="19" width="154" height="20" uuid="19c5e756-443b-4074-a5aa-ae51ebf89b7f"/>
+				<reportElement x="47" y="19" width="154" height="20" uuid="19c5e756-443b-4074-a5aa-ae51ebf89b7f"/>
 				<textElement textAlignment="Center">
 					<font size="8"/>
 				</textElement>
@@ -269,52 +269,52 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[SAN JOSE]]></text>
+				<text><![CDATA[SAN JOSÉ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="31" y="39" width="142" height="20" uuid="f56fbf25-a795-4303-9170-3d88ec58ad48"/>
+				<reportElement x="47" y="39" width="142" height="20" uuid="f56fbf25-a795-4303-9170-3d88ec58ad48"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Villarrica - Paraguay]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="31" y="59" width="142" height="19" uuid="0b1f1319-df30-402a-956b-790bf6d0af1c"/>
+				<reportElement x="66" y="60" width="142" height="19" uuid="0b1f1319-df30-402a-956b-790bf6d0af1c"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tablas - Tablones		]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="31" y="78" width="142" height="19" uuid="347ef04e-e780-428c-91c5-0500365c380d"/>
+				<reportElement x="34" y="78" width="177" height="19" uuid="347ef04e-e780-428c-91c5-0500365c380d"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Terciadas - Placas - Fendlicas - MDF]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="31" y="97" width="142" height="19" uuid="050e19e3-1f2d-478c-ba3d-1f1e44897e7a"/>
+				<reportElement x="47" y="97" width="142" height="19" uuid="050e19e3-1f2d-478c-ba3d-1f1e44897e7a"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Puertas - Marcos - Ferreteria]]></text>
+				<text><![CDATA[Puertas - Marcos - Ferretería]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="78" y="122" width="156" height="20" uuid="3b8fb9f6-254b-488d-bfc6-f1fd79b62729"/>
+				<reportElement x="95" y="117" width="156" height="16" uuid="3b8fb9f6-254b-488d-bfc6-f1fd79b62729"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="185" y="0" width="74" height="20" uuid="41d249cd-10b9-4b43-a72c-72cdc3d6ce50"/>
+				<reportElement x="201" y="0" width="74" height="20" uuid="41d249cd-10b9-4b43-a72c-72cdc3d6ce50"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RECIBO N°]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="193" y="20" width="74" height="20" uuid="7f6e3de3-f518-4b48-8d49-33a772f52796"/>
+				<reportElement x="209" y="20" width="74" height="20" uuid="7f6e3de3-f518-4b48-8d49-33a772f52796"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -335,7 +335,7 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<text><![CDATA[Ruta 8y Bvard. Yegros - 0983477794]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="355" y="78" width="149" height="20" uuid="61f70bb4-5773-4e26-bbf4-b8362eb85faf"/>
+				<reportElement x="344" y="77" width="175" height="20" uuid="61f70bb4-5773-4e26-bbf4-b8362eb85faf"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -346,21 +346,21 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[SAN JOSE]]></text>
+				<text><![CDATA[SAN JOSÉ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="355" y="59" width="149" height="20" uuid="4984f4e0-39f3-4510-a22a-adff528e8c9d"/>
+				<reportElement x="391" y="58" width="88" height="20" uuid="4984f4e0-39f3-4510-a22a-adff528e8c9d"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tablas - Tablones		]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="355" y="97" width="149" height="20" uuid="64aa72bf-7d21-4343-9e63-0ca799920a26"/>
+				<reportElement x="354" y="97" width="175" height="20" uuid="64aa72bf-7d21-4343-9e63-0ca799920a26"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Puertas - Marcos - Ferreteria]]></text>
+				<text><![CDATA[Puertas - Marcos - Ferretería]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="514" y="20" width="74" height="20" uuid="540350ef-2ce0-45f9-8b9b-949a558a4101"/>
@@ -377,14 +377,14 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<text><![CDATA[RECIBO N°]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="426" y="122" width="156" height="20" uuid="0b2f2b75-75be-45ce-9eef-f26f5d11e82b"/>
+				<reportElement x="418" y="117" width="156" height="16" uuid="0b2f2b75-75be-45ce-9eef-f26f5d11e82b"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="193" y="40" width="74" height="20" uuid="5d4153c3-490e-4326-a353-d1ca168d2e90"/>
+				<reportElement x="209" y="40" width="74" height="20" uuid="5d4153c3-490e-4326-a353-d1ca168d2e90"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -406,7 +406,7 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Recibi de:]]></text>
+				<text><![CDATA[Recibí de:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="-1" y="28" width="170" height="20" uuid="794d6f2c-5adf-4e69-b848-598594a0a309"/>
@@ -427,17 +427,17 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Recibi de:]]></text>
+				<text><![CDATA[Recibí de:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="347" y="8" width="116" height="20" uuid="c2bbb7b3-f621-4d64-9804-4bbbefac3053"/>
+				<reportElement x="347" y="10" width="116" height="20" uuid="c2bbb7b3-f621-4d64-9804-4bbbefac3053"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="8" width="108" height="20" uuid="c5094af4-ccf6-4975-a36e-03fee54ea891"/>
+				<reportElement x="50" y="10" width="108" height="20" uuid="c5094af4-ccf6-4975-a36e-03fee54ea891"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -452,7 +452,7 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Descripcion]]></text>
+				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="-2" y="3" width="33" height="16" uuid="639df1d1-9976-44f4-9309-5ffd8a76181d"/>
@@ -494,7 +494,7 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Descripcion]]></text>
+				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="470" y="2" width="38" height="16" uuid="f459dc7f-d959-4d43-a5eb-44f10aa08c36"/>
@@ -504,10 +504,10 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<line>
-				<reportElement x="-2" y="-2" width="260" height="4" uuid="cfc33eac-65a2-464c-81cd-be98f609684f"/>
+				<reportElement x="-2" y="0" width="260" height="1" uuid="cfc33eac-65a2-464c-81cd-be98f609684f"/>
 			</line>
 			<line>
-				<reportElement x="-2" y="18" width="260" height="4" uuid="ca5f27e2-8a91-43e9-a6fa-ba8e060b77ae"/>
+				<reportElement x="-2" y="19" width="260" height="1" uuid="ca5f27e2-8a91-43e9-a6fa-ba8e060b77ae"/>
 			</line>
 			<line>
 				<reportElement x="295" y="0" width="281" height="1" uuid="33bfc2ee-e5da-49c9-974d-df5979f42d29"/>
@@ -554,7 +554,7 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="514" y="0" width="63" height="20" uuid="bbee0cdc-1f4c-467c-8e35-a035067ed5e0"/>
 				<textElement>
 					<font size="8"/>
@@ -568,7 +568,7 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1 )and e
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="208" y="1" width="50" height="20" uuid="2933e39b-0195-4425-b41e-6d85670a9a80"/>
 				<textElement>
 					<font size="8"/>
