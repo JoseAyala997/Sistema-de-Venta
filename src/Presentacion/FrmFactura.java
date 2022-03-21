@@ -12,7 +12,6 @@ import static Logica.fproductos.cn;
 import Logica.fventa;
 import static Presentacion.frmventas.dcfecha;
 import static Presentacion.frmventas.imsertarDetalle;
-import static Presentacion.frmventas.jComboBox1;
 import static Presentacion.frmventas.txtcodcliente;
 import static Presentacion.frmventas.txtnrofactura;
 import static Presentacion.frmventas.txttotal;
@@ -31,6 +30,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import static Presentacion.frmventas.txtpulgadas;
+import net.sf.jasperreports.view.JasperViewer;
+import static Presentacion.frmventas.cbotipo;
 
 /**
  *
@@ -46,29 +47,28 @@ public class FrmFactura extends javax.swing.JFrame {
         txtFactura.setEnabled(false);
         txtMonto.setEnabled(false);
         txtVuelto.setEnabled(false);
-        
+
         setLocationRelativeTo(null);
-         
+
         btnAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent e){
+            public void keyPressed(java.awt.event.KeyEvent e) {
                 btnAceptarActionPerformed(null);
             }
-});
+        });
     }
-     void insertarfactura() {
-         vfactura datos = new vfactura();
-         ffactura funcion = new ffactura();
+
+    void insertarfactura() {
+        vfactura datos = new vfactura();
+        ffactura funcion = new ffactura();
         datos.setNrofactura(Integer.parseInt(txtnrofactura.getText()));
         datos.setMonto(Long.parseLong(txtMonto.getText().replaceAll("\\.", "")));
         datos.setEfectivo(Long.parseLong(txtEfectivo.getText().replaceAll("\\.", "")));
         datos.setVuelto(Long.parseLong(txtVuelto.getText().replaceAll("\\.", "")));
 //        datos.setIdventa(Integer.parseInt(txtnrofactura.getText()));
 
-           funcion.insertarF(datos);
-       
+        funcion.insertarF(datos);
+
     }
-    
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +90,8 @@ public class FrmFactura extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtFactura = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtdescuento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -158,41 +160,60 @@ public class FrmFactura extends javax.swing.JFrame {
         jLabel6.setText("FACTURA");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("DESCUENTO:");
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+
+        txtdescuento.setEnabled(false);
+        txtdescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdescuentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(txtEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(txtVuelto, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(210, 210, 210)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(txtdescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(txtVuelto, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(txtEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,7 +231,13 @@ public class FrmFactura extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtVuelto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -226,62 +253,73 @@ public class FrmFactura extends javax.swing.JFrame {
         int monto = Integer.parseInt(txtMonto.getText().replaceAll("\\.", ""));
         int calculo = c - monto;
         txtVuelto.setText("" + format.format(calculo));
-        
-         if (txtEfectivo.getText().length() == 0) {
+
+        if (txtEfectivo.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EFECTIVO DEL CLIENTE");
         }
-       
-        
+
+
     }//GEN-LAST:event_txtEfectivoKeyReleased
 
-    
-    public void vaciartabla(JTable tabla){ 
+    public void vaciartabla(JTable tabla) {
         try {
             int fila = tabla.getRowCount();
-            for (int i = 0 ; fila > i; i++){
+            for (int i = 0; fila > i; i++) {
                 frmventas.modelo.removeRow(0);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    
+
+
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // codigo
-          insertarfactura();
-          frmventas.NroFctura();
-           imprimir();
-           dispose();
-           vaciartabla(frmventas.tablaventas);
-           frmventas.sumarsubtotal();
-           frmventas.cliente();
-           frmventas.txtpulgadas.requestFocus();
+        insertarfactura();
+        frmventas.NroFctura();
+        imprimir();
+        dispose();
+        vaciartabla(frmventas.tablaventas);
+        frmventas.sumarsubtotal();
+//           frmventas.cliente();
+        frmventas.txtpulgadas.requestFocus();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    void imprimir (){
-        try{
-        Map p = new HashMap();
-        p.put("importe", txtEfectivo.getText());
-        p.put("vuelto",txtVuelto.getText());
-        
-        JasperReport jr;
-        JasperPrint jp;
-        
-        jr= JasperCompileManager.compileReport(new File ("").getAbsolutePath()
-        +"/src/Reportes/rptventasclinica.jrxml");//Jasper para tener vista en exel y demas editores de texto
-        
-          jp= JasperFillManager.fillReport(jr, p, cn);
-          JasperPrintManager.printReport(jp, true);
-        
-    }catch (Exception e){
+    void imprimir() {
+
+        try {
+//            System.out.println("imprimiendo");
+            Map p = new HashMap();
+            p.put("importe", txtEfectivo.getText());
+            p.put("vuelto", txtVuelto.getText());
+            p.put("descuento", txtdescuento.getText());
+
+            JasperReport jr;
+            JasperPrint jp;
+
+            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/Reportes/rptventasclinica.jrxml");//Jasper para tener vista en exel y demas editores de texto
+
+            jp = JasperFillManager.fillReport(jr, p, cn);
+//            JasperPrintManager.printReport(jp, true);
+
+                JasperViewer view = new JasperViewer(jp, false);
+                view.setTitle("Comprobante Venta");
+                view.setVisible(true);
+//            System.out.println("imprimiendo2");
+
+        } catch (Exception e) {
+        }
     }
-    }
-    
+
     private void txtEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEfectivoActionPerformed
         // TODO add your handling code here:
         btnAceptar.requestFocus();
     }//GEN-LAST:event_txtEfectivoActionPerformed
+
+    private void txtdescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdescuentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,11 +363,13 @@ public class FrmFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JTextField txtEfectivo;
     public static javax.swing.JTextField txtFactura;
     public static javax.swing.JTextField txtMonto;
     public static javax.swing.JTextField txtVuelto;
+    public static javax.swing.JTextField txtdescuento;
     // End of variables declaration//GEN-END:variables
 }

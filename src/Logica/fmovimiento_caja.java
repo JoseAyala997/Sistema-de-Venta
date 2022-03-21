@@ -5,11 +5,7 @@
  */
 package Logica;
 
-import Datos.valimentos;
 import Datos.vmovimiento_caja;
-import Datos.vpacientes;
-import static Logica.fproductos.SQL;
-import static Logica.fproductos.cn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,8 +24,51 @@ public class fmovimiento_caja {
     private Connection cn = mysql.conectar();
     private String sSQL = "";
     public static int ultimo_id;
+    public static int ultimoMonto;
+    public static int idm;
     DecimalFormat formatear = new DecimalFormat();
     public Integer totalregistros;
+
+    public DefaultTableModel mostrarcaja(String buscar, String estado) {
+        DefaultTableModel modelo;
+
+        String[] titulos = {"IDCAJA", "NRO CAJA", "MONTO APERTURA", "MONTO CIERRE", "FECHA APERT.", "FECHA CIERRE", "ESTADO", "IDPERSONA", "FUNCIONARIO", "DOC", "EGRESOS"};
+        String[] registro = new String[11];
+
+        modelo = new DefaultTableModel(null, titulos);
+        sSQL = "select cj.idmovimiento,cj.num_Caja,cj.monto_apertura,cj.monto_cierre,cj.fecha_apertura, cj.fecha_cierre, cj.estado, \n"
+                + "cj.idusuarios,concat(p.nombre,' ',p.apellido) as funcionario,p.numDocumento , sum(e.monto)as egresos\n"
+                + "from movimiento_caja cj \n"
+                + "join usuarios em on em.idusuarios=cj.idusuarios\n"
+                + "join persona p on em.idusuarios=p.idpersona\n"
+                + "join egresos e on cj.idmovimiento=e.idmovimiento\n"
+                + "where cj.estado='" + estado + "' and cj.idusuarios='" + buscar + "' order by cj.idmovimiento Desc";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+//                idm = rs.getInt("idmovimiento");
+//                idm = rs.getInt("idmovimiento");
+                registro[0] = rs.getString("idmovimiento");
+                registro[1] = rs.getString("num_Caja");
+                registro[2] = formatear.format(rs.getDouble("monto_apertura"));
+                registro[3] = formatear.format(rs.getDouble("monto_cierre"));
+                registro[4] = rs.getString("fecha_apertura");
+                registro[5] = rs.getString("fecha_cierre");
+                registro[6] = rs.getString("estado");
+                registro[7] = rs.getString("idusuarios");
+                registro[8] = rs.getString("funcionario");
+                registro[9] = rs.getString("numDocumento");
+                registro[10] = rs.getString("egresos");
+                modelo.addRow(registro);
+            }
+
+            return modelo;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: 1112" + e);
+            return null;
+        }
+    }
 
     public DefaultTableModel mostrar(String buscar, String estado) {
         DefaultTableModel modelo;
@@ -48,6 +87,7 @@ public class fmovimiento_caja {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
             while (rs.next()) {
+
                 registro[0] = rs.getString("idmovimiento");
                 registro[1] = rs.getString("num_Caja");
                 registro[2] = formatear.format(rs.getDouble("monto_apertura"));
@@ -67,7 +107,8 @@ public class fmovimiento_caja {
             return null;
         }
     }
-public boolean cerraCaja(vmovimiento_caja dts) {
+
+    public boolean cerraCaja(vmovimiento_caja dts) {
         sSQL = "update movimiento_caja set monto_cierre=?, fecha_cierre=?, estado=? "
                 + " where idmovimiento=?";
         try {
@@ -89,6 +130,7 @@ public boolean cerraCaja(vmovimiento_caja dts) {
             return false;
         }
     }
+
     public void mostrar_id() {
 
         sSQL = "select max(idmovimiento)as id from movimiento_caja ";
@@ -120,7 +162,7 @@ public boolean cerraCaja(vmovimiento_caja dts) {
                 + "join usuarios em on em.idusuarios=cj.idusuarios\n"
                 + "join persona p on em.idusuarios=p.idpersona\n"
                 + "where cj.Estado='ACTIVO' and cj.idusuarios = '" + buscar + "'order by cj.idmovimiento Desc";
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -146,7 +188,7 @@ public boolean cerraCaja(vmovimiento_caja dts) {
     public DefaultTableModel mostraractivos() {
         DefaultTableModel modelo;
 
-        String[] titulos = {"IDCAJA","NUM CAJA", "MONTO APERTURA", "MONTO CIERRE", "FECHA APERT.", "FECHA CIERRE", "ESTADO", "IDPERSONA", "FUNCIONARIO", "DOC"};
+        String[] titulos = {"IDCAJA", "NUM CAJA", "MONTO APERTURA", "MONTO CIERRE", "FECHA APERT.", "FECHA CIERRE", "ESTADO", "IDPERSONA", "FUNCIONARIO", "DOC"};
         String[] registro = new String[10];
 
         modelo = new DefaultTableModel(null, titulos);
@@ -205,7 +247,6 @@ public boolean cerraCaja(vmovimiento_caja dts) {
         }
     }
 
-
     public boolean Insertar_cierre(vmovimiento_caja dts) {
         mostrar_id();//se muestra el ultimo id registrado para actualizarlo
         sSQL = "UPDATE movimiento_caja set  fecha_cierre=?, cierre=?, estado=?\n"
@@ -260,7 +301,6 @@ public boolean cerraCaja(vmovimiento_caja dts) {
             return false;
         }
     }
-    
 
     public Double mostraraprturacaja(String buscar) {
         Double t = 0.0;
@@ -317,7 +357,28 @@ public boolean cerraCaja(vmovimiento_caja dts) {
             return t;
         }
     }
-    
-    
+
+    public void mostrarMonto(String buscar) {
+
+        sSQL = "SELECT (e.idmovimiento)as id, (m.idmovimiento)as idm from egresos e \n"
+                + "inner join movimiento_caja m on e.idmovimiento=m.idmovimiento "
+                + "where m.estado='ACTIVO' and m.idusuarios='" + buscar + "' order by m.idmovimiento Desc";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while (rs.next()) {
+                ultimoMonto = rs.getInt("id");
+                idm = rs.getInt("idm");
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+
+        }
+
+    }
 
 }

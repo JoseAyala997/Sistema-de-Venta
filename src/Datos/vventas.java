@@ -21,8 +21,22 @@ public class vventas {
     private String tipo;
     private String estado;
     private int idmovimiento;
+    private Long descuento;
 
     public vventas() {
+    }
+
+    public vventas(int idventa, int idusuarios, int idpaciente, Long total, Date fecha, String nro_factura, String tipo, String estado, int idmovimiento, Long descuento) {
+        this.idventa = idventa;
+        this.idusuarios = idusuarios;
+        this.idpaciente = idpaciente;
+        this.total = total;
+        this.fecha = fecha;
+        this.nro_factura = nro_factura;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.idmovimiento = idmovimiento;
+        this.descuento = descuento;
     }
 
     public int getIdventa() {
@@ -97,6 +111,15 @@ public class vventas {
         this.idmovimiento = idmovimiento;
     }
 
+    public Long getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Long descuento) {
+        this.descuento = descuento;
+    }
+
+   
     
    
 }

@@ -10,11 +10,6 @@ import Datos.vusuarios;
 import Logica.StyloTabla;
 import Logica.fpacientes;
 import Logica.fusuarios;
-import static Presentacion.frmventas.jPanel2;
-import static Presentacion.frmventas.jPanel3;
-import static Presentacion.frmventas.jPanel4;
-import static Presentacion.frmventas.tablaventas;
-import static Presentacion.frmventas.x;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +30,7 @@ public static String x;
         setLocation(a/2, b/2);
         setVisible(true);
   
-         mostrar("");
+        mostrar("");
         inhabilitar();
           jPanel1.setBackground(new Color(0, 102, 100, 200));
          jPanel2.setBackground(new Color(0, 102, 100, 200));
@@ -63,6 +58,7 @@ public static String x;
         btnguardar.setEnabled(false);
         btncancelar.setEnabled(false);
         btneliminar.setEnabled(false);
+        btncancelar.setEnabled(false);
         
         txtidpersona.setText("");
         txtnombre.setText("");
@@ -93,6 +89,7 @@ public static String x;
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(true);
         btneliminar.setEnabled(true);
+        btncancelar.setEnabled(true);
         
         txtidpersona.setText("");
         txtnombre.setText("");
@@ -267,7 +264,7 @@ public static String x;
         jLabel10.setText("Contraseña");
 
         cbacceso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbacceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RECEPCIONISTA", "ADMINISTRADOR", "NUTRICIONISTA", " " }));
+        cbacceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RECEPCIONISTA", "ADMINISTRADOR", " " }));
 
         cmbgenero.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cmbgenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MASCULINO\t", "FEMENINO" }));
@@ -355,7 +352,7 @@ public static String x;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(28, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbacceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

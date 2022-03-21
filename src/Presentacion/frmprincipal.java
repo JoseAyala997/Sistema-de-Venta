@@ -79,6 +79,7 @@ public class frmprincipal extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         menumovimiento = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        menucompras = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         registros = new javax.swing.JMenu();
@@ -86,6 +87,8 @@ public class frmprincipal extends javax.swing.JFrame {
         cutMenuItem6 = new javax.swing.JMenuItem();
         menupaciente = new javax.swing.JMenuItem();
         menucategoria = new javax.swing.JMenuItem();
+        menupaciente1 = new javax.swing.JMenuItem();
+        menupaciente2 = new javax.swing.JMenuItem();
         menureporte = new javax.swing.JMenu();
         historialventas = new javax.swing.JMenuItem();
         husuarios = new javax.swing.JMenuItem();
@@ -215,6 +218,14 @@ public class frmprincipal extends javax.swing.JFrame {
         });
         menumovimiento.add(jMenuItem1);
 
+        menucompras.setText("Compras");
+        menucompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menucomprasActionPerformed(evt);
+            }
+        });
+        menumovimiento.add(menucompras);
+
         jMenuItem4.setText("Apertura Caja");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +284,24 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
         registros.add(menucategoria);
+
+        menupaciente1.setMnemonic('t');
+        menupaciente1.setText("Proveedores");
+        menupaciente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menupaciente1ActionPerformed(evt);
+            }
+        });
+        registros.add(menupaciente1);
+
+        menupaciente2.setMnemonic('t');
+        menupaciente2.setText("Egresos");
+        menupaciente2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menupaciente2ActionPerformed(evt);
+            }
+        });
+        registros.add(menupaciente2);
 
         menuBar.add(registros);
 
@@ -619,6 +648,73 @@ public class frmprincipal extends javax.swing.JFrame {
           
     }//GEN-LAST:event_menucategoriaActionPerformed
 
+    private void menucomprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menucomprasActionPerformed
+           fmovimiento_caja func1 = new fmovimiento_caja();
+        String[] registro = new String[8];
+        registro = func1.obtenerdatos(frmprincipal.lblcodusuario.getText());
+        idcaja1 = registro[0];
+        if (registro[0].equals("")) {
+            JOptionPane.showMessageDialog(null, "DEBE REALIZAR LA APERTURA DE CAJA PÁRA HACER LAS COMPRAS");        // TODO add your handling code here:
+
+        } else {
+            String x = frmcompras.x;
+            try {
+                if (x == null) {
+                    frmcompras form = new frmcompras();
+                    jDesktopPane2.add(form);
+                    jDesktopPane2.moveToFront(form);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_menucomprasActionPerformed
+
+    private void menupaciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menupaciente1ActionPerformed
+         String x = frmproveedor.x;
+        try {
+            if (x == null) {
+                frmproveedor form = new frmproveedor();
+                jDesktopPane2.add(form);
+                jDesktopPane2.moveToFront(form);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_menupaciente1ActionPerformed
+
+    private void menupaciente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menupaciente2ActionPerformed
+        fmovimiento_caja func1 = new fmovimiento_caja();
+        String[] registro = new String[8];
+        registro = func1.obtenerdatos(frmprincipal.lblcodusuario.getText());
+        idcaja1 = registro[0];
+        if (registro[0].equals("")) {
+            JOptionPane.showMessageDialog(null, "DEBE REALIZAR LA APERTURA DE CAJA PÁRA CARGAR UN EGRESO");        // TODO add your handling code here:
+
+        } else {
+            String x = frmEgresos.x;
+            try {
+                if (x == null) {
+                    frmEgresos form = new frmEgresos();
+                    jDesktopPane2.add(form);
+                    jDesktopPane2.moveToFront(form);
+                    frmEgresos.txtidmovimiento.setText(idcaja1);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        
+       
+    }//GEN-LAST:event_menupaciente2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -679,14 +775,18 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblusuario;
     public static javax.swing.JMenuBar menuBar;
     public static javax.swing.JMenuItem menucategoria;
+    public static javax.swing.JMenuItem menucompras;
     public static javax.swing.JMenu menumovimiento;
     public static javax.swing.JMenuItem menupaciente;
+    public static javax.swing.JMenuItem menupaciente1;
+    public static javax.swing.JMenuItem menupaciente2;
     public static javax.swing.JMenu menureporte;
     public static javax.swing.JMenu menurespaldo;
     public static javax.swing.JMenu registros;
     public static javax.swing.JMenuItem rpaciente;
     // End of variables declaration//GEN-END:variables
-class Fondopanel extends JPanel {
+//codigo para agregar imgaen
+    class Fondopanel extends JPanel {
 
         private Image imagen;//se declara una variable
 

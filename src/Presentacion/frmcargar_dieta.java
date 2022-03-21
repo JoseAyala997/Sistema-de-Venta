@@ -19,7 +19,6 @@ import static Logica.fproductos.cn;
 import Logica.fventa;
 import static Presentacion.frmventas.dcfecha;
 import static Presentacion.frmventas.imsertarDetalle;
-import static Presentacion.frmventas.jComboBox1;
 import static Presentacion.frmventas.tablaventas;
 import static Presentacion.frmventas.txtcodcliente;
 import static Presentacion.frmventas.txtnrofactura;
@@ -48,6 +47,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import static Presentacion.frmventas.cbotipo;
 
 /**
  *

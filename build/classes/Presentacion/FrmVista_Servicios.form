@@ -124,8 +124,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablalistadoMouseClicked"/>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablalistadoMousePressed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablalistadoMouseClicked"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -155,8 +155,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel6" min="-2" pref="217" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="424" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" pref="238" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="403" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -176,7 +176,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="VISTA SERVICIOS"/>
+            <Property name="text" type="java.lang.String" value="VISTA PRODUCTOS"/>
           </Properties>
         </Component>
       </SubComponents>

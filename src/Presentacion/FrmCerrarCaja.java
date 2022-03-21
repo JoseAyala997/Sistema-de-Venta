@@ -26,11 +26,11 @@ public class FrmCerrarCaja extends javax.swing.JInternalFrame {
         initComponents();
 
         //codigo para centrar internalframe
-        x = "x";
-        int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
-        int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
-        setLocation(a / 2, b / 2);
-        setVisible(true);
+//        x = "x";
+//        int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
+//        int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
+//        setLocation(a / 2, b / 2);
+//        setVisible(true);
 
         inhabilitar();
         txtID.setVisible(false);

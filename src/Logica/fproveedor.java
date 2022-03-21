@@ -7,6 +7,8 @@ package Logica;
 
 import Datos.vproductos;
 import Datos.vproveedor;
+import static Logica.fproductos.SQL;
+import static Logica.fproductos.cn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,41 +28,36 @@ public class fproveedor {
     public static Connection cn = mysql.conectar();
 
     public int TotalRegistros;
-    public int ValorTotal;
+
 
     public static Statement st;
     public static ResultSet rs;
 
-    public DefaultTableModel mostrar(String buscar) {
+     public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
-        String[] titulos = {"ID", "NOMBRE", "TELEFONO", "DIRECCION", "PRECIO MAYOR", "RUC", "STOCK", "RAZON SOCIAL"};
-        String[] registro = new String[11];
+        String[] titulos = {"ID", "NOMBRE", "TELEFONO", "DIRECCION", "RUC", "RAZON SOCIAL","ESTADO"};
+        String[] registro = new String[8];
         modelo = new DefaultTableModel(null, titulos);
-        SQL = "SELECT p.idservicios, p.nombre_producto,p.descripcion,p.precio_unitario,p.precio_mayor,p.precio_costo,p.stock,p.pulgadas, c.idcategorias,c.categoria, p.cod_barra\n"
-                + " FROM productos p inner join categorias c on p.idcategorias=c.idcategorias\n"
-                + "where (p.nombre_producto like '%" + buscar + "%' ||  p.cod_barra like '%" + buscar + "%') and p.estado = 'ACTIVO'  order by p.idservicios desc";
-
+       SQL = "SELECT idproveedor, nombre, telefono, direccion, ruc, razon, estado from proveedor \n"
+                + "where nombre like '%" + buscar + "%'AND estado='ACTIVO'";
+       
         TotalRegistros = 0;
-        ValorTotal = 0;
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
             while (rs.next()) {
 
-                registro[0] = rs.getString("idservicios");
-                registro[1] = rs.getString("nombre_producto");
-                registro[2] = rs.getString("descripcion");
-                registro[3] = rs.getString("precio_unitario");
-                registro[4] = rs.getString("precio_mayor");
-                registro[5] = rs.getString("precio_costo");
-                registro[6] = rs.getString("stock");
-                registro[7] = rs.getString("pulgadas");
-                registro[8] = rs.getString("idcategorias");
-                registro[9] = rs.getString("categoria");
+                registro[0] = rs.getString("idproveedor");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("telefono");
+                registro[3] = rs.getString("direccion");
+                registro[4] = rs.getString("ruc");
+                registro[5] = rs.getString("razon");
+                registro[6] = rs.getString("estado");
 
                 TotalRegistros = TotalRegistros + 1;
 
-                ValorTotal = ValorTotal + (Integer.parseInt(registro[3]) * Integer.parseInt(registro[6]));
 
                 modelo.addRow(registro);
 
@@ -75,7 +72,6 @@ public class fproveedor {
 
     }
 
-    
     public boolean insertar(vproveedor dts) {
         SQL = "INSERT INTO proveedor (nombre, telefono, direccion,ruc,razon,estado)"
                 + " values (upper(?),?,upper(?),?,upper(?),?)";
@@ -88,7 +84,7 @@ public class fproveedor {
             pst.setString(4, dts.getRuc());
             pst.setString(5, dts.getRazon());
             pst.setString(6, "ACTIVO");
-  
+
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -141,7 +137,6 @@ public class fproveedor {
             pst.setString(5, dts.getRazon());
             pst.setString(6, "ACTIVO");
 
-            
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -153,7 +148,5 @@ public class fproveedor {
             return false;
         }
     }
-
-    
 
 }

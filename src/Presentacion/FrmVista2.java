@@ -8,6 +8,7 @@ package Presentacion;
 import Logica.fcategoria;
 import Logica.fmovimiento_caja;
 import Logica.fproductos;
+import Logica.fproveedor;
 import Logica.fusuarios;
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -31,6 +32,28 @@ public class FrmVista2 extends javax.swing.JFrame {
 
     }
 
+    public static void ocultar_columnas() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        tablalistado.getColumnModel().getColumn(5).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(5).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(5).setPreferredWidth(0);
+
+        tablalistado.getColumnModel().getColumn(6).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(6).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(6).setPreferredWidth(0);
+
+        tablalistado.getColumnModel().getColumn(7).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(7).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(7).setPreferredWidth(0);
+
+        tablalistado.getColumnModel().getColumn(9).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(9).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(9).setPreferredWidth(0);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,11 +68,12 @@ public class FrmVista2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lbltotalregistros = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new JTable(){    public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        tablalistado = new JTable(){    public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         jPanel2 = new javax.swing.JPanel();
         lbltitulovista = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblbandera = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -83,7 +107,7 @@ public class FrmVista2 extends javax.swing.JFrame {
         lbltotalregistros.setText("jLabel2");
         getContentPane().add(lbltotalregistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, 190, 20));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -94,17 +118,17 @@ public class FrmVista2 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablalistado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tablalistadoMouseClicked(evt);
             }
         });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        tablalistado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable1KeyReleased(evt);
+                tablalistadoKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablalistado);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 750, 220));
 
@@ -124,11 +148,17 @@ public class FrmVista2 extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(574, Short.MAX_VALUE)
+                .addComponent(lblbandera, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(147, 147, 147))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblbandera, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 770, 320));
@@ -161,16 +191,16 @@ public class FrmVista2 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtbuscarKeyReleased
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        jTable1.requestFocus();        // TODO add your handling code here:
+        tablalistado.requestFocus();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int fila = jTable1.rowAtPoint(evt.getPoint());
+    private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
+        int fila = tablalistado.rowAtPoint(evt.getPoint());
         if (evt.getClickCount() == 2) {
             seleccionar_esta_fila(fila);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_tablalistadoMouseClicked
     public static void cambiarcombo() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         modelo.addElement("ACTIVO");
@@ -184,15 +214,15 @@ public class FrmVista2 extends javax.swing.JFrame {
         modelo.addElement("INHABILITADO");
         jComboBox1.setModel(modelo);
     }
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+    private void tablalistadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablalistadoKeyReleased
         int key = evt.getKeyCode();
         if (key == 10) {
-            int fila = jTable1.getSelectedRow() - 1;
+            int fila = tablalistado.getSelectedRow() - 1;
             if (fila > -1) {
                 seleccionar_esta_fila(fila);
             }
             if (fila == 1) {
-                seleccionar_esta_fila(jTable1.getRowCount() - 1);
+                seleccionar_esta_fila(tablalistado.getRowCount() - 1);
             }
         }
         if (key < 37 || key > 40) {
@@ -200,7 +230,7 @@ public class FrmVista2 extends javax.swing.JFrame {
             txtbuscar.selectAll();
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1KeyReleased
+    }//GEN-LAST:event_tablalistadoKeyReleased
     public static int dondebuscar = 0;
 
     public static void buscador() {
@@ -216,36 +246,67 @@ public class FrmVista2 extends javax.swing.JFrame {
             jComboBox1.setVisible(false);
             fusuarios func = new fusuarios();
             modelo = func.mostrar(txtbuscar.getText());
-            jTable1.setModel(modelo);
+            tablalistado.setModel(modelo);
             lbltotalregistros.setText("TOTAL USUARIO " + Integer.toString(func.totalregistros));
         }
 
         if (dondebuscar == 2) {
             jComboBox1.setVisible(true);
             fmovimiento_caja func = new fmovimiento_caja();
-            modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
-            jTable1.setModel(modelo);
+
+            func.mostrarMonto(txtbuscar.getText().toString());
+            Integer id = fmovimiento_caja.ultimoMonto;
+            Integer idmo = fmovimiento_caja.idm;
+            // System.out.println("no es igual: " + id + " : " + idmo);
+            if (!id.equals(0)) {
+                modelo = func.mostrarcaja(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
+                tablalistado.setModel(modelo);
+                ocultar_columnas();
+                System.out.println("igual: " + id + " : " + idmo);
+            } else {
+//                if (id.equals(0)) {
+                modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
+                tablalistado.setModel(modelo);
+//                ocultar_columnas();
+                System.out.println("no es igual: " + id + " : " + idmo);
+//                }
+
+            }
+
+//            lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
+        }
+        if (dondebuscar == 3) {
+
+            fcategoria func = new fcategoria();
+            modelo = func.mostrar(txtbuscar.getText());
+            tablalistado.setModel(modelo);
             //lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
 
         }
-         if (dondebuscar == 3) {
-            jComboBox1.setVisible(false);
-            txtbuscar.setEnabled(false);
-             fcategoria func = new fcategoria();
+        if (dondebuscar == 4) {
+
+            fproveedor func = new fproveedor();
             modelo = func.mostrar(txtbuscar.getText());
-            jTable1.setModel(modelo);
+            tablalistado.setModel(modelo);
             //lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
 
         }
 
         if (dondebuscar == 7) {
-            jComboBox1.setVisible(false);
-            txtbuscar.setEnabled(false);
+            jComboBox1.setVisible(true);
             fmovimiento_caja func = new fmovimiento_caja();
-            modelo = func.mostraractivos();
-            jTable1.setModel(modelo);
-            //lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
 
+            modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
+            tablalistado.setModel(modelo);
+//              ocultar_columnas();
+
+//            jComboBox1.setVisible(false);
+//            txtbuscar.setEnabled(false);
+//            fmovimiento_caja func = new fmovimiento_caja();
+//            modelo = func.mostraractivos(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
+////            modelo = func.mostraractivos();
+//            tablalistado.setModel(modelo);
+            //lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
         }
     }
     public static DefaultTableModel modelo = new DefaultTableModel();
@@ -255,64 +316,72 @@ public class FrmVista2 extends javax.swing.JFrame {
     void seleccionar_esta_fila(int fila) {
 
         if (dondebuscar == 1) {
-//               registro[0] = rs.getString("idmovimiento");
-//                registro[1] = rs.getString("nrocaja");
-//                registro[1] = formatear.format(rs.getDouble("monto_apertura"));
-//                registro[2] = formatear.format(rs.getDouble("monto_cierre"));
-//                registro[3] = rs.getString("fecha_apertura");
-//                registro[4] = rs.getString("fecha_cierre");
-//                registro[5] = rs.getString("estado");
-//                registro[6] = rs.getString("idusuarios");
-//                registro[7] = rs.getString("funcionario");
-//                registro[8] = rs.getString("numDocumento");
-//                modelo.addRow(registro);;
-            FrmApertura_Caja.txtID.setText(jTable1.getValueAt(fila, 0).toString());
-            FrmApertura_Caja.txtDocumento.setText(jTable1.getValueAt(fila, 1).toString());
-            FrmApertura_Caja.txtnombreapellido.setText(jTable1.getValueAt(fila, 2).toString());
+            FrmApertura_Caja.txtID.setText(tablalistado.getValueAt(fila, 0).toString());
+            FrmApertura_Caja.txtDocumento.setText(tablalistado.getValueAt(fila, 1).toString());
+            FrmApertura_Caja.txtnombreapellido.setText(tablalistado.getValueAt(fila, 2).toString());
 
             this.dispose();
         }
 
         if (dondebuscar == 2) {
-//                registro[0] = rs.getString("idmovimiento");
-//                registro[1] = rs.getString("num_Caja");
-//                registro[2] = formatear.format(rs.getDouble("monto_apertura"));
-//                registro[3] = formatear.format(rs.getDouble("monto_cierre"));
-//                registro[4] = rs.getString("fecha_apertura");
-//                registro[5] = rs.getString("fecha_cierre");
-//                registro[6] = rs.getString("estado");
-//                registro[7] = rs.getString("idusuarios");
-//                registro[8] = rs.getString("funcionario");
-//                registro[9] = rs.getString("numDocumento");
+////               
             FrmCerrarCaja.habilitar(true);
-            FrmCerrarCaja.txtID.setText(jTable1.getValueAt(fila, 7).toString());
-            FrmCerrarCaja.txtIDCaja.setText(jTable1.getValueAt(fila, 0).toString());
-            FrmCerrarCaja.txtNroCaja.setText(jTable1.getValueAt(fila, 1).toString());
-            FrmCerrarCaja.txtDocumento.setText(jTable1.getValueAt(fila, 9).toString());
-            FrmCerrarCaja.txtnombreapellido.setText(jTable1.getValueAt(fila, 8).toString());
-            FrmCerrarCaja.txtMontoApertura.setText(jTable1.getValueAt(fila, 2).toString());
-            FrmCerrarCaja.txtmontocierre.setText(jTable1.getValueAt(fila, 3).toString());
-            fmovimiento_caja func = new fmovimiento_caja();
-            double apertura = Double.parseDouble(jTable1.getValueAt(fila, 2).toString().replace(".", ""));
+            FrmCerrarCaja.txtID.setText(tablalistado.getValueAt(fila, 7).toString());
+            FrmCerrarCaja.txtIDCaja.setText(tablalistado.getValueAt(fila, 0).toString());
+            FrmCerrarCaja.txtNroCaja.setText(tablalistado.getValueAt(fila, 1).toString());
+            FrmCerrarCaja.txtDocumento.setText(tablalistado.getValueAt(fila, 9).toString());
+            FrmCerrarCaja.txtnombreapellido.setText(tablalistado.getValueAt(fila, 8).toString());
+            FrmCerrarCaja.txtMontoApertura.setText(tablalistado.getValueAt(fila, 2).toString());
+            FrmCerrarCaja.txtmontocierre.setText(tablalistado.getValueAt(fila, 3).toString());
 
-            double ingreso = func.mostrarTotalAcumuladoPagosVentas(jTable1.getValueAt(fila, 0).toString());
-            double egreso = func.mostrarTotalegreso(jTable1.getValueAt(fila, 0).toString());
-            double acumulado = ingreso + apertura;
-            double caja = ingreso;
-            double capital = acumulado - egreso;
+            fmovimiento_caja func = new fmovimiento_caja();
+
+            func.mostrarMonto(txtbuscar.getText().toString());
+            Integer id = fmovimiento_caja.ultimoMonto;
+            Integer idmo = fmovimiento_caja.idm;
+            // System.out.println("no es igual: " + id + " : " + idmo);
+            if (!id.equals(0)) {
+                double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
+                double egreso = Double.parseDouble(tablalistado.getValueAt(fila, 10).toString().replace(".", ""));
+
+                double ingreso = func.mostrarTotalAcumuladoPagosVentas(tablalistado.getValueAt(fila, 0).toString());
+//            egreso = func.mostrarTotalegreso(tablalistado.getValueAt(fila, 0).toString());
+                double acumulado = ingreso + apertura;
+                double caja = ingreso;
+                double capital = acumulado - egreso;
 //            FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) acumulado))));
-            FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
-            FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
-            FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));
+                FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
+                FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
+                FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));
+            } else {
+//                
+                double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
+                double egreso = 0;
+
+                double ingreso = func.mostrarTotalAcumuladoPagosVentas(tablalistado.getValueAt(fila, 0).toString());
+                double acumulado = ingreso + apertura;
+                double caja = ingreso;
+                double capital = acumulado - egreso;
+                FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
+                FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
+                FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));
+            }
+            
             this.dispose();
         }
-      
+
         if (dondebuscar == 3) {
 
+            frmproducto2.txtidcategoria.setText(tablalistado.getValueAt(fila, 0).toString());
+            frmproducto2.txtcategoria.setText(tablalistado.getValueAt(fila, 1).toString());
 
-            frmproducto2.txtidcategoria.setText(jTable1.getValueAt(fila, 0).toString());
-            frmproducto2.txtcategoria.setText(jTable1.getValueAt(fila, 1).toString());
-           
+            this.dispose();
+        }
+        if (dondebuscar == 4) {
+
+            frmproducto2.txtidproveedor.setText(tablalistado.getValueAt(fila, 0).toString());
+            frmproducto2.txtproveedor.setText(tablalistado.getValueAt(fila, 1).toString());
+
             this.dispose();
         }
         if (dondebuscar == 7) {
@@ -328,14 +397,14 @@ public class FrmVista2 extends javax.swing.JFrame {
 //                registro[8] = rs.getString("funcionario");
 //                registro[9] = rs.getString("numDocumento");
             FrmApertura_Caja.habilitar(true);
-            FrmApertura_Caja.txtIDCaja.setText(jTable1.getValueAt(fila, 0).toString());
-            FrmApertura_Caja.txtNroCaja.setText(jTable1.getValueAt(fila, 1).toString());
-            FrmApertura_Caja.txtMontoApertura.setText(jTable1.getValueAt(fila, 2).toString());
-            FrmApertura_Caja.txtmontocierre.setText(jTable1.getValueAt(fila, 3).toString());
-            FrmApertura_Caja.txtID.setText(jTable1.getValueAt(fila, 7).toString());
-            FrmApertura_Caja.jFechaApertura.setDate(Date.valueOf(jTable1.getValueAt(fila, 4).toString()));
-            FrmApertura_Caja.txtDocumento.setText(jTable1.getValueAt(fila, 9).toString());
-            FrmApertura_Caja.txtnombreapellido.setText(jTable1.getValueAt(fila, 8).toString());
+            FrmApertura_Caja.txtIDCaja.setText(tablalistado.getValueAt(fila, 0).toString());
+            FrmApertura_Caja.txtNroCaja.setText(tablalistado.getValueAt(fila, 1).toString());
+            FrmApertura_Caja.txtMontoApertura.setText(tablalistado.getValueAt(fila, 2).toString());
+            FrmApertura_Caja.txtmontocierre.setText(tablalistado.getValueAt(fila, 3).toString());
+            FrmApertura_Caja.txtID.setText(tablalistado.getValueAt(fila, 7).toString());
+            FrmApertura_Caja.jFechaApertura.setDate(Date.valueOf(tablalistado.getValueAt(fila, 4).toString()));
+            FrmApertura_Caja.txtDocumento.setText(tablalistado.getValueAt(fila, 9).toString());
+            FrmApertura_Caja.txtnombreapellido.setText(tablalistado.getValueAt(fila, 8).toString());
             FrmApertura_Caja.opciones = "editar";
 //            FrmApertura_Caja.as.setText("EDITAR");
             this.dispose();
@@ -403,9 +472,10 @@ public class FrmVista2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblbandera;
     public static javax.swing.JLabel lbltitulovista;
     public static javax.swing.JLabel lbltotalregistros;
+    public static javax.swing.JTable tablalistado;
     public static javax.swing.JTextField txtbuscar;
     // End of variables declaration//GEN-END:variables
 }

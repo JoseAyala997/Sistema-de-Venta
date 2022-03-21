@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,8 +25,8 @@ import javax.swing.table.DefaultTableModel;
     
     
   public boolean insertarVentas(vventas dts) {
-        SQL = "INSERT INTO venta (idusuarios, idpaciente, total, fecha, nro_factura, tipo, estado,idmovimiento)"
-                + " values (?,?,?,?,?,?,?,?)";
+        SQL = "INSERT INTO venta (idusuarios, idpaciente, total, fecha, nro_factura, tipo, estado,idmovimiento,descuento)"
+                + " values (?,?,?,?,?,?,?,?,?)";
 
         try {
             
@@ -38,8 +37,9 @@ import javax.swing.table.DefaultTableModel;
             pst.setDate(4, dts.getFecha());
             pst.setString(5, dts.getNro_factura());
             pst.setString(6, dts.getTipo());
-            pst.setString(7, "FINALIZADO");
+            pst.setString(7, dts.getEstado());
             pst.setInt(8, dts.getIdmovimiento());
+            pst.setLong(9, dts.getDescuento());
             
             int n = pst.executeUpdate();
             if (n != 0) {
@@ -54,8 +54,8 @@ import javax.swing.table.DefaultTableModel;
     }
   
    public boolean insertarDetalle(vdetalle_venta dts) {
-        SQL = "INSERT INTO detalle_venta (idventa, idservicios, cantidad, precio, sub_total)"
-                + "values ((select idventa from venta order by idventa desc limit 1 ),?,?,?,?)";
+        SQL = "INSERT INTO detalle_venta (idventa, idservicios, cantidad, precio, sub_total,pulgadas)"
+                + "values ((select idventa from venta order by idventa desc limit 1 ),?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(SQL);
@@ -64,6 +64,7 @@ import javax.swing.table.DefaultTableModel;
             pst.setInt(2, dts.getCantidad());
             pst.setLong(3, dts.getPrecio());
             pst.setLong(4, dts.getSub_total());
+            pst.setInt(5, dts.getPulgadas());
       
             int n = pst.executeUpdate();
             if (n != 0) {

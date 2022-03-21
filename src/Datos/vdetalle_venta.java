@@ -8,7 +8,7 @@ package Datos;
 /**
  *
  * @author Jose Ayala
- */
+// */             
 public class vdetalle_venta {
     private int iddetalle;
     private int idventa;
@@ -16,15 +16,17 @@ public class vdetalle_venta {
     private int cantidad;
     private Long precio;
     private Long sub_total;
+     private int pulgadas;
 
     public vdetalle_venta() {
     }
 
-    public vdetalle_venta(int iddetalle, int idventa, int idservicios, int cantidad, Long precio, Long sub_total) {
+    public vdetalle_venta(int iddetalle, int idventa, int idservicios, int cantidad, int pulgadas, Long precio, Long sub_total) {
         this.iddetalle = iddetalle;
         this.idventa = idventa;
         this.idservicios = idservicios;
         this.cantidad = cantidad;
+        this.pulgadas = pulgadas;
         this.precio = precio;
         this.sub_total = sub_total;
     }
@@ -61,6 +63,14 @@ public class vdetalle_venta {
         this.cantidad = cantidad;
     }
 
+    public int getPulgadas() {
+        return pulgadas;
+    }
+
+    public void setPulgadas(int pulgadas) {
+        this.pulgadas = pulgadas;
+    }
+
     public Long getPrecio() {
         return precio;
     }
@@ -76,6 +86,7 @@ public class vdetalle_venta {
     public void setSub_total(Long sub_total) {
         this.sub_total = sub_total;
     }
+
     
     
 }

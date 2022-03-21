@@ -167,7 +167,7 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel6.setText("VISTA SERVICIOS");
+        jLabel6.setText("VISTA PRODUCTOS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -175,8 +175,8 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(424, 424, 424))
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(403, 403, 403))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,13 +233,14 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
             fproductos cc = new fproductos();
             cc.controlarStock(tablalistado.getValueAt(fila, 0).toString());    
             if (cc.cantidadproducto<=0) {
-                int confirmacion=JOptionPane.showConfirmDialog(rootPane, "EL SERVICIO ESTA AGOTADO.. DESEAS AGREGARLO IGUAL..?");
+                int confirmacion=JOptionPane.showConfirmDialog(rootPane, "EL PRODUCTO ESTA AGOTADO.. DESEAS AGREGARLO IGUAL..?");
                 if (JOptionPane.OK_OPTION==confirmacion) {
                     
                     
             frmventas.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
             frmventas.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
             frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 3).toString());
+            frmventas.txtcategoria.setText(tablalistado.getValueAt(fila, 9).toString());
             frmventas.txtcantidad.setText("1");
             frmventas.txtcantidad.requestFocus();
             this.dispose();
@@ -253,6 +254,7 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
            
             frmventas.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
             frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 3).toString());
+            frmventas.txtcategoria.setText(tablalistado.getValueAt(fila, 9).toString());
             frmventas.txtcantidad.setText("1");
             frmventas.txtcantidad.requestFocus();
             this.dispose();       
@@ -265,6 +267,35 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
             frmventas.txtcliente.setText(tablalistado.getValueAt(fila, 3).toString());
             frmventas.jButton2.requestFocus();
             this.dispose();
+        }
+        if (dondebuscar == 3) {
+            
+            fproductos cc = new fproductos();
+            cc.controlarStock(tablalistado.getValueAt(fila, 0).toString());    
+            if (cc.cantidadproducto<=0) {
+                int confirmacion=JOptionPane.showConfirmDialog(rootPane, "EL PRODUCTO ESTA AGOTADO.. DESEAS AGREGARLO IGUAL..?");
+                if (JOptionPane.OK_OPTION==confirmacion) {
+                    
+                    
+            frmcompras.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
+            frmcompras.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
+            frmcompras.txtprecio.setText(tablalistado.getValueAt(fila, 5).toString());
+            frmcompras.txtcantidad.setText("1");
+            frmcompras.txtcantidad.requestFocus();
+            this.dispose();
+                    
+                }else{
+                    return;
+                }              
+            }
+           
+            frmcompras.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
+           
+            frmcompras.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
+            frmcompras.txtprecio.setText(tablalistado.getValueAt(fila, 5).toString());
+            frmcompras.txtcantidad.setText("1");
+            frmcompras.txtcantidad.requestFocus();
+            this.dispose();       
         }
 
     }
@@ -286,6 +317,13 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
             tablalistado.setModel(modelo);
             LOcultarColumna ocultar = new LOcultarColumna();
                 ocultar.ocultar_esta_columna(tablalistado, 0);
+        }
+        if (dondebuscar == 3) {
+            fproductos func = new fproductos();
+            modelo = func.mostrar(txtbuscar.getText());
+            tablalistado.setModel(modelo);
+            LOcultarColumna ocultar = new LOcultarColumna();
+            ocultar.ocultar_esta_columna(tablalistado, 0);
         }
     
     }//GEN-LAST:event_tablalistadoMousePressed

@@ -33,7 +33,7 @@ public class fpacientes {
         modelo = new DefaultTableModel(null, titulos);
         sSQL = "Select p.idpersona,p.nombre,p.apellido,p.numDocumento,p.telefono,p.direccion,p.genero "
                 + "from persona p inner join paciente c on p.idpersona=c.idpaciente where (numDocumento"
-                + " like '%"+ buscar +"%'or p.nombre like '%"+ buscar +"%') and p.estado= 'ACTIVO' order by idpersona desc";
+                + " like '%"+ buscar +"%' or p.nombre like '%"+ buscar +"%') and p.estado= 'ACTIVO' order by idpersona desc";
 
         try {
             Statement st = cn.createStatement();

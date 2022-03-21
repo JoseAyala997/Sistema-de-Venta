@@ -144,20 +144,20 @@ public static String x;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -167,7 +167,7 @@ public static String x;
         cmbgenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MASCULINO\t", "FEMENINO" }));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Pacientes");
+        jLabel1.setText("Clientes");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Nombre:");
@@ -351,11 +351,11 @@ public static String x;
                 .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                 .addGap(35, 35, 35)
                 .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                .addGap(29, 29, 29)
-                .addComponent(btncancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                .addGap(40, 40, 40)
+                .addGap(36, 36, 36)
                 .addComponent(btneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                .addGap(172, 172, 172))
+                .addGap(28, 28, 28)
+                .addComponent(btncancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addGap(177, 177, 177))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,6 +375,12 @@ public static String x;
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Genero:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscarKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 220, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -427,7 +433,7 @@ public static String x;
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
-        // TODO add your handling code here:
+        inhabilitar();
     }//GEN-LAST:event_btncancelarActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
@@ -468,7 +474,7 @@ public static String x;
 
         if (accion.equals("guardar")) {
             if (func.insertar(dts)) {
-                JOptionPane.showMessageDialog(rootPane, "El Paciente fue registrado satisfactoriamente");
+                JOptionPane.showMessageDialog(rootPane, "El Cliente fue registrado satisfactoriamente");
                 mostrar("");
                 inhabilitar();
 
@@ -491,6 +497,10 @@ public static String x;
         accion = "guardar";
         txtnombre.requestFocus();
     }//GEN-LAST:event_btnnuevoActionPerformed
+
+    private void txtbuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarKeyReleased
+        mostrar(txtbuscar.getText());
+    }//GEN-LAST:event_txtbuscarKeyReleased
 
     /**
      * @param args the command line arguments

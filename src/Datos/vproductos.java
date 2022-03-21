@@ -21,12 +21,13 @@ public class vproductos {
     private String estado;
     private int idcategorias;
     private Double pulgadas;
+    private int idproveedor;
     
 
     public vproductos() {
     }
 
-    public vproductos(int idservicios, String nombre_producto, String descripcion, Long precio_unitario, Long precio_mayor, Long precio_costo, Double stock, String cod_barra, String estado, int idcategorias, Double pulgadas) {
+    public vproductos(int idservicios, String nombre_producto, String descripcion, Long precio_unitario, Long precio_mayor, Long precio_costo, Double stock, String cod_barra, String estado, int idcategorias, Double pulgadas, int idproveedor) {
         this.idservicios = idservicios;
         this.nombre_producto = nombre_producto;
         this.descripcion = descripcion;
@@ -38,6 +39,7 @@ public class vproductos {
         this.estado = estado;
         this.idcategorias = idcategorias;
         this.pulgadas = pulgadas;
+        this.idproveedor = idproveedor;
     }
 
     public int getIdservicios() {
@@ -128,7 +130,14 @@ public class vproductos {
         this.pulgadas = pulgadas;
     }
 
-  
+    public int getIdproveedor() {
+        return idproveedor;
+    }
+
+    public void setIdproveedor(int idproveedor) {
+        this.idproveedor = idproveedor;
+    }
+
     
             
     

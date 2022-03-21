@@ -25,7 +25,7 @@ public class frmusuariologin extends javax.swing.JFrame {
         this.setTitle("Acceso al Sistema");
         this.setLocationRelativeTo(null);
         txtusuario.requestFocus();
-         setSize(470, 556);
+        setSize(470, 556);
     }
 
     /**
@@ -272,7 +272,7 @@ public class frmusuariologin extends javax.swing.JFrame {
 
                 }
                 if (frmprincipal.lblacceso.getText().equals("RECEPCIONISTA")) {
-//                    frmprincipal.hreserva.setVisible(false);
+                    frmprincipal.menucompras.setVisible(false);
                     frmprincipal.historialventas.setVisible(false);
                     frmprincipal.husuarios.setVisible(false);
                     frmprincipal.rpaciente.setVisible(false);
@@ -342,7 +342,7 @@ public class frmusuariologin extends javax.swing.JFrame {
 
                 }
                 if (frmprincipal.lblacceso.getText().equals("RECEPCIONISTA")) {
-//                    frmprincipal.hreserva.setVisible(false);
+                    frmprincipal.menucompras.setVisible(false);
                     frmprincipal.historialventas.setVisible(false);
                     frmprincipal.husuarios.setVisible(false);
                     frmprincipal.rpaciente.setVisible(false);

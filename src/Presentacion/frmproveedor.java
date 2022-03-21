@@ -7,7 +7,6 @@ package Presentacion;
 
 import Datos.vpacientes;
 import Datos.vproveedor;
-import Datos.vusuarios;
 import Logica.StyloTabla;
 import Logica.fpacientes;
 import Logica.fproveedor;
@@ -24,7 +23,7 @@ public class frmproveedor extends javax.swing.JInternalFrame {
 public static String x;
     public frmproveedor() {
         initComponents();
-        
+         mostrar("");
         
          x="x";
         int a =frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
@@ -32,7 +31,7 @@ public static String x;
         setLocation(a/2, b/2);
         setVisible(true);
   
-         mostrar("");
+        
         inhabilitar();
           jPanel1.setBackground(new Color(0, 102, 100, 200));
          jPanel2.setBackground(new Color(0, 102, 100, 200));
@@ -91,7 +90,7 @@ public static String x;
        
     }
 
-    void mostrar(String buscar) {
+      void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
             for (int c = 0; c < tablalistado.getColumnCount(); c++)
@@ -102,12 +101,13 @@ public static String x;
 
             tablalistado.setDefaultEditor(col_class, null); // remove editor
         }
-            fusuarios func = new fusuarios();
+            fproveedor func = new fproveedor();
             modelo = func.mostrar(buscar);
 
             tablalistado.setModel(modelo);
            // ocultar_columnas();
-            lbltotalregistros.setText("Total Registros: " + Integer.toString(func.totalregistros));
+            lbltotalregistros.setText("Total Registros: " + Integer.toString(func.TotalRegistros));
+         
 
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
@@ -154,20 +154,20 @@ public static String x;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -295,7 +295,7 @@ public static String x;
         jPanel5.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Usuarios");
+        jLabel1.setText("PROVEEDORES");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -303,8 +303,8 @@ public static String x;
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(443, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(458, 458, 458))
+                .addComponent(jLabel1)
+                .addGap(432, 432, 432))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,7 +314,7 @@ public static String x;
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1055, 36));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1055, 40));
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
 

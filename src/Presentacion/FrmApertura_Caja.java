@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -668,12 +669,24 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtmontocierreKeyReleased
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+//        FrmVista2 form = new FrmVista2();
+//        form.setVisible(true);
+//        form.toFront();
+//        form.dondebuscar = 7;
+//        form.lbltitulovista.setText("EMPLEADOS");
+//        form.buscador();             // TODO add your handling code here:
         FrmVista2 form = new FrmVista2();
         form.setVisible(true);
         form.toFront();
         form.dondebuscar = 7;
         form.lbltitulovista.setText("EMPLEADOS");
-        form.buscador();             // TODO add your handling code here:
+        DefaultComboBoxModel modelocbo;
+        modelocbo = new DefaultComboBoxModel();
+        modelocbo.addElement("ACTIVO");
+        form.txtbuscar.setText(frmprincipal.lblcodusuario.getText());
+        form.txtbuscar.setEnabled(false);
+        form.jComboBox1.setModel(modelocbo);
+        form.buscador();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed

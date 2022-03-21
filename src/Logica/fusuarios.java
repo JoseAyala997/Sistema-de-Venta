@@ -41,7 +41,7 @@ public class fusuarios {
 
             modelo = new DefaultTableModel(null, titulos);
             sSQL = "Select p.idpersona,p.nombre,p.apellido,p.numDocumento,p.telefono,p.direccion,p.genero,u.acceso,u.login,u.password "
-                    + "from persona p inner join usuarios u on p.idpersona=u.idusuarios where numDocumento like '%" + buscar + "%' and p.estado='ACTIVO'"
+                    + "from persona p inner join usuarios u on p.idpersona=u.idusuarios where numDocumento like '%" + buscar + "%' or p.nombre like '%"+ buscar +"%' or p.apellido like '%"+ buscar +"%' and p.estado='ACTIVO'"
                     + "order by idpersona desc";
 
             ResultSet rs = st.executeQuery(sSQL);

@@ -32,12 +32,13 @@ public class fproductos {
 
     public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
-        String[] titulos = {"ID", "PRODUCTO", "DESCRIPCION", "PRECIO UNT.", "PRECIO MAYOR", "PRECIO COSTO", "STOCK", "PULGADAS", "IDCAT", "CATEGORIA"};
-        String[] registro = new String[11];
+        String[] titulos = {"ID", "PRODUCTO", "DESCRIPCION", "PRECIO UNT.", "PRECIO MAYOR", "PRECIO COSTO", "STOCK", "PULGADAS", "IDCAT", "CATEGORIA", "PROVEEDOR","ID PROV."};
+        String[] registro = new String[12];
         modelo = new DefaultTableModel(null, titulos);
-        SQL = "SELECT p.idservicios, p.nombre_producto,p.descripcion,p.precio_unitario,p.precio_mayor,p.precio_costo,p.stock,p.pulgadas, c.idcategorias,c.categoria, p.cod_barra\n"
-                + " FROM productos p inner join categorias c on p.idcategorias=c.idcategorias\n"
-                + "where (p.nombre_producto like '%" + buscar + "%' ||  p.cod_barra like '%" + buscar + "%') and p.estado = 'ACTIVO'  order by p.idservicios desc";
+        SQL = "SELECT p.idservicios, p.nombre_producto,p.descripcion,p.precio_unitario,p.precio_mayor,p.precio_costo,p.stock,p.pulgadas, c.idcategorias,c.categoria, pr.nombre, pr.idproveedor\n" +
+"FROM productos p inner join categorias c on p.idcategorias=c.idcategorias\n" +
+"inner join proveedor pr on p.idproveedor=pr.idproveedor\n" +
+"where (p.nombre_producto like '%"+buscar+"%' || p.descripcion like '%"+buscar+"%' ||  pr.nombre like '%"+buscar+"%' ||  c.categoria like '%"+buscar+"%') and p.estado = 'ACTIVO'  order by p.idservicios desc";
 
         TotalRegistros = 0;
         ValorTotal = 0;
@@ -56,6 +57,8 @@ public class fproductos {
                 registro[7] = rs.getString("pulgadas");
                 registro[8] = rs.getString("idcategorias");
                 registro[9] = rs.getString("categoria");
+                registro[10] = rs.getString("nombre");
+                registro[11] = rs.getString("idproveedor");
 
                 TotalRegistros = TotalRegistros + 1;
 
@@ -144,8 +147,20 @@ public class fproductos {
 //    
 //    }
     public boolean insertar(vproductos dts) {
-        SQL = "INSERT INTO productos (nombre_producto, descripcion, precio_unitario, precio_mayor, precio_costo, stock, pulgadas, estado, idcategorias)"
-                + " values (upper(?),upper(?),?,?,?,?,?,?,?)";
+//         private int idservicios;
+//    private String nombre_producto;
+//    private String descripcion;
+//    private Long precio_unitario;
+//    private Long precio_mayor;
+//    private Long precio_costo;
+//    private Double stock;
+//    private String cod_barra;
+//    private String estado;
+//    private int idcategorias;
+//    private Double pulgadas;
+//    private int idproveedor;
+        SQL = "INSERT INTO productos (nombre_producto, descripcion, precio_unitario, precio_mayor, precio_costo, stock, pulgadas, estado, idcategorias,idproveedor)"
+                + " values (upper(?),upper(?),?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(SQL);
@@ -159,6 +174,7 @@ public class fproductos {
             pst.setDouble(7, dts.getPulgadas());
             pst.setString(8, "ACTIVO");
             pst.setInt(9, dts.getIdcategorias());
+            pst.setInt(10, dts.getIdproveedor());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -199,7 +215,9 @@ public class fproductos {
     }
 
     public boolean editar(vproductos dts) {
-        SQL = " update productos set  nombre_producto=upper(?), descripcion=upper(?), precio_unitario=?, precio_mayor=?, precio_costo=?, stock=?, pulgadas=?, estado=?, idcategorias=? "
+//        INSERT INTO productos (nombre_producto, descripcion, precio_unitario, precio_mayor, precio_costo, stock, pulgadas, estado, idcategorias,idproveedor)"
+//                + " values (upper(?),upper(?),?,?,?,?,?,?,?,?)";
+        SQL = " update productos set  nombre_producto=upper(?), descripcion=upper(?), precio_unitario=?, precio_mayor=?, precio_costo=?, stock=?, pulgadas=?, estado=?, idcategorias=?, idproveedor=? "
                 + "where idservicios=?";
 
         try {
@@ -214,7 +232,8 @@ public class fproductos {
             pst.setDouble(7, dts.getPulgadas());
             pst.setString(8, "ACTIVO");
             pst.setInt(9, dts.getIdcategorias());
-            pst.setInt(10, dts.getIdservicios());
+            pst.setInt(10, dts.getIdproveedor());
+            pst.setInt(11, dts.getIdservicios());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -248,6 +267,43 @@ public class fproductos {
 
     public boolean restarpulgadas(double pulgada, int idservicios) {
         SQL = " update productos set pulgadas=pulgadas-'" + pulgada + "' "
+                + " where idservicios='" + idservicios + "'";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(SQL);
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    public boolean sumarStock(double cantidad, int idservicios) {
+        SQL = " update productos set stock=stock+'" + cantidad + "' "
+                + " where idservicios='" + idservicios + "'";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(SQL);
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+
+    public boolean sumarpulgadas(double pulgada, int idservicios) {
+        SQL = " update productos set  pulgadas=pulgadas+'" + pulgada + "' "
                 + " where idservicios='" + idservicios + "'";
 
         try {
