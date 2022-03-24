@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptventasclinica" language="groovy" pageWidth="630" pageHeight="750" columnWidth="590" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="967c5821-a8f3-4268-bba2-a3a23f22f1bd">
-	<property name="ireport.zoom" value="3.797498335832422"/>
-	<property name="ireport.x" value="842"/>
-	<property name="ireport.y" value="368"/>
+	<property name="ireport.zoom" value="1.464100000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="IMPORTE" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -104,14 +104,14 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1)]]>
 					<text><![CDATA[GS.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="149" y="34" width="134" height="20" uuid="04e0eeb7-b4d3-4dd6-abe8-1d653a3d7103"/>
+					<reportElement x="149" y="49" width="134" height="20" uuid="04e0eeb7-b4d3-4dd6-abe8-1d653a3d7103"/>
 					<textElement textAlignment="Center">
 						<font size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[.........................................................]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="149" y="54" width="134" height="20" uuid="82b2900d-0796-4cb6-8152-9798636e5d74"/>
+					<reportElement x="149" y="60" width="134" height="20" uuid="82b2900d-0796-4cb6-8152-9798636e5d74"/>
 					<textElement textAlignment="Center">
 						<font size="10" isBold="true"/>
 					</textElement>
@@ -549,10 +549,10 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1)]]>
 				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="297" y="2" width="276" height="16" uuid="f14747b2-0ba0-4c1b-b808-501d709f7f27"/>
+				<reportElement mode="Transparent" x="297" y="2" width="276" height="13" uuid="f14747b2-0ba0-4c1b-b808-501d709f7f27"/>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="2" y="2" width="276" height="16" uuid="db2a61f5-b1aa-492b-a0c2-ec062c8b2c3d"/>
+				<reportElement mode="Transparent" x="2" y="2" width="276" height="13" uuid="db2a61f5-b1aa-492b-a0c2-ec062c8b2c3d"/>
 			</rectangle>
 			<textField pattern="#,##0">
 				<reportElement x="226" y="3" width="50" height="15" uuid="6deb5945-6a15-4179-b4d5-7ed0c20745f4"/>
