@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_cierre caja" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="897a5cf1-8e9d-45d4-92e9-7718b2598a03">
 	<property name="ireport.zoom" value="2.1435888100000016"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="29"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT m.idmovimiento, m.fecha_cierre, m.monto_apertura, m.monto_cierre
- from movimiento_caja m where m.idmovimiento =81 order by m.idmovimiento desc limit 1;
+		<![CDATA[SELECT @id :=(SELECT m.idmovimiento from movimiento_caja m where m.idmovimiento =81 order by m.idmovimiento desc limit 1);
+SELECT @fcierre :=(SELECT m.fecha_cierre from movimiento_caja m where m.idmovimiento =81 order by m.idmovimiento desc limit 1);
+SELECT @m_apertura :=(SELECT m.monto_apertura from movimiento_caja m where m.idmovimiento =81 order by m.idmovimiento desc limit 1);
+SELECT @m_cierre :=(SELECT m.monto_cierre from movimiento_caja m where m.idmovimiento =81 order by m.idmovimiento desc limit 1);
 
 select @usuario :=(select concat(nombre ,' ', apellido) from persona p inner join movimiento_caja m where p.idpersona = m.idusuarios order by m.idusuarios desc limit 1);
-select  @credito:=(select sum(v.saldo) from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento and v.tipo='CREDITO' and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
-select @credito, if(@credito is null, @credito:=0,@credito)as credito;
+select @credito:=(select sum(v.saldo) from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento and v.tipo='CREDITO' and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
 select @cobranza:=(select sum(v.total) from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento and v.tipo='CREDITO' and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
 select @contado:=(select sum(v.total) from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento and v.tipo='CONTADO' and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
-select @egresos:=(select sum(e.monto) from egresos e inner join movimiento_caja m where e.idmovimiento = m.idmovimiento and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
-select @egresos, if(@egresos is null, @egresos:=0,@egresos)as egresos;
-select ((@contado-@egresos)+@cobranza) as caja,@contado as contado,@cobranza as cobranza,@egresos as egresos,@usuario as usuario]]>
+select ((@contado-@egresos)+@cobranza) as caja,@contado as contado,@cobranza as cobranza,@egresos as egresos,@usuario as usuario,@id as id,@fcierre as fcierre,@m_apertura as apertura,@m_cierre as cierre]]>
 	</queryString>
 	<field name="idmovimiento" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>

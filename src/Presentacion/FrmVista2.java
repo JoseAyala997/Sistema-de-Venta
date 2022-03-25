@@ -261,7 +261,7 @@ public class FrmVista2 extends javax.swing.JFrame {
             if (!id.equals(0)) {
                 modelo = func.mostrarcaja(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
                 tablalistado.setModel(modelo);
-                ocultar_columnas();
+//                ocultar_columnas();
                 System.out.println("igual: " + id + " : " + idmo);
             } else {
 //                if (id.equals(0)) {
@@ -346,6 +346,8 @@ public class FrmVista2 extends javax.swing.JFrame {
                 double egreso = Double.parseDouble(tablalistado.getValueAt(fila, 10).toString().replace(".", ""));
 
                 double ingreso = func.mostrarTotalAcumuladoPagosVentas(tablalistado.getValueAt(fila, 0).toString());
+                double cobrado = func.mostrarcobrado(tablalistado.getValueAt(fila, 0).toString());
+                double credito = func.mostrarcredito(tablalistado.getValueAt(fila, 0).toString());
 //            egreso = func.mostrarTotalegreso(tablalistado.getValueAt(fila, 0).toString());
                 double acumulado = ingreso + apertura;
                 double caja = ingreso;
@@ -354,10 +356,14 @@ public class FrmVista2 extends javax.swing.JFrame {
                 FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
                 FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
                 FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));
+                FrmCerrarCaja.txtcobrado.setText(String.valueOf((format.format((int) cobrado))));
+                FrmCerrarCaja.txtcredito.setText(String.valueOf((format.format((int) credito))));
+                FrmCerrarCaja.txtcontado.setText(String.valueOf((format.format((int) ingreso))));
             } else {
 //                
                 double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
                 double egreso = 0;
+              
 
                 double ingreso = func.mostrarTotalAcumuladoPagosVentas(tablalistado.getValueAt(fila, 0).toString());
                 double acumulado = ingreso + apertura;
@@ -366,6 +372,9 @@ public class FrmVista2 extends javax.swing.JFrame {
                 FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
                 FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
                 FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));
+                FrmCerrarCaja.txtcontado.setText(String.valueOf((format.format((int) egreso))));
+                FrmCerrarCaja.txtcredito.setText(String.valueOf((format.format((int) egreso))));
+                FrmCerrarCaja.txtcobrado.setText(String.valueOf((format.format((int) egreso))));
             }
             
             this.dispose();

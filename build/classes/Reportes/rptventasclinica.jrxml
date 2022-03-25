@@ -6,11 +6,11 @@
 	<parameter name="IMPORTE" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="VUELTO" class="java.lang.Integer">
+	<parameter name="VUELTO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select d.iddetalle,d.idventa,d.idservicios, d.cantidad, d.precio, d.sub_total,
+		<![CDATA[select d.iddetalle,d.idventa,d.idservicios, d.cantidad, d.precio, d.sub_total,($P{VUELTO})as vuelto2,
 v.idventa,v.idpaciente,v.idusuarios,v.total,v.fecha,v.nro_factura,v.tipo, v.estado,f.monto,f.efectivo,f.vuelto,v.descuento,
 
 (select nombre_producto from productos where d.idservicios=idservicios) as producto,
@@ -39,6 +39,7 @@ where v.idventa =(select idventa from venta order by idventa desc limit 1)]]>
 	<field name="sub_total" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="vuelto2" class="java.lang.Object"/>
 	<field name="idpaciente" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>

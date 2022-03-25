@@ -306,7 +306,7 @@ public class FrmFactura extends javax.swing.JFrame {
 //            System.out.println("imprimiendo");
             Map p = new HashMap();
             p.put("importe", txtEfectivo.getText());
-            p.put("vuelto", txtVuelto.getText());
+            p.put("VUELTO", txtVuelto.getText());
             p.put("descuento", txtdescuento.getText());
 
             JasperReport jr;
@@ -316,12 +316,12 @@ public class FrmFactura extends javax.swing.JFrame {
                     + "/src/Reportes/rptventasclinica.jrxml");//Jasper para tener vista en exel y demas editores de texto
 
             jp = JasperFillManager.fillReport(jr, p, cn);
-            JasperPrintManager.printReport(jp, true);
+//            JasperPrintManager.printReport(jp, true);
 
-//            JasperViewer view = new JasperViewer(jp, false);
-//            view.setTitle("Comprobante Venta");
-//            view.setVisible(true);
-//            System.out.println("imprimiendo2");
+            JasperViewer view = new JasperViewer(jp, false);
+            view.setTitle("Comprobante Venta");
+            view.setVisible(true);
+            System.out.println("imprimiendo2");
 
         } catch (Exception e) {
         }
