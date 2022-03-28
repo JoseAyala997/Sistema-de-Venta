@@ -41,7 +41,7 @@ public class fmovimiento_caja {
                 + "from movimiento_caja cj \n"
                 + "join usuarios em on em.idusuarios=cj.idusuarios\n"
                 + "join persona p on em.idusuarios=p.idpersona\n"
-                + "join egresos e on cj.idmovimiento=e.idmovimiento";
+                + "join egresos e on cj.idmovimiento=e.idmovimiento where cj.estado='ACTIVO' and cj.idusuarios='" + buscar + "' order by cj.idmovimiento Desc";
 ;
         try {
             Statement st = cn.createStatement();

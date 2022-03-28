@@ -341,6 +341,11 @@ public class FrmVista2 extends javax.swing.JFrame {
             Integer id = fmovimiento_caja.ultimoMonto;
             Integer idmo = fmovimiento_caja.idm;
             // System.out.println("no es igual: " + id + " : " + idmo);
+//            switch (id){
+//                case 0:
+//                    
+//                case
+//            }
             if (!id.equals(0)) {
                 double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
                 double egreso = Double.parseDouble(tablalistado.getValueAt(fila, 10).toString().replace(".", ""));
@@ -360,7 +365,9 @@ public class FrmVista2 extends javax.swing.JFrame {
                 FrmCerrarCaja.txtcredito.setText(String.valueOf((format.format((int) credito))));
                 FrmCerrarCaja.txtcontado.setText(String.valueOf((format.format((int) ingreso))));
             } else {
-//                
+//              
+                double cobrado = func.mostrarcobrado(tablalistado.getValueAt(fila, 0).toString());
+                double credito = func.mostrarcredito(tablalistado.getValueAt(fila, 0).toString());
                 double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
                 double egreso = 0;
               
@@ -372,9 +379,9 @@ public class FrmVista2 extends javax.swing.JFrame {
                 FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
                 FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
                 FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));
-                FrmCerrarCaja.txtcontado.setText(String.valueOf((format.format((int) egreso))));
-                FrmCerrarCaja.txtcredito.setText(String.valueOf((format.format((int) egreso))));
-                FrmCerrarCaja.txtcobrado.setText(String.valueOf((format.format((int) egreso))));
+                FrmCerrarCaja.txtcontado.setText(String.valueOf((format.format((int) ingreso))));
+                FrmCerrarCaja.txtcredito.setText(String.valueOf((format.format((int) credito))));
+                FrmCerrarCaja.txtcobrado.setText(String.valueOf((format.format((int) cobrado))));
             }
             
             this.dispose();
