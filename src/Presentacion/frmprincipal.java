@@ -76,6 +76,7 @@ public class frmprincipal extends javax.swing.JFrame {
         lblcodusuario = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         lbldocumento = new javax.swing.JLabel();
+        lblidmovimiento = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menumovimiento = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -146,6 +147,9 @@ public class frmprincipal extends javax.swing.JFrame {
         lbldocumento.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lbldocumento.setText("Cod_USUARIO");
 
+        lblidmovimiento.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lblidmovimiento.setText("Cod-movimiento");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,7 +157,7 @@ public class frmprincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbldocumento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(lblcodusuario)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel5)
@@ -163,7 +167,9 @@ public class frmprincipal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblidmovimiento)
+                .addGap(34, 34, 34)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -177,7 +183,8 @@ public class frmprincipal extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(lblcodusuario)
                     .addComponent(lblusuario)
-                    .addComponent(lbldocumento)))
+                    .addComponent(lbldocumento)
+                    .addComponent(lblidmovimiento)))
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
         );
 
@@ -807,6 +814,7 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblacceso;
     public static javax.swing.JLabel lblcodusuario;
     public static javax.swing.JLabel lbldocumento;
+    public static javax.swing.JLabel lblidmovimiento;
     public static javax.swing.JLabel lblusuario;
     public static javax.swing.JMenuBar menuBar;
     public static javax.swing.JMenuItem menucategoria;

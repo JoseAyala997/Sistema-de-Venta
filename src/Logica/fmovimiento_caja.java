@@ -42,7 +42,7 @@ public class fmovimiento_caja {
                 + "join usuarios em on em.idusuarios=cj.idusuarios\n"
                 + "join persona p on em.idusuarios=p.idpersona\n"
                 + "join egresos e on cj.idmovimiento=e.idmovimiento where cj.estado='ACTIVO' and cj.idusuarios='" + buscar + "' order by cj.idmovimiento Desc";
-;
+        ;
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -338,9 +338,10 @@ public class fmovimiento_caja {
             return t;
         }
     }
-      public Double mostrarcredito(String buscar) {
-        Double t=0.0;
-          
+
+    public Double mostrarcredito(String buscar) {
+        Double t = 0.0;
+
         sSQL = "select sum(v.saldo)as credito from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
                 + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "' order by m.idmovimiento desc limit 1";
         try {
@@ -356,9 +357,10 @@ public class fmovimiento_caja {
             return t;
         }
     }
-        public Double mostrarcobrado(String buscar) {
+
+    public Double mostrarcobrado(String buscar) {
         Double t = 0.0;
-       sSQL = "select sum(v.total)as cobrado from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
+        sSQL = "select sum(v.total)as cobrado from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
                 + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "' order by m.idmovimiento desc limit 1";
         try {
             Statement st = cn.createStatement();
@@ -366,6 +368,24 @@ public class fmovimiento_caja {
             while (rs.next()) {
                 t = t + rs.getDouble("cobrado");
 
+            }
+            return t;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return t;
+        }
+    }
+
+    public int mostrarmovimiento(String buscar) {
+        int t = 0;
+        sSQL = "select max(m.idmovimiento)AS idmov from movimiento_caja m\n"
+                + "inner join usuarios u on m.idusuarios=u.idusuarios where m.estado='ACTIVO' and m.idusuarios='" + buscar + "'";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = rs.getInt("idmov");
+                System.out.println(t);
             }
             return t;
         } catch (Exception e) {

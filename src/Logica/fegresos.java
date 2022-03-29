@@ -25,7 +25,8 @@ public class fegresos {
     public static Connection cn = mysql.conectar();
 
     public int TotalRegistros;
-    public int ValorTotal;
+    public int totalpagado;
+    public int totaldeuda;
 
     public static Statement st;
     public static ResultSet rs;
@@ -78,6 +79,8 @@ public class fegresos {
                 + "inner join productos p on p.idservicios=d.idservicios where pe.numDocumento='" + buscar + "' and v.estado='PENDIENTE' and v.tipo='CREDITO'";
 
         TotalRegistros = 0;
+        totaldeuda = 0;
+        totalpagado = 0;
 
         try {
             Statement st = cn.createStatement();
@@ -95,7 +98,8 @@ public class fegresos {
                 registro[8] = rs.getString("total");
 
                 TotalRegistros = TotalRegistros + 1;
-
+//                totaldeuda = totaldeuda + (Integer.parseInt(registro[7]));
+//                totalpagado = totalpagado + (Integer.parseInt(registro[8]));
                 modelo.addRow(registro);
 
             }

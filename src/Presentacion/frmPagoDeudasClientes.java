@@ -7,8 +7,10 @@ package Presentacion;
 
 import Datos.vventas;
 import Logica.fegresos;
+import Logica.fmovimiento_caja;
 import Logica.fventa;
 import java.awt.Color;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +28,7 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
         jtable();
         centrar();
         cancelar();
+     
 
         jPanel1.setBackground(new Color(0, 102, 100, 200));
         jPanel2.setBackground(new Color(0, 102, 100, 200));
@@ -35,6 +38,7 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
 //        st.stylotabla(tablalistado);
         setSize(940, 650);
         setTitle("PAGO CLIENTES");
+       
     }
 
     void ocultar_columna() {
@@ -111,6 +115,12 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
         txtdeuda.setText("");
          txttotal.setText("");
     }
+//     DecimalFormat format = new DecimalFormat("###,###.##");
+    void idMov(){
+          fmovimiento_caja func = new fmovimiento_caja();
+        int idmov = func.mostrarmovimiento(frmprincipal.lblcodusuario.getText());
+        txtidmovimiento.setText(String.valueOf((idmov)));
+    }
 
     void mostrar(String buscar) {
         try {
@@ -129,6 +139,8 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
             tablalistado.setModel(modelo);
 ////            ocultar_columna();
             lbltotalregistros.setText("Total Registros: " + Integer.toString(func.TotalRegistros));
+//             lbltotalregistros1.setText("Total Deuda: " + Integer.toString(func.totaldeuda));
+//              lbltotalregistros2.setText("Total Pagado: " + Integer.toString(func.totalpagado));
 
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
@@ -164,6 +176,9 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
         txtdeuda = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txttotal = new javax.swing.JTextField();
+        txtidmovimiento = new javax.swing.JTextField();
+        lbltotalregistros1 = new javax.swing.JLabel();
+        lbltotalregistros2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -285,6 +300,12 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
 
         jLabel12.setText("DEUDA");
 
+        lbltotalregistros1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbltotalregistros1.setText("jLabel9");
+
+        lbltotalregistros2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbltotalregistros2.setText("jLabel9");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -298,41 +319,51 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtidmovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel8)
                                                 .addGap(24, 24, 24)
-                                                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtidusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(37, 37, 37)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(txtpreciount, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtidusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(37, 37, 37)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(txtdeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)))
+                                    .addComponent(jLabel10)
+                                    .addComponent(txtpreciount, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(txtdeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtmonto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))))
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)
+                                .addComponent(lbltotalregistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbltotalregistros2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addComponent(txtidmovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -362,7 +393,10 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbltotalregistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbltotalregistros2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(384, 384, 384))
         );
 
@@ -424,8 +458,9 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
             dts.setTotal(monto + (Long.parseLong(txttotal.getText())));
             dts.setSaldo(total);
             dts.setEstado("FINALIZADO");
+            dts.setIdmovimiento(Integer.parseInt(txtidmovimiento.getText()));
 //              dts.setIdmovimiento(Integer.parseInt(txtidmovimiento.getText()));
-            func.editar(dts);
+            func.editar_deudas(dts);
             JOptionPane.showMessageDialog(this, "Pago total realizado con exito");
             mostrar(txtid.getText());
 
@@ -445,7 +480,7 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
                 dts.setSaldo(total);
                 dts.setEstado("PENDIENTE");
 //                dts.setTotal(Long.parseLong(txttotal.getText()));
-                func.editar(dts);
+                func.editar_deudas(dts);
                
                 JOptionPane.showMessageDialog(this, "Pago parcial realizado con exito");
                 mostrar(frmDeudas.txtdocumento.getText());
@@ -495,6 +530,7 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
             txtdeuda.setText(tablalistado.getValueAt(fila, 7).toString());
             txttotal.setText(tablalistado.getValueAt(fila, 8).toString());
 //            txtidmovimiento.setText(tablalistado.getValueAt(fila, 6).toString());
+            idMov();
 
         } catch (Exception e) {
         }
@@ -563,12 +599,15 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbltotalregistros;
+    private javax.swing.JLabel lbltotalregistros1;
+    private javax.swing.JLabel lbltotalregistros2;
     private javax.swing.JPanel panelboton2;
     private javax.swing.JTable tablalistado;
     public static javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtdescripcion;
     private javax.swing.JTextField txtdeuda;
     private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtidmovimiento;
     private javax.swing.JTextField txtidusuario;
     private javax.swing.JTextField txtmonto;
     private javax.swing.JTextField txtpreciount;
