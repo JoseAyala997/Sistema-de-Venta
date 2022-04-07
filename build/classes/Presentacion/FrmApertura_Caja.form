@@ -65,85 +65,100 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Component id="txtIDCaja" min="-2" pref="20" max="-2" attributes="0"/>
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="txtNroCaja" min="-2" pref="130" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel5" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="txtMontoApertura" min="-2" pref="170" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel6" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="txtmontocierre" min="-2" pref="170" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel2" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtIDCaja" min="-2" pref="17" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="txtNroCaja" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel5" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="txtMontoApertura" min="-2" pref="170" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel6" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="txtmontocierre" min="-2" pref="170" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jFechaApertura" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                           <Component id="jFechaCierre" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                           <Component id="txtDocumento" min="-2" pref="170" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="txtID" min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel10" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="txtnombreapellido" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                           <Component id="cboestado" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtID" min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtIDCaja" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel5" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="txtMontoApertura" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel6" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="txtmontocierre" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="20" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="txtIDCaja" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Component id="txtNroCaja" min="-2" pref="25" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel5" min="-2" pref="20" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="txtMontoApertura" min="-2" pref="25" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel6" min="-2" pref="20" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="txtmontocierre" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
@@ -156,9 +171,10 @@
                       <Component id="jFechaApertura" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jFechaCierre" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="txtDocumento" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="txtID" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txtID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel10" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="20" max="-2" attributes="0"/>
@@ -167,7 +183,7 @@
                       <Component id="txtnombreapellido" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="cboestado" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

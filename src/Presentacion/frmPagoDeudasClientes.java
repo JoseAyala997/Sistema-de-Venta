@@ -462,7 +462,8 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
 //              dts.setIdmovimiento(Integer.parseInt(txtidmovimiento.getText()));
             func.editar_deudas(dts);
             JOptionPane.showMessageDialog(this, "Pago total realizado con exito");
-            mostrar(txtid.getText());
+//            mostrar(txtid.getText());
+            mostrar(frmDeudas.txtdocumento.getText());
 
 //          JOptionPane.showMessageDialog(panelboton2, "no sobra saldo "+total);
             cancelar();
@@ -479,6 +480,7 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
                 dts.setTotal(monto + (Long.parseLong(txttotal.getText())));
                 dts.setSaldo(total);
                 dts.setEstado("PENDIENTE");
+                dts.setIdmovimiento(Integer.parseInt(txtidmovimiento.getText()));
 //                dts.setTotal(Long.parseLong(txttotal.getText()));
                 func.editar_deudas(dts);
                

@@ -122,14 +122,15 @@ import javax.swing.JOptionPane;
         }
     }
      public boolean editar_deudas(vventas dts) {
-        SQL = " update venta set total=?, estado=?, saldo=?,idventa=? where idventa=?";
+        SQL = " update venta set total=?, estado=?, saldo=?,idmovimiento=? where idventa=?";
         try {
             PreparedStatement pst = cn.prepareStatement(SQL);
          
             pst.setLong(1, dts.getTotal());
             pst.setString(2, dts.getEstado());
             pst.setLong(3,dts.getSaldo());
-            pst.setInt(4, dts.getIdventa());
+            pst.setInt(4, dts.getIdmovimiento());
+            pst.setInt(5, dts.getIdventa());
 
             int n = pst.executeUpdate();
             if (n != 0) {
