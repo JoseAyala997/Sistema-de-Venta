@@ -3,20 +3,16 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="fecha_inicio" class="java.util.Date">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="fecha_termino" class="java.util.Date">
+	<parameter name="num_factura" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT v.idventa,d.idservicios,v.fecha, (SELECT nombre_servicio FROM servicios s WHERE s.idservicios = d.idservicios)as nombreservicio,
+		<![CDATA[SELECT v.idventa,d.idservicios,v.fecha,v.idmovimiento, (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto,
  d.precio,d.cantidad,v.nro_factura,total, CONCAT(p.nombre, ' ', p.apellido)as paciente,concat(u.nombre, ' ', u.apellido)as usuario
  FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa
  inner join persona p on p.idpersona=v.idpaciente
  inner join persona u on u.idpersona=v.idusuarios
- WHERE v.fecha
- BETWEEN $P{fecha_inicio} AND $P{fecha_termino} order by v.idventa desc]]>
+ WHERE v.nro_factura=$P{num_factura}  order by v.idventa desc]]>
 	</queryString>
 	<field name="idventa" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -27,7 +23,10 @@
 	<field name="fecha" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nombreservicio" class="java.lang.String"/>
+	<field name="idmovimiento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="producto" class="java.lang.String"/>
 	<field name="precio" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>

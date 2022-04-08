@@ -2,27 +2,19 @@ package CONSULTAS;
 
 import Logica.Conexion;
 import Logica.StyloTabla;
-import static Logica.fproductos.cn;
-import static Presentacion.FrmFactura.txtEfectivo;
-import static Presentacion.FrmFactura.txtVuelto;
 import Presentacion.frmprincipal;
-import static Presentacion.frmventas.x;
 import java.awt.Color;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -68,20 +60,20 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setResizable(false);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -95,10 +87,10 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jLabel10.setText("HISTORIAL DE VENTAS");
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel11.setText("Ingrese fecha de Termino");
+        jLabel11.setText("Fecha fin");
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel12.setText("Ingrese fecha de inicio");
+        jLabel12.setText("Fecha de inicio");
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/usuarioaceptar.png"))); // NOI18N
@@ -121,36 +113,32 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                         .addGap(293, 293, 293)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(49, 49, 49)
-                                .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(171, Short.MAX_VALUE))
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(182, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnnuevo)
-                .addGap(344, 344, 344))
+                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(336, 336, 336))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel10)
-                .addGap(51, 51, 51)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                    .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
                 .addComponent(btnnuevo)
                 .addGap(29, 29, 29))
         );

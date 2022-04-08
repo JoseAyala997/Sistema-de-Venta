@@ -56,27 +56,22 @@
                           <Component id="jLabel10" min="-2" pref="292" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="dcFecha_termino" min="-2" pref="165" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                  <Component id="dcFecha_Inicio" min="-2" pref="165" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="dcFecha_Inicio" min="-2" pref="165" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="dcFecha_termino" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="171" max="32767" attributes="0"/>
+                  <EmptySpace pref="182" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="btnnuevo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="344" max="-2" attributes="0"/>
+                  <Component id="btnnuevo" min="-2" pref="95" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="336" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -85,17 +80,14 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="dcFecha_Inicio" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jLabel12" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="dcFecha_termino" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="dcFecha_Inicio" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jLabel12" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <Component id="dcFecha_termino" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="69" max="32767" attributes="0"/>
+                  <EmptySpace pref="278" max="32767" attributes="0"/>
                   <Component id="btnnuevo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
@@ -130,7 +122,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ingrese fecha de Termino"/>
+            <Property name="text" type="java.lang.String" value="Fecha fin"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
@@ -138,7 +130,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ingrese fecha de inicio"/>
+            <Property name="text" type="java.lang.String" value="Fecha de inicio"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnnuevo">
