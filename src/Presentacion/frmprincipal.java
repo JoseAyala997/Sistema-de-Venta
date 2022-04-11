@@ -13,6 +13,7 @@ import CONSULTAS.frmhistorial_ventas;
 import CONSULTAS.frmimprimir_dieta;
 import CONSULTAS.frmpaciente_consulta;
 import CONSULTAS.frmusuarios_consulta;
+import CONSULTAS.frmImprimir_factura;
 import Logica.StyloTabla;
 import Logica.fmovimiento_caja;
 import Logica.fusuarios;
@@ -96,6 +97,7 @@ public class frmprincipal extends javax.swing.JFrame {
         husuarios = new javax.swing.JMenuItem();
         rpaciente = new javax.swing.JMenuItem();
         cutMenuItem5 = new javax.swing.JMenuItem();
+        historialventas1 = new javax.swing.JMenuItem();
         menurespaldo = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -328,7 +330,7 @@ public class frmprincipal extends javax.swing.JFrame {
         menureporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         historialventas.setMnemonic('t');
-        historialventas.setText("Historial Ventas");
+        historialventas.setText("Imprimir Factura");
         historialventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 historialventasActionPerformed(evt);
@@ -362,6 +364,15 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
         menureporte.add(cutMenuItem5);
+
+        historialventas1.setMnemonic('t');
+        historialventas1.setText("Historial Ventas");
+        historialventas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialventas1ActionPerformed(evt);
+            }
+        });
+        menureporte.add(historialventas1);
 
         menuBar.add(menureporte);
 
@@ -452,10 +463,10 @@ public class frmprincipal extends javax.swing.JFrame {
 
     private void historialventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventasActionPerformed
         // TODO add your handling code here:
-        String x = frmhistorial_ventas.x;
+        String x = frmImprimir_factura.x;
         try {
             if (x == null) {
-                frmhistorial_ventas form = new frmhistorial_ventas();
+                frmImprimir_factura form = new frmImprimir_factura();
                 jDesktopPane2.add(form);
                 jDesktopPane2.moveToFront(form);
             } else {
@@ -757,6 +768,21 @@ public class frmprincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menupaciente3ActionPerformed
 
+    private void historialventas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas1ActionPerformed
+       String x = frmhistorial_ventas.x;
+        try {
+            if (x == null) {
+                frmhistorial_ventas form = new frmhistorial_ventas();
+                jDesktopPane2.add(form);
+                jDesktopPane2.moveToFront(form);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_historialventas1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -798,6 +824,7 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem cutMenuItem5;
     public static javax.swing.JMenuItem cutMenuItem6;
     public static javax.swing.JMenuItem historialventas;
+    public static javax.swing.JMenuItem historialventas1;
     public static javax.swing.JMenuItem husuarios;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JDesktopPane jDesktopPane1;

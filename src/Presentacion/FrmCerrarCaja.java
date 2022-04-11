@@ -192,7 +192,6 @@ private Connection connection = new Conexion().conectar();
         btnguardar = new javax.swing.JButton();
         txtcapitalcaja = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         txtcontado = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -447,13 +446,6 @@ private Connection connection = new Conexion().conectar();
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("CAPITAL CAJA");
 
-        jButton2.setText("Imprimir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         txtcontado.setEditable(false);
         txtcontado.setBackground(new java.awt.Color(255, 255, 153));
         txtcontado.setForeground(new java.awt.Color(255, 0, 0));
@@ -592,10 +584,7 @@ private Connection connection = new Conexion().conectar();
                         .addGap(10, 10, 10)
                         .addComponent(txtnombreapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
-                        .addComponent(jButton2)))
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -659,9 +648,7 @@ private Connection connection = new Conexion().conectar();
                     .addComponent(txtcontado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtcredito, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtcobrado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addComponent(jButton2)
-                .addGap(2, 2, 2)
+                .addGap(70, 70, 70)
                 .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -840,66 +827,6 @@ private Connection connection = new Conexion().conectar();
         x = null;
         // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameClosing
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
-       try {
-           Map p = new HashMap();
-            p.put("id", txtID.getText());
-            p.put("usuario", txtnombreapellido.getText());
-            p.put("contado", txtcontado.getText());
-            p.put("cobrado", txtcobrado.getText());
-            p.put("credito", txtcredito.getText());
-            p.put("egresos", txtmontoegreso.getText());
-            JasperReport jr;
-            JasperPrint jp;
-
-            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/Reportes/rpt_cierre_caja.jrxml");//Jasper para tener vista en exel y demas editores de texto
-
-            jp = JasperFillManager.fillReport(jr, p, cn);
-//            JasperPrintManager.printReport(jp, true);
-
-            JasperViewer view = new JasperViewer(jp, false);
-            view.setTitle("Reporte de cierre");
-            view.setVisible(true);
-            System.out.println("imprimiendo2");
-
-        } catch (Exception e) {
-        }  
-        
-        
-        
-        
-        
-//       try {
-////            System.out.println("imprimiendo");
-//            Map p = new HashMap();
-//           p.put("egreso", txtmontoegreso2);
-//            System.out.println("imprimiendo2");
-//            JasperReport jr;
-//            JasperPrint jp;
-//
-//            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-//                    + "/src/Reportes/parametro.jrxml");//Jasper para tener vista en exel y demas editores de texto
-//
-//            jp = JasperFillManager.fillReport(jr, p, cn);
-//            JasperPrintManager.printReport(jp, true);
-//
-//            JasperViewer view = new JasperViewer(jp, false);
-//            view.setTitle("Comprobante Venta");
-//            view.setVisible(true);
-//            System.out.println("imprimiendo2");
-//
-//        } catch (Exception e) {
-//        }  
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtcontadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcontadoFocusGained
         // TODO add your handling code here:
@@ -3089,7 +3016,6 @@ private Connection connection = new Conexion().conectar();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnguardar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JCalendar jCalendar1;
     public static com.toedter.calendar.JDateChooser jFechaCierre;
     private javax.swing.JLabel jLabel1;

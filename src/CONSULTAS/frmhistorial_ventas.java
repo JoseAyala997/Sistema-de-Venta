@@ -2,15 +2,18 @@ package CONSULTAS;
 
 import Logica.Conexion;
 import Logica.StyloTabla;
+import Logica.fventa;
 import Presentacion.frmprincipal;
 import java.awt.Color;
 import java.io.File;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -41,6 +44,24 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         dcFecha_termino.setCalendar(mifecha);
         jPanel3.setBackground(new Color(0, 102, 100, 200));
         StyloTabla st = new StyloTabla();
+//        mostrar("","");
+    }
+    void mostrar(String inicio,String fin) {
+        try {
+            DefaultTableModel modelo;
+
+            fventa Funcion = new fventa();
+
+            modelo = Funcion.mostrarhventa(inicio, fin);
+
+//            int total = Funcion.totalregistros;
+
+//            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
+
+            jTable1.setModel(modelo);
+
+        } catch (Exception e) {
+        }
 
     }
 
@@ -55,6 +76,9 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         btnnuevo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -87,14 +111,14 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jLabel10.setText("HISTORIAL DE VENTAS");
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel11.setText("Fecha fin");
+        jLabel11.setText("Fecha fin:");
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel12.setText("Fecha de inicio");
+        jLabel12.setText("Fecha de inicio:");
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/usuarioaceptar.png"))); // NOI18N
-        btnnuevo.setText("Aceptar");
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
+        btnnuevo.setText("Imprimir");
         btnnuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnnuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -103,44 +127,71 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
+                        .addGap(328, 328, 328)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                        .addGap(445, 445, 445)
+                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(336, 336, 336))
+                .addGap(0, 147, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jButton1)
+                .addGap(124, 124, 124))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addComponent(jLabel10)
-                .addGap(30, 30, 30)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
+                    .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnnuevo)
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,7 +215,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         Map p = new HashMap();
         p.put("fecha_inicio", dcFecha_Inicio.getDate());
-        p.put("fecha_termino", dcFecha_termino.getDate());
+        p.put("fecha_fin", dcFecha_termino.getDate());
 
         JasperReport report;
         JasperPrint print;
@@ -181,6 +232,21 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnnuevoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        java.util.Date desde = new java.util.Date();
+        SimpleDateFormat sdf_desde = new SimpleDateFormat("yyyy-MM-dd");
+    desde = dcFecha_Inicio.getDate();
+    String p_fecha_Desde = sdf_desde.format(desde);
+
+    java.util.Date hasta = new java.util.Date();
+    SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
+    hasta = dcFecha_termino.getDate();
+    String p_fecha_Hasta = sdf_hasta.format(hasta);
+
+       mostrar(p_fecha_Desde,p_fecha_Hasta ); 
+    }//GEN-LAST:event_jButton1ActionPerformed
     private Connection connection = new Conexion().conectar();
 
     public static void main(String args[]) {
@@ -222,10 +288,13 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnnuevo;
     private com.toedter.calendar.JDateChooser dcFecha_Inicio;
     private com.toedter.calendar.JDateChooser dcFecha_termino;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
 }

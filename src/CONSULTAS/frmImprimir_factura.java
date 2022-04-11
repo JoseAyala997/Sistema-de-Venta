@@ -7,8 +7,10 @@ package CONSULTAS;
 
 import Logica.Conexion;
 import Logica.StyloTabla;
-import Logica.fproductos;
+import static Logica.fproductos.mysql;
+import Logica.fventa;
 import Presentacion.frmprincipal;
+import java.awt.Color;
 import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -24,10 +26,11 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Jose Ayala
  */
-public class frmconsulta_paciente extends javax.swing.JInternalFrame{
+public class frmImprimir_factura extends javax.swing.JInternalFrame{
 
     public static String x;
-    public frmconsulta_paciente() {
+    public static Connection cn = mysql.conectar();
+    public frmImprimir_factura() {
         initComponents();
         //codigo para centrar internalframe
         x = "x";
@@ -37,35 +40,35 @@ public class frmconsulta_paciente extends javax.swing.JInternalFrame{
         setVisible(true);
          mostrar("");
    
-//    
-//        
-//         jPanel1.setBackground(new Color(0, 102, 100, 200));
-//         jPanel2.setBackground(new Color(0, 102, 100, 200));
+    
+        
+         jPanel1.setBackground(new Color(0, 102, 100, 200));
+         jPanel2.setBackground(new Color(0, 102, 100, 200));
         
         StyloTabla st = new StyloTabla();
 
        
-        setTitle("Consultar Productos");
+        setTitle("Imprimir factura");
     }
  void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
 
-            fproductos Funcion = new fproductos();
+            fventa Funcion = new fventa();
 
-            modelo = Funcion.mostrar(buscar);
+            modelo = Funcion.mostrarventa(buscar);
 
-            int total = Funcion.TotalRegistros;
+//            int total = Funcion.totalregistros;
 
-            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
+//            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
 
             jTable1.setModel(modelo);
 
         } catch (Exception e) {
         }
 
-    
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,14 +79,14 @@ public class frmconsulta_paciente extends javax.swing.JInternalFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        lbltotalregistros = new javax.swing.JLabel();
         txtbuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -110,6 +113,28 @@ public class frmconsulta_paciente extends javax.swing.JInternalFrame{
                 formPropertyChange(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel6.setText("IMPRIMIR FACTURA");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(401, 401, 401))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -140,8 +165,7 @@ public class frmconsulta_paciente extends javax.swing.JInternalFrame{
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Productos");
+        jLabel2.setText("BUSCAR POR NUM. DE FACTURA");
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
@@ -154,9 +178,6 @@ public class frmconsulta_paciente extends javax.swing.JInternalFrame{
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setText("BUSCAR POR NOMBRE");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -164,49 +185,43 @@ public class frmconsulta_paciente extends javax.swing.JInternalFrame{
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(220, 220, 220)
-                        .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1044, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(476, 476, 476))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1044, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(457, 457, 457)
+                        .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnguardar))
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnguardar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,27 +249,25 @@ private String accion = "guardar";
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        Map p = new HashMap();
-             p.put("buscar", txtbuscar.getText());
-         
+          try {
+           Map p = new HashMap();
+            p.put("buscar", txtbuscar.getText());
            
-            JasperReport report;
-            JasperPrint print;
+            JasperReport jr;
+            JasperPrint jp;
 
-            try {
-              
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/rptservicios.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Consulta Servicios");
-                view.setVisible(true);
+            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/Reportes/rptfacturaventa.jrxml");//Jasper para tener vista en exel y demas editores de texto
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            jp = JasperFillManager.fillReport(jr, p, cn);
+//            JasperPrintManager.printReport(jp, true);
 
-                    
+            JasperViewer view = new JasperViewer(jp, false);
+            view.setTitle("Imprimir factura");
+            view.setVisible(true);
+
+        } catch (Exception e) {
+        }  
     }//GEN-LAST:event_btnguardarActionPerformed
 
     /**
@@ -274,20 +287,27 @@ private String accion = "guardar";
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmconsulta_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmImprimir_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmconsulta_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmImprimir_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmconsulta_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmImprimir_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmconsulta_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmImprimir_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmconsulta_paciente().setVisible(true);
+                new frmImprimir_factura().setVisible(true);
             }
         });
     }
@@ -295,11 +315,11 @@ private String accion = "guardar";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnguardar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lbltotalregistros;
     public static javax.swing.JTextField txtbuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -146,11 +146,11 @@ public class fventa {
         }
     }
 
-    public DefaultTableModel mostrarcaja(String buscar, String estado) {
+    public DefaultTableModel mostrarventa(String buscar) {
         DefaultTableModel modelo;
 
-        String[] titulos = {"IDVENTA", "ID PRO.","ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "NUM. FACTURA", "TOTAL", "FUNCIONARIO", "CLIENTE", "EGRESOS"};
-        String[] registro = new String[11];
+        String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "NUM. FACTURA", "SUB-TOTAL", "TOTAL", "CLIENTE", "USUARIO"};
+        String[] registro = new String[12];
 
         modelo = new DefaultTableModel(null, titulos);
         SQL = "SELECT v.idventa,d.idservicios,v.idmovimiento,v.fecha, (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto,\n"
@@ -167,16 +167,59 @@ public class fventa {
 //                idm = rs.getInt("idmovimiento");
                 registro[0] = rs.getString("idventa");
                 registro[1] = rs.getString("idservicios");
-                
-                registro[2] = formatear.format(rs.getDouble("monto_apertura"));
-                registro[3] = formatear.format(rs.getDouble("monto_cierre"));
-                registro[4] = rs.getString("fecha_apertura");
-                registro[5] = rs.getString("fecha_cierre");
-                registro[6] = rs.getString("estado");
-                registro[7] = rs.getString("idusuarios");
-                registro[8] = rs.getString("funcionario");
-                registro[9] = rs.getString("numDocumento");
-                registro[10] = rs.getString("egresos");
+                registro[2] = rs.getString("idmovimiento");
+                registro[3] = rs.getString("fecha");
+                registro[4] = rs.getString("producto");
+
+                registro[5] = formatear.format(rs.getDouble("precio"));
+                registro[6] = rs.getString("cantidad");
+                registro[7] = rs.getString("nro_factura");
+                registro[8] = rs.getString("nro_factura");
+                registro[9] = formatear.format(rs.getDouble("total"));
+                registro[10] = rs.getString("cliente");
+                registro[11] = rs.getString("usuario");
+                modelo.addRow(registro);
+            }
+
+            return modelo;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: 1112" + e);
+            return null;
+        }
+    }
+
+    public DefaultTableModel mostrarhventa(String inicio, String fin) {
+        DefaultTableModel modelo;
+
+        String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "NUM. FACTURA", "SUB-TOTAL", "TOTAL", "CLIENTE", "USUARIO"};
+        String[] registro = new String[12];
+
+        modelo = new DefaultTableModel(null, titulos);
+        SQL = "SELECT v.idventa,d.idservicios,v.fecha,v.idmovimiento, (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto,\n"
+                + " d.precio,d.cantidad,v.nro_factura,d.sub_total,v.total, CONCAT(p.nombre, ' ', p.apellido)as cliente,concat(u.nombre, ' ', u.apellido)as usuario\n"
+                + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
+                + " inner join persona p on p.idpersona=v.idpaciente\n"
+                + " inner join persona u on u.idpersona=v.idusuarios\n"
+                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' order by v.idventa desc";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+//                idm = rs.getInt("idmovimiento");
+//                idm = rs.getInt("idmovimiento");
+                registro[0] = rs.getString("idventa");
+                registro[1] = rs.getString("idservicios");
+                registro[2] = rs.getString("idmovimiento");
+                registro[3] = rs.getString("fecha");
+                registro[4] = rs.getString("producto");
+
+                registro[5] = formatear.format(rs.getDouble("precio"));
+                registro[6] = rs.getString("cantidad");
+                registro[7] = rs.getString("sub_total");
+                registro[8] = rs.getString("nro_factura");
+                registro[9] = formatear.format(rs.getDouble("total"));
+                registro[10] = rs.getString("cliente");
+                registro[11] = rs.getString("usuario");
                 modelo.addRow(registro);
             }
 
