@@ -7,21 +7,13 @@ import Logica.freserva;
 import Logica.fproductos;
 import Logica.fventa;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
-import static Logica.fproductos.cn;
-import java.io.File;
 
 /**
  *
@@ -51,6 +43,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         txtpulgadas.requestFocus();
         txtpulgadas.setText("0");
         txtdescuento.setText("0");
+  
         txtcategoria.setVisible(false);
 
         jPanel1.setBackground(new Color(0, 102, 100, 200));//le damos transparencia y color a los paneles 
@@ -246,16 +239,14 @@ public class frmventas extends javax.swing.JInternalFrame {
         freserva rs = new freserva();
 
         for (int i = 0; i < tablaventas.getRowCount(); i++) {
-           
-          
-                datos.setIdservicios(Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
-                datos.setCantidad(Integer.parseInt(tablaventas.getValueAt(i, 4).toString()));
-                datos.setPulgadas(Integer.parseInt(tablaventas.getValueAt(i, 3).toString()));
-                datos.setPrecio(Long.parseLong(tablaventas.getValueAt(i, 2).toString().replaceAll("\\.", "")));
-                datos.setSub_total(Long.parseLong(tablaventas.getValueAt(i, 5).toString().replaceAll("\\.", "")));
-     
-                funcion.insertarDetalle(datos);
-            
+
+            datos.setIdservicios(Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
+            datos.setCantidad(Integer.parseInt(tablaventas.getValueAt(i, 4).toString()));
+            datos.setPulgadas(Integer.parseInt(tablaventas.getValueAt(i, 3).toString()));
+            datos.setPrecio(Long.parseLong(tablaventas.getValueAt(i, 2).toString().replaceAll("\\.", "")));
+            datos.setSub_total(Long.parseLong(tablaventas.getValueAt(i, 5).toString().replaceAll("\\.", "")));
+
+            funcion.insertarDetalle(datos);
 
         }
 
@@ -315,20 +306,20 @@ public class frmventas extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -420,7 +411,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("CANTIDAD");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 80, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 80, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("PRODUCTO");
@@ -428,15 +419,21 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("PRECIO");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 60, 20));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 60, 20));
 
         txtcantidad.setPreferredSize(null);
         txtcantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtcantidadKeyTyped(evt);
             }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcantidadKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcantidadKeyReleased(evt);
+            }
         });
-        jPanel2.add(txtcantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 90, 30));
+        jPanel2.add(txtcantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 90, 30));
 
         txtproducto.setEnabled(false);
         txtproducto.setPreferredSize(null);
@@ -444,7 +441,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         txtprecio.setEnabled(false);
         txtprecio.setPreferredSize(null);
-        jPanel2.add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 140, 30));
+        jPanel2.add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 140, 30));
         jPanel2.add(lblidproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 50, 20));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
@@ -453,7 +450,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 38, 36));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 50, 38, 36));
 
         txtpulgadas.setPreferredSize(null);
         txtpulgadas.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -461,20 +458,20 @@ public class frmventas extends javax.swing.JInternalFrame {
                 txtpulgadasKeyTyped(evt);
             }
         });
-        jPanel2.add(txtpulgadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 90, 30));
+        jPanel2.add(txtpulgadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 90, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("PULGADAS");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 100, 20));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 100, 20));
 
         txtcategoria.setEnabled(false);
         txtcategoria.setPreferredSize(null);
-        jPanel2.add(txtcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 0, 90, 30));
-        jPanel2.add(txtdescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 140, 30));
+        jPanel2.add(txtcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 40, 30));
+        jPanel2.add(txtdescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 140, 30));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setText("DESCUENTO EN GS.");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 124, 20));
+        jLabel13.setText("REDONDEO PRECIO");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 124, 20));
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setForeground(new java.awt.Color(0, 153, 153));
@@ -749,33 +746,70 @@ public class frmventas extends javax.swing.JInternalFrame {
             return;
         }
         if (txtdescuento.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "El descuento no puede estar vacio");
+            JOptionPane.showMessageDialog(rootPane, "El descuento no puede estar vacio - Valor minimo 0");
             txtdescuento.setText("0");
             return;
         }
-
-        agregar[0] = lblidproducto.getText();
-        agregar[1] = txtproducto.getText();
-        agregar[2] = String.valueOf(format.format(Integer.parseInt(txtprecio.getText())));
-        agregar[3] = txtpulgadas.getText();
-        agregar[4] = txtcantidad.getText();
-        agregar[6] = txtcategoria.getText();
-        agregar[7] = txtdescuento.getText();
-        int subttotal = Integer.parseInt(txtcantidad.getText()) * Integer.parseInt(txtprecio.getText()) - Integer.parseInt(txtdescuento.getText());
-        agregar[5] = String.valueOf(format.format(Integer.parseInt("" + subttotal)));
-        modelo.addRow(agregar);
-        sumarsubtotal();
-
-        txtprecio.setText("");
-        txtcantidad.setText("");
-        lblidproducto.setText("");
-        txtproducto.setText("");
-        txtprecio.setText("");
-        txtcategoria.setText("");
-        txtpulgadas.setText("0");
-        txtdescuento.setText("0");
-
+//        if (txtredondeo.getText().length() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "El redondeo no puede estar vacio - Valor minimo 0");
+//            txtredondeo.setText("0");
+//            return;
 //        }
+
+        int redondeo;
+        int cant;
+        redondeo = Integer.parseInt(txtdescuento.getText());
+        cant = Integer.parseInt(txtcantidad.getText());
+        if (redondeo > 0 && cant > 1) {
+
+            agregar[0] = lblidproducto.getText();
+            agregar[1] = txtproducto.getText();
+            agregar[2] = String.valueOf(format.format(Integer.parseInt(txtdescuento.getText())));
+            agregar[3] = txtpulgadas.getText();
+            agregar[4] = txtcantidad.getText();
+            agregar[6] = txtcategoria.getText();
+            agregar[7] = "0";
+//            int subttotal = Integer.parseInt(txtcantidad.getText()) * Integer.parseInt(txtprecio.getText()) - Integer.parseInt(txtdescuento.getText());
+            int subttotal = Integer.parseInt(txtdescuento.getText());
+            agregar[5] = String.valueOf(format.format(Integer.parseInt("" + subttotal)));
+            modelo.addRow(agregar);
+            sumarsubtotal();
+
+            txtprecio.setText("");
+            txtcantidad.setText("");
+            lblidproducto.setText("");
+            txtproducto.setText("");
+            txtprecio.setText("");
+            txtcategoria.setText("");
+            txtpulgadas.setText("0");
+            txtdescuento.setText("0");
+
+        } else {
+
+            agregar[0] = lblidproducto.getText();
+            agregar[1] = txtproducto.getText();
+            agregar[2] = String.valueOf(format.format(Integer.parseInt(txtprecio.getText())));
+            agregar[3] = txtpulgadas.getText();
+            agregar[4] = txtcantidad.getText();
+            agregar[6] = txtcategoria.getText();
+            agregar[7] = "0";
+            int subttotal = Integer.parseInt(txtcantidad.getText()) * Integer.parseInt(txtprecio.getText());
+//            int subttotal = Integer.parseInt(txtcantidad.getText()) * Integer.parseInt(txtdescuento.getText());
+            agregar[5] = String.valueOf(format.format(Integer.parseInt("" + subttotal)));
+            modelo.addRow(agregar);
+            sumarsubtotal();
+
+            txtprecio.setText("");
+            txtcantidad.setText("");
+            lblidproducto.setText("");
+            txtproducto.setText("");
+            txtprecio.setText("");
+            txtcategoria.setText("");
+            txtpulgadas.setText("0");
+            txtdescuento.setText("0");
+
+        }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -808,6 +842,13 @@ public class frmventas extends javax.swing.JInternalFrame {
 
             evt.consume();
         }
+//        int precio=0;
+//        int cantidad=0;
+//        int sub=0;
+//        precio=Integer.parseInt(txtprecio.getText());
+//        cantidad=Integer.parseInt(txtcantidad.getText());
+//        sub = precio*cantidad;
+//        txtredondeo.setText(String.valueOf(sub));
     }//GEN-LAST:event_txtcantidadKeyTyped
 
     private void cbotipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipoActionPerformed
@@ -852,6 +893,26 @@ public class frmventas extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void txtcantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadKeyPressed
+
+
+    }//GEN-LAST:event_txtcantidadKeyPressed
+
+    private void txtcantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadKeyReleased
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int precio = 0;
+            int cantidad = 0;
+            int sub = 0;
+            precio = Integer.parseInt(txtprecio.getText());
+            cantidad = Integer.parseInt(txtcantidad.getText());
+            sub = precio * cantidad;
+            txtdescuento.setText(String.valueOf(sub));
+        }
+
+
+    }//GEN-LAST:event_txtcantidadKeyReleased
 
     public static DecimalFormat format = new DecimalFormat("###,###.###");
     public static float sumatoria;
