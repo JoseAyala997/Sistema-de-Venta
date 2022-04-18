@@ -1,29 +1,19 @@
 package CONSULTAS;
-
-import static CONSULTAS.frmhistorial_ventas.x;
 import Logica.Conexion;
 import Logica.StyloTabla;
-import static Logica.fproductos.cn;
-import static Presentacion.FrmFactura.txtEfectivo;
-import static Presentacion.FrmFactura.txtVuelto;
 import Presentacion.frmprincipal;
-import static Presentacion.frmventas.dcfecha;
 import java.awt.Color;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**

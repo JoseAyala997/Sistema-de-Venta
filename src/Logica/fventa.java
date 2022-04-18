@@ -54,6 +54,31 @@ public class fventa {
             JOptionPane.showMessageDialog(null, e);
             return false;
         }
+        
+    }
+       public boolean insertarDeuda(vdetalle_venta dts) {
+        SQL = "INSERT INTO deudas (idcredito, idcliente, idventa,estado)"
+                + "values (?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(SQL);
+
+            pst.setInt(1, dts.getIdservicios());
+            pst.setInt(2, dts.getCantidad());
+            pst.setLong(3, dts.getPrecio());
+            pst.setLong(4, dts.getSub_total());
+            pst.setInt(5, dts.getPulgadas());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
     }
 
     public boolean insertarDetalle(vdetalle_venta dts) {

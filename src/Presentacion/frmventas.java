@@ -213,7 +213,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 datos.setPulgadas(Integer.parseInt(tablaventas.getValueAt(i, 3).toString()));
                 datos.setPrecio(Long.parseLong(tablaventas.getValueAt(i, 2).toString().replaceAll("\\.", "")));
                 datos.setSub_total(Long.parseLong(tablaventas.getValueAt(i, 5).toString().replaceAll("\\.", "")));
-                System.out.println("servicio");
+//                System.out.println("servicio");
                 funcion.insertarDetalle(datos);
             } else {
                 datos.setIdservicios(Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
@@ -225,7 +225,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 cd.restarStock(Double.parseDouble(tablaventas.getValueAt(i, 4).toString()), Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
 
                 funcion.insertarDetalle(datos);
-                System.out.println("no es un servicio");
+//                System.out.println("no es un servicio");
             }
 
         }
@@ -306,20 +306,20 @@ public class frmventas extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -450,7 +450,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 50, 38, 36));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 38, 36));
 
         txtpulgadas.setPreferredSize(null);
         txtpulgadas.addKeyListener(new java.awt.event.KeyAdapter() {
