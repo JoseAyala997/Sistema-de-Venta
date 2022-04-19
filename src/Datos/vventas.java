@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author Jose Ayala
  */
-public class vventas {
+public class vventas extends vdeudas{
     private int idventa;
     private int idusuarios;
     private int idpaciente;    

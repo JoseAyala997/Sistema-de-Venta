@@ -147,18 +147,6 @@ public class fproductos {
 //    
 //    }
     public boolean insertar(vproductos dts) {
-//         private int idservicios;
-//    private String nombre_producto;
-//    private String descripcion;
-//    private Long precio_unitario;
-//    private Long precio_mayor;
-//    private Long precio_costo;
-//    private Double stock;
-//    private String cod_barra;
-//    private String estado;
-//    private int idcategorias;
-//    private Double pulgadas;
-//    private int idproveedor;
         SQL = "INSERT INTO productos (nombre_producto, descripcion, precio_unitario, precio_mayor, precio_costo, stock, pulgadas, estado, idcategorias,idproveedor)"
                 + " values (upper(?),upper(?),?,?,?,?,?,?,?,?)";
 

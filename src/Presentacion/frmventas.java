@@ -1,6 +1,7 @@
 package Presentacion;
 
 import Datos.vdetalle_venta;
+import Datos.vdeudas;
 import Datos.vventas;
 import Logica.StyloTabla;
 import Logica.freserva;
@@ -43,7 +44,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         txtpulgadas.requestFocus();
         txtpulgadas.setText("0");
         txtdescuento.setText("0");
-  
+
         txtcategoria.setVisible(false);
 
         jPanel1.setBackground(new Color(0, 102, 100, 200));//le damos transparencia y color a los paneles 
@@ -159,10 +160,12 @@ public class frmventas extends javax.swing.JInternalFrame {
             datos.setNro_factura(txtnrofactura.getText());
             datos.setTipo(cbotipo.getSelectedItem().toString());
 
-            if (funcion.insertarVentas(datos)) {
+            if (funcion.insertarv2(datos)) {
 
             }
+
             imsertarDetalle();
+//            insertar_deuda();
         }
 
     }
@@ -231,6 +234,22 @@ public class frmventas extends javax.swing.JInternalFrame {
         }
 
     }
+
+//    public static void insertar_deuda() {
+//
+//        vdeudas dts = new vdeudas();
+//        fventa funcion = new fventa();
+//
+//        dts.setIdcliente(Integer.parseInt(txtcodcliente.getText()));
+//        dts.setTotal_deuda(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
+//        dts.setEstado(txtestado.getText());
+//
+//        if (funcion.insertarv2(dts)) {
+//
+//        }
+//        System.out.println("deuda insertada");
+//
+//    }
 
     public static void Detalle_presupuesto() {
         vdetalle_venta datos = new vdetalle_venta();
