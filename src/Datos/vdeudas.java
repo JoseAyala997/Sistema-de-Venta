@@ -11,6 +11,7 @@ package Datos;
  */
 public class vdeudas {
   private int iddeuda;
+  private int idventa;
   private int idcliente;
   private Long total_deuda;
   private String estado;
@@ -18,8 +19,9 @@ public class vdeudas {
     public vdeudas() {
     }
 
-    public vdeudas(int iddeuda, int idcliente, Long total_deuda, String estado) {
+    public vdeudas(int iddeuda, int idventa, int idcliente, Long total_deuda, String estado) {
         this.iddeuda = iddeuda;
+        this.idventa = idventa;
         this.idcliente = idcliente;
         this.total_deuda = total_deuda;
         this.estado = estado;
@@ -31,6 +33,14 @@ public class vdeudas {
 
     public void setIddeuda(int iddeuda) {
         this.iddeuda = iddeuda;
+    }
+
+    public int getIdventa() {
+        return idventa;
+    }
+
+    public void setIdventa(int idventa) {
+        this.idventa = idventa;
     }
 
     public int getIdcliente() {
@@ -56,6 +66,8 @@ public class vdeudas {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+   
 
     
   
