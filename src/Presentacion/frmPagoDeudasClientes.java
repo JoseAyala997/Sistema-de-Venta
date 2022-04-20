@@ -29,7 +29,7 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
         centrar();
         cancelar();
      
-
+        txtidmovimiento.setVisible(false);
         jPanel1.setBackground(new Color(0, 102, 100, 200));
         jPanel2.setBackground(new Color(0, 102, 100, 200));
         panelboton2.setBackground(new Color(0, 102, 100, 200));

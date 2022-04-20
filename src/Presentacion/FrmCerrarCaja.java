@@ -9,9 +9,6 @@ import Datos.vmovimiento_caja;
 import Logica.Conexion;
 import Logica.fmovimiento_caja;
 import static Logica.fproductos.cn;
-import static Presentacion.FrmFactura.txtEfectivo;
-import static Presentacion.FrmFactura.txtVuelto;
-import static Presentacion.FrmFactura.txtdescuento;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
@@ -25,7 +22,6 @@ import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 

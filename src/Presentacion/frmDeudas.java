@@ -134,28 +134,28 @@ public class frmDeudas extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, 40));
 
         txtcliente.setEnabled(false);
-        jPanel2.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 100, 30));
+        jPanel2.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 100, 30));
 
         jLabel1.setText("CLIENTE");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
 
         txtdocumento.setEnabled(false);
-        jPanel2.add(txtdocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 100, 30));
+        jPanel2.add(txtdocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 100, 30));
 
         jLabel2.setText("NUM. DOCUMENTO");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 100, -1));
 
         txttipo.setEnabled(false);
-        jPanel2.add(txttipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 100, 30));
+        jPanel2.add(txttipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 100, 30));
 
         jLabel3.setText("TIPO");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 40, -1));
 
         txtestado.setEnabled(false);
         jPanel2.add(txtestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 100, 30));
 
         jLabel4.setText("ESTADO");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 80, 40, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 80, 80, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton1.setText("VER");

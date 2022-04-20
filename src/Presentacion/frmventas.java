@@ -160,12 +160,12 @@ public class frmventas extends javax.swing.JInternalFrame {
             datos.setNro_factura(txtnrofactura.getText());
             datos.setTipo(cbotipo.getSelectedItem().toString());
 
-            if (funcion.insertarv2(datos)) {
+            if (funcion.insertarVentas(datos)) {
 
             }
 
             imsertarDetalle();
-//            insertar_deuda();
+            insertar_deuda();
         }
 
     }
@@ -235,21 +235,21 @@ public class frmventas extends javax.swing.JInternalFrame {
 
     }
 
-//    public static void insertar_deuda() {
-//
-//        vdeudas dts = new vdeudas();
-//        fventa funcion = new fventa();
-//
-//        dts.setIdcliente(Integer.parseInt(txtcodcliente.getText()));
-//        dts.setTotal_deuda(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
-//        dts.setEstado(txtestado.getText());
-//
-//        if (funcion.insertarv2(dts)) {
-//
-//        }
-//        System.out.println("deuda insertada");
-//
-//    }
+    public static void insertar_deuda() {
+
+        vdeudas dts = new vdeudas();
+        fventa funcion = new fventa();
+
+        dts.setIdcliente(Integer.parseInt(txtcodcliente.getText()));
+        dts.setTotal_deuda(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
+        dts.setEstado(txtestado.getText());
+
+        if (funcion.insertarDeuda(dts)) {
+
+        }
+        System.out.println("deuda insertada");
+
+    }
 
     public static void Detalle_presupuesto() {
         vdetalle_venta datos = new vdetalle_venta();

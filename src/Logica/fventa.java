@@ -59,79 +59,31 @@ public class fventa {
         
     }
     
-    public boolean insertarv2(vventas dts) {
-        SQL = "INSERT INTO venta (idusuarios, idpaciente, total, fecha, nro_factura, tipo, estado,idmovimiento,descuento,saldo)"
-                + " values (?,?,?,?,?,?,?,?,?,?)";
-        SsQL = "INSERT INTO deudas (idcliente,total_deuda,estado)"
+
+    
+    
+       public boolean insertarDeuda(vdeudas dts) {
+        SQL = "INSERT INTO deudas (idcliente,total_deuda,estado)"
                 + "values (?,?,?)";
 
         try {
-
             PreparedStatement pst = cn.prepareStatement(SQL);
-            PreparedStatement pst2 = cn.prepareStatement(SsQL);
-
-            pst.setInt(1, dts.getIdusuarios());
-            pst.setInt(2, dts.getIdpaciente());
-            pst.setLong(3, dts.getTotal());
-            pst.setDate(4, dts.getFecha());
-            pst.setString(5, dts.getNro_factura());
-            pst.setString(6, dts.getTipo());
-            pst.setString(7, dts.getEstado());
-            pst.setInt(8, dts.getIdmovimiento());
-            pst.setLong(9, dts.getDescuento());
-            pst.setLong(10, dts.getSaldo());
 
             pst.setInt(1, dts.getIdcliente());
             pst.setLong(2, dts.getTotal_deuda());
             pst.setString(3, dts.getEstado());
 
             int n = pst.executeUpdate();
-
             if (n != 0) {
-                int n2 = pst2.executeUpdate();
-
-                if (n2 != 0) {
-                    return true;
-
-                } else {
-                    return false;
-                }
-
+                return true;
             } else {
                 return false;
             }
-
         } catch (Exception e) {
-
-            JOptionPane.showConfirmDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
             return false;
         }
-
     }
-    
-    
-//       public boolean insertarDeuda(vdeudas dts) {
-//        SQL = "INSERT INTO deudas (idcliente,total_deuda,estado)"
-//                + "values (?,?,?)";
-//
-//        try {
-//            PreparedStatement pst = cn.prepareStatement(SQL);
-//
-//            pst.setInt(1, dts.getIdcliente());
-//            pst.setLong(2, dts.getTotal_deuda());
-//            pst.setString(3, dts.getEstado());
-//
-//            int n = pst.executeUpdate();
-//            if (n != 0) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//            return false;
-//        }
-//    }
 
     public boolean insertarDetalle(vdetalle_venta dts) {
         SQL = "INSERT INTO detalle_venta (idventa, idservicios, cantidad, precio, sub_total,pulgadas)"
@@ -306,5 +258,26 @@ public class fventa {
             return null;
         }
     }
+    
+//    public void mostrar_ultimo_id() {
+//
+//        SQL = "select max(idmovimiento)as id from movimiento_caja ";
+//
+//        try {
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sSQL);
+//
+//            while (rs.next()) {
+//                ultimo_id = rs.getInt("id");
+////                System.out.println("hola" + jose);
+//
+//            }
+//
+//        } catch (Exception e) {
+//            JOptionPane.showConfirmDialog(null, e);
+//
+//        }
+//
+//    }
 
 }

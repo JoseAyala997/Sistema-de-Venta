@@ -6,6 +6,8 @@
 package Logica;
 
 import Datos.vmovimiento_caja;
+import Presentacion.frmprincipal;
+import Presentacion.frmventas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +26,7 @@ public class fmovimiento_caja {
     private Connection cn = mysql.conectar();
     private String sSQL = "";
     public static int ultimo_id;
+    public static String ultimo_idm;
     public static int ultimoMonto;
     public static int idm;
     DecimalFormat formatear = new DecimalFormat();
@@ -132,6 +135,26 @@ public class fmovimiento_caja {
     }
 
     public void mostrar_id() {
+
+        sSQL = "select max(idmovimiento)as id from movimiento_caja ";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while (rs.next()) {
+                ultimo_id = rs.getInt("id");
+//                System.out.println("hola" + jose);
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+
+        }
+
+    }
+       public void ultimo_cierre() {
 
         sSQL = "select max(idmovimiento)as id from movimiento_caja ";
 
@@ -436,4 +459,25 @@ public class fmovimiento_caja {
 
     }
 
+     public void mostrar_ultimo_id() {
+
+        sSQL = "select max(idmovimiento)as id from movimiento_caja ";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while (rs.next()) {
+                ultimo_id = rs.getInt("id");
+                frmprincipal.lblidmovimiento2.setText(ultimo_idm);
+//                System.out.println("hola" + jose);
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+
+        }
+
+    }
 }
