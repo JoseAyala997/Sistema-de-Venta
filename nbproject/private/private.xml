@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/frmcompras.java</file>
-            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/frmventas.java</file>
-            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/FrmVista2.java</file>
-            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Logica/Conexion.java</file>
-            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/FrmCerrarCaja.java</file>
-            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/FrmVista_Servicios.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/Conexion.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Datos/vpersona.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/fmovimiento_caja.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmprincipal.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/fventa.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/fusuarios.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Datos/vusuarios.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmventas.java</file>
+            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Datos/vventas.java</file>
         </group>
     </open-files>
 </project-private>
