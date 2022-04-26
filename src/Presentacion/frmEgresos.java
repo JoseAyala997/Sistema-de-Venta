@@ -480,6 +480,9 @@ public class frmEgresos extends javax.swing.JInternalFrame {
 
         if (accion.equals("guardar")) {
             func.insertar(dts);
+            
+            frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());//funcion para obtener datos en frmprincipal
+            
             JOptionPane.showMessageDialog(this, "EGRESO REGISTRADO CORRECTAMENTE");
             mostrar("");
 
@@ -490,6 +493,9 @@ public class frmEgresos extends javax.swing.JInternalFrame {
                 dts.setIdegresos(Integer.parseInt(txtid.getText()));
 //                dts.setIdmovimiento(Integer.parseInt(txtidmovimiento.getText()));
                 func.editar(dts);
+                
+                frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());//funcion para obtener datos en frmprincipal
+                
                 JOptionPane.showMessageDialog(this, "EGRESO EDITADO CORRECTAMENTE");
                 mostrar("");
              

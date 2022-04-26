@@ -4,18 +4,8 @@
  * and open the template in the editor.
  */
 package Presentacion;
-
-import Datos.vpacientes;
 import Datos.vproductos;
-import Datos.vusuarios;
-import Logica.StyloTabla;
-import Logica.fpacientes;
 import Logica.fproductos;
-import Logica.fusuarios;
-//import static Presentacion.FrmProductos.btnbuscar;
-//import static Presentacion.FrmProductos.txtcategoria;
-//import static Presentacion.FrmProductos.txtidcategoria;
-//import static Presentacion.FrmProductos.x;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

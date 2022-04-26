@@ -461,7 +461,11 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
             dts.setIdmovimiento(Integer.parseInt(txtidmovimiento.getText()));
 //              dts.setIdmovimiento(Integer.parseInt(txtidmovimiento.getText()));
             func.editar_deudas(dts);
+            
+             frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());//funcion para obtener datos en frmprincipal
+             
             JOptionPane.showMessageDialog(this, "Pago total realizado con exito");
+            
 //            mostrar(txtid.getText());
             mostrar(frmDeudas.txtdocumento.getText());
 
@@ -484,6 +488,8 @@ public class frmPagoDeudasClientes extends javax.swing.JInternalFrame {
 //                dts.setTotal(Long.parseLong(txttotal.getText()));
                 func.editar_deudas(dts);
                
+                frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());//funcion para obtener datos en frmprincipal
+                
                 JOptionPane.showMessageDialog(this, "Pago parcial realizado con exito");
                 mostrar(frmDeudas.txtdocumento.getText());
 //                mostrar(txtid.getText()); 

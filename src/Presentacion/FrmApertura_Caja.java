@@ -7,6 +7,7 @@ package Presentacion;
 
 import Datos.vmovimiento_caja;
 import Logica.fmovimiento_caja;
+import Logica.mostrar_reportes;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -807,6 +808,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
 
         if (opciones.equals("nuevo")) {
             if (func.insertar(dts)) {
+                func.mostrar_ultimo_id();
                 JOptionPane.showMessageDialog(null, "APERTURA CAJA EXITOSA CON : " + txtMontoApertura.getText() + " Gs.");
                 inhabilitar();
                 
@@ -814,6 +816,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
         } else {
             dts.setIdmovimiento(Integer.parseInt(txtIDCaja.getText()));
             if (func.editar(dts)) {
+                func.mostrar_ultimo_id();
                 JOptionPane.showMessageDialog(null, "DATOS EDITADOS CORRECTAMENTE");
                 inhabilitar();
             }

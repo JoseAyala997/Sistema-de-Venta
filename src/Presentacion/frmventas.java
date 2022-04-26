@@ -135,7 +135,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
             }
 //            funcion.insertarVentas(datos);
-
+            frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());
             imsertarDetalle();
 
         } else {
@@ -163,7 +163,7 @@ public class frmventas extends javax.swing.JInternalFrame {
             if (funcion.insertarVentas(datos)) {
 
             }
-
+            frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());
             imsertarDetalle();
             insertar_deuda();
         }

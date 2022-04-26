@@ -7,14 +7,11 @@ package Presentacion;
 
 import Logica.fcategoria;
 import Logica.fmovimiento_caja;
-import Logica.fproductos;
 import Logica.fproveedor;
 import Logica.fusuarios;
 import java.sql.Date;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
