@@ -922,7 +922,9 @@ private Connection connection = new Conexion().conectar();
             JOptionPane.showMessageDialog(null, "CAJA CERRADA CORRECTAMENTE");
 //            ();
             inhabilitar();
+            frmprincipal.mostrarhoy("");
             imprimir_cierre();
+            
         }
 
     }

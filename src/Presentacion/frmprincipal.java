@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -71,17 +70,17 @@ public class frmprincipal extends javax.swing.JFrame {
         txtegresos.setEnabled(false);
     }
     
-    void mostrar() {
-        try {
-            fmovimiento_caja func = new fmovimiento_caja();
-
-            func.mostrar_ultimo_id();
-//            func.mostrarTotalAcumuladoPagosVentas(lblidmovimiento2.getText());
-
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(rootPane, e);
-        }
-    }
+//    void mostrar() {
+//        try {
+//            fmovimiento_caja func = new fmovimiento_caja();
+//
+//            func.mostrar_ultimo_id();
+////            func.mostrarTotalAcumuladoPagosVentas(lblidmovimiento2.getText());
+//
+//        } catch (Exception e) {
+//            JOptionPane.showConfirmDialog(rootPane, e);
+//        }
+//    }
     
     static DecimalFormat format = new DecimalFormat("###,###.##");
     
@@ -343,7 +342,6 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("MONTO APERTURA:");
-        jLabel9.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
