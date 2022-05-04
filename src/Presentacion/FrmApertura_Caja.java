@@ -702,6 +702,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         guardareditar();
+        frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed

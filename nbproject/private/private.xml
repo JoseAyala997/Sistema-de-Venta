@@ -3,18 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/FrmApertura_Caja.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/fmovimiento_caja.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Datos/vdeudas.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmprincipal.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmEgresos.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/fventa.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmPagoDeudasClientes.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/FrmCerrarCaja.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmventas.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Datos/vventas.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmproducto2.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/FrmVista2.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/frmprincipal.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/frmventas.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/FrmApertura_Caja.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/CONSULTAS/frmhistorial_ventas.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/FrmCerrarCaja.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Presentacion/frmusuariologin.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Logica/Conexion.java</file>
+            <file>file:/D:/OneDrive/Escritorio/NetBeansProjects/ClinicaNutricional_copia/sistema-de-venta/src/Logica/fventa.java</file>
         </group>
     </open-files>
 </project-private>

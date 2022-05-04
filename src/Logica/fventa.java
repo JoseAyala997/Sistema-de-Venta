@@ -220,7 +220,7 @@ public class fventa {
     public DefaultTableModel mostrarhventa(String inicio, String fin) {
         DefaultTableModel modelo;
 
-        String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "NUM. FACTURA", "SUB-TOTAL", "TOTAL", "CLIENTE", "USUARIO"};
+        String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "SUB-TOTAL", "NUM. FACTURA", "TOTAL", "CLIENTE", "USUARIO"};
         String[] registro = new String[12];
 
         modelo = new DefaultTableModel(null, titulos);

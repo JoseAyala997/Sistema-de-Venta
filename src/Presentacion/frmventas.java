@@ -30,6 +30,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         initComponents();
         x = "x";
 
+        deshabilitar();
         centrar_frm();
 
 //        cliente();
@@ -77,6 +78,14 @@ public class frmventas extends javax.swing.JInternalFrame {
         txtpulgadas.setText("0");
     }
 
+    void habilitar(){
+        txtdescuento.setEnabled(true);
+    }
+    
+    void deshabilitar(){
+        txtdescuento.setEnabled(false);
+    }
+    
     void centrar_frm() {
         int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
         int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
@@ -779,7 +788,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         int cant;
         redondeo = Integer.parseInt(txtdescuento.getText());
         cant = Integer.parseInt(txtcantidad.getText());
-        if (redondeo > 0 && cant > 1) {
+        if (redondeo > 0 && cant >= 1) {
 
             agregar[0] = lblidproducto.getText();
             agregar[1] = txtproducto.getText();
@@ -828,7 +837,7 @@ public class frmventas extends javax.swing.JInternalFrame {
             txtdescuento.setText("0");
 
         }
-
+deshabilitar();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -928,8 +937,9 @@ public class frmventas extends javax.swing.JInternalFrame {
             cantidad = Integer.parseInt(txtcantidad.getText());
             sub = precio * cantidad;
             txtdescuento.setText(String.valueOf(sub));
+            habilitar();
         }
-
+        
 
     }//GEN-LAST:event_txtcantidadKeyReleased
 

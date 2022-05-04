@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -143,11 +144,11 @@ private Connection connection = new Conexion().conectar();
                     + "/src/Reportes/rpt_cierre_caja.jrxml");//Jasper para tener vista en exel y demas editores de texto
 
             jp = JasperFillManager.fillReport(jr, p, cn);
-//            JasperPrintManager.printReport(jp, true);
+            JasperPrintManager.printReport(jp, true);
 
-            JasperViewer view = new JasperViewer(jp, false);
-            view.setTitle("Reporte de cierre");
-            view.setVisible(true);
+//            JasperViewer view = new JasperViewer(jp, false);
+//            view.setTitle("Reporte de cierre");
+//            view.setVisible(true);
 //            System.out.println("imprimiendo2");
 
         } catch (Exception e) {
@@ -752,6 +753,7 @@ private Connection connection = new Conexion().conectar();
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         guardareditar();
+        frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());
         
         
     }//GEN-LAST:event_btnguardarActionPerformed
@@ -922,7 +924,6 @@ private Connection connection = new Conexion().conectar();
             JOptionPane.showMessageDialog(null, "CAJA CERRADA CORRECTAMENTE");
 //            ();
             inhabilitar();
-            frmprincipal.mostrarhoy("");
             imprimir_cierre();
             
         }

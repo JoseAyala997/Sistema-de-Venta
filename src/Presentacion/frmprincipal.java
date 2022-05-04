@@ -52,6 +52,7 @@ public class frmprincipal extends javax.swing.JFrame {
     void ocultar(){
         lblcodusuario.setVisible(false);
         lbldocumento.setVisible(false);
+        lblidmovimiento2.setVisible(false);
         
         txtcontado.setText("0");
         txtcaja.setText("0");
@@ -61,7 +62,7 @@ public class frmprincipal extends javax.swing.JFrame {
         txtapertura.setText("0");
         txtegresos.setText("0");
         
-         txtcontado.setEnabled(false);
+        txtcontado.setEnabled(false);
         txtcaja.setEnabled(false);
         txthoy.setEnabled(false);
         txtcredito.setEnabled(false);
@@ -232,7 +233,7 @@ public class frmprincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbldocumento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(lblcodusuario)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel5)
@@ -269,6 +270,7 @@ public class frmprincipal extends javax.swing.JFrame {
         jLabel1.setText("VENDIDO HOY:");
 
         txtcontado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtcontado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtcontado.setEnabled(false);
         txtcontado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,6 +291,7 @@ public class frmprincipal extends javax.swing.JFrame {
         });
 
         txtcredito.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtcredito.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtcredito.setEnabled(false);
         txtcredito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +306,7 @@ public class frmprincipal extends javax.swing.JFrame {
         jLabel6.setText("PAGADO:");
 
         txtpagado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtpagado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtpagado.setEnabled(false);
         txtpagado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,6 +318,7 @@ public class frmprincipal extends javax.swing.JFrame {
         jLabel7.setText("TOTAL CAJA:");
 
         txtcaja.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtcaja.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtcaja.setEnabled(false);
         txtcaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,6 +330,7 @@ public class frmprincipal extends javax.swing.JFrame {
         jLabel8.setText("EGRESOS:");
 
         txtegresos.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtegresos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtegresos.setEnabled(false);
         txtegresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,6 +339,7 @@ public class frmprincipal extends javax.swing.JFrame {
         });
 
         txtapertura.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtapertura.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtapertura.setEnabled(false);
         txtapertura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +420,7 @@ public class frmprincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(711, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

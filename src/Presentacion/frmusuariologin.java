@@ -8,6 +8,7 @@ package Presentacion;
 import Datos.vusuarios;
 
 import Logica.fusuarios;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -69,6 +70,11 @@ public class frmusuariologin extends javax.swing.JFrame {
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
+            }
+        });
+        txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpasswordKeyPressed(evt);
             }
         });
 
@@ -228,15 +234,7 @@ public class frmusuariologin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
-        txtpassword.requestFocus();
-    }//GEN-LAST:event_txtusuarioActionPerformed
-
-    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
-        btningresar.requestFocus();
-    }//GEN-LAST:event_txtpasswordActionPerformed
-
-    private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
+   void login(){
         try {
             DefaultTableModel modelo;
             fusuarios func = new fusuarios();
@@ -292,7 +290,18 @@ public class frmusuariologin extends javax.swing.JFrame {
 
         } catch (Exception e) {
         }
-        txtusuario.requestFocus();
+
+   }
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
+        txtpassword.requestFocus();
+    }//GEN-LAST:event_txtusuarioActionPerformed
+
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+        btningresar.requestFocus();
+    }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
+        login();
     }//GEN-LAST:event_btningresarActionPerformed
 
     private void btningresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresar1ActionPerformed
@@ -307,7 +316,7 @@ public class frmusuariologin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btningresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btningresarKeyPressed
-        try {
+       try {
             DefaultTableModel modelo;
             fusuarios func = new fusuarios();
             vusuarios dts = new vusuarios();
@@ -363,7 +372,14 @@ public class frmusuariologin extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
+
     }//GEN-LAST:event_btningresarKeyPressed
+
+    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             login();
+         }
+    }//GEN-LAST:event_txtpasswordKeyPressed
 
     /**
      * @param args the command line arguments
