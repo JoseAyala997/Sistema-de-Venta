@@ -279,6 +279,26 @@ public class frmventas extends javax.swing.JInternalFrame {
         }
 
     }
+    public static void venta(){
+            int fila = tablaventas.getRowCount();//creamos una variable para determinar si no hay filas en el jtable
+
+        if (txtcodcliente.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "DEBES INGRESAR EL CLIENTE");//validamos que el codcliente no este vacio
+        } else {
+            if (fila == 0) {//validamos si el jtable viene vacio 
+                JOptionPane.showMessageDialog(null, "La tabla no puede estar vacia");
+
+            } else {
+                //mandamos los datos al frm factura
+                FrmFactura frm = new FrmFactura();
+                frm.txtFactura.setText(txtnrofactura.getText());
+                frm.txtMonto.setText(txttotal.getText());
+                frm.txtdescuento.setText(txttotal_descuento.getText());
+                frm.setVisible(true);
+//                insertarVenta();
+            }
+    }
+    }        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -717,24 +737,7 @@ public class frmventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtcodclienteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int fila = tablaventas.getRowCount();//creamos una variable para determinar si no hay filas en el jtable
-
-        if (txtcodcliente.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL CLIENTE");//validamos que el codcliente no este vacio
-        } else {
-            if (fila == 0) {//validamos si el jtable viene vacio 
-                JOptionPane.showMessageDialog(rootPane, "La tabla no puede estar vacia");
-
-            } else {
-                //mandamos los datos al frm factura
-                FrmFactura frm = new FrmFactura();
-                frm.txtFactura.setText(txtnrofactura.getText());
-                frm.txtMonto.setText(txttotal.getText());
-                frm.txtdescuento.setText(txttotal_descuento.getText());
-                frm.setVisible(true);
-                insertarVenta();
-            }
-        }
+        venta();
 
 
     }//GEN-LAST:event_jButton3ActionPerformed

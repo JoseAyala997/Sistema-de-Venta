@@ -32,6 +32,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import static Presentacion.frmventas.txtpulgadas;
 import net.sf.jasperreports.view.JasperViewer;
 import static Presentacion.frmventas.cbotipo;
+import static Presentacion.frmventas.insertarVenta;
 
 /**
  *
@@ -285,6 +286,7 @@ public class FrmFactura extends javax.swing.JFrame {
     
             
         }else{
+            insertarVenta();
              insertarfactura();
         frmventas.NroFctura();
         imprimir();

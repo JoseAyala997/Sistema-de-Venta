@@ -429,13 +429,34 @@ DecimalFormat format = new DecimalFormat("###,###.##");
  public Double egresohoy(String buscar) {
         Double t = 0.0;
 
-        sSQL = "SELECT sum(monto)as egreso FROM egresos where estado='ACTIVO' AND idmovimiento='" + buscar + "' ";
+        sSQL = "SELECT sum(monto)as egreso FROM egresos where estado='EGRESO' AND idmovimiento='" + buscar + "' ";
        try {
            Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
             while (rs.next()) {
                 t = t + rs.getDouble("egreso");
                 frmprincipal.txtegresos.setText(format.format(t));
+//                frmprincipal.txthoy.setText(""+t);
+                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
+ 
+  public Double ingresohoy(String buscar) {
+        Double t = 0.0;
+
+        sSQL = "SELECT sum(monto)as ingreso FROM egresos where estado='INGRESO' AND idmovimiento='" + buscar + "' ";
+       try {
+           Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getDouble("ingreso");
+                frmprincipal.txtingresos.setText(format.format(t));
 //                frmprincipal.txthoy.setText(""+t);
 //                System.out.println(t);
 
@@ -446,6 +467,7 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
+
  
  public Double aperturahoy(String buscar) {
         Double t = 0.0;

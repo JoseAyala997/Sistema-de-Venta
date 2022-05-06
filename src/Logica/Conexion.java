@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package Logica;
-
-import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -17,7 +14,7 @@ public class Conexion {
     public String db = "ventas";
     public String url="jdbc:mysql://localhost:3306/" +db;
     public String user = "root";
-    public String pass = "";
+    public String pass = "12345";
 
     public Conexion() {
     }

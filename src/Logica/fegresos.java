@@ -37,7 +37,7 @@ public class fegresos {
         String[] registro = new String[7];
         modelo = new DefaultTableModel(null, titulos);
         SQL = "SELECT idegresos, descripcion, monto,fecha,hora, estado, idmovimiento from egresos \n"
-                + "where (descripcion like '%" + buscar + "%' or fecha like '%" + buscar + "%') and estado='ACTIVO' order by idegresos desc";
+                + "where (descripcion like '%" + buscar + "%' or fecha like '%" + buscar + "%') and estado='INGRESO' OR estado='EGRESO' order by idegresos desc";
 
         TotalRegistros = 0;
 
@@ -160,7 +160,7 @@ public class fegresos {
             pst.setLong(2, dts.getMonto());
             pst.setDate(3, dts.getFecha());
             pst.setString(4, dts.getHora());
-            pst.setString(5, "ACTIVO");
+            pst.setString(5, dts.getEstado());
             pst.setInt(6, dts.getIdusuarios());
             pst.setInt(7, dts.getIdmovimiento());
             int n = pst.executeUpdate();
@@ -210,7 +210,7 @@ public class fegresos {
             pst.setLong(2, dts.getMonto());
             pst.setDate(3, dts.getFecha());
             pst.setString(4, dts.getHora());
-            pst.setString(5, "ACTIVO");
+            pst.setString(5, dts.getEstado());
             pst.setInt(6, dts.getIdusuarios());
 //            pst.setInt(7, dts.getIdmovimiento());
             pst.setInt(7, dts.getIdegresos());
