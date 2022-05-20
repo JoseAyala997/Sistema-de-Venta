@@ -60,31 +60,6 @@ public class fventa {
     }
     
 
-    
-    
-       public boolean insertarDeuda(vdeudas dts) {
-        SQL = "INSERT INTO deudas (idcliente,total_deuda,estado)"
-                + "values (?,?,?)";
-
-        try {
-            PreparedStatement pst = cn.prepareStatement(SQL);
-
-            pst.setInt(1, dts.getIdcliente());
-            pst.setLong(2, dts.getTotal_deuda());
-            pst.setString(3, dts.getEstado());
-
-            int n = pst.executeUpdate();
-            if (n != 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-            return false;
-        }
-    }
-
     public boolean insertarDetalle(vdetalle_venta dts) {
         SQL = "INSERT INTO detalle_venta (idventa, idservicios, cantidad, precio, sub_total,pulgadas)"
                 + "values ((select idventa from venta order by idventa desc limit 1 ),?,?,?,?,?)";

@@ -4,6 +4,9 @@ import Datos.vdetalle_venta;
 import Datos.vdeudas;
 import Datos.vventas;
 import Logica.StyloTabla;
+import Logica.fdeudas;
+import Logica.fegresos;
+import static Logica.fegresos.id_deuda;
 import Logica.freserva;
 import Logica.fproductos;
 import Logica.fventa;
@@ -78,14 +81,14 @@ public class frmventas extends javax.swing.JInternalFrame {
         txtpulgadas.setText("0");
     }
 
-    void habilitar(){
+    void habilitar() {
         txtdescuento.setEnabled(true);
     }
-    
-    void deshabilitar(){
+
+    void deshabilitar() {
         txtdescuento.setEnabled(false);
     }
-    
+
     void centrar_frm() {
         int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
         int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
@@ -247,16 +250,32 @@ public class frmventas extends javax.swing.JInternalFrame {
     public static void insertar_deuda() {
 
         vdeudas dts = new vdeudas();
-        fventa funcion = new fventa();
+        fegresos func = new fegresos();
 
-        dts.setIdcliente(Integer.parseInt(txtcodcliente.getText()));
-        dts.setTotal_deuda(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
-        dts.setEstado(txtestado.getText());
+        String idcliente = txtcodcliente.getText();
+        func.id_cliente(idcliente);
 
-        if (funcion.insertarDeuda(dts)) {
-
+        if (id_deuda == null) {
+            dts.setIdcliente(Integer.parseInt(txtcodcliente.getText()));
+            dts.setTotal_deuda(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
+            dts.setEstado(txtestado.getText());
+            
+            func.insertarDeuda(dts);
+            System.out.println("insertando deuda");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            
+        }else{
+            dts.setIdcliente(Integer.parseInt(txtcodcliente.getText()));
+            dts.setTotal_deuda(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
+            dts.setEstado(txtestado.getText());
+            func.editarDeuda(dts);
+            System.out.println("editando deuda");
         }
-        System.out.println("deuda insertada");
+
+//        if () {
+//
+//        }
+//        System.out.println("deuda insertada");
 
     }
 
@@ -279,8 +298,9 @@ public class frmventas extends javax.swing.JInternalFrame {
         }
 
     }
-    public static void venta(){
-            int fila = tablaventas.getRowCount();//creamos una variable para determinar si no hay filas en el jtable
+
+    public static void venta() {
+        int fila = tablaventas.getRowCount();//creamos una variable para determinar si no hay filas en el jtable
 
         if (txtcodcliente.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "DEBES INGRESAR EL CLIENTE");//validamos que el codcliente no este vacio
@@ -297,8 +317,8 @@ public class frmventas extends javax.swing.JInternalFrame {
                 frm.setVisible(true);
 //                insertarVenta();
             }
+        }
     }
-    }        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -840,7 +860,7 @@ public class frmventas extends javax.swing.JInternalFrame {
             txtdescuento.setText("0");
 
         }
-deshabilitar();
+        deshabilitar();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -942,7 +962,7 @@ deshabilitar();
             txtdescuento.setText(String.valueOf(sub));
             habilitar();
         }
-        
+
 
     }//GEN-LAST:event_txtcantidadKeyReleased
 

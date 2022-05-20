@@ -7,7 +7,6 @@ package Logica;
 
 import Datos.vmovimiento_caja;
 import Presentacion.frmprincipal;
-import Presentacion.frmventas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -5,6 +5,7 @@
  */
 package Logica;
 
+import Datos.vdeudas;
 import Datos.vegresos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,7 @@ public class fegresos {
     public static String SQL = "";
     public static Conexion mysql = new Conexion();
     public static Connection cn = mysql.conectar();
+    public static String id_deuda;
 
     public int TotalRegistros;
     public int totalpagado;
@@ -227,4 +229,72 @@ public class fegresos {
         }
     }
 
+
+    public void id_cliente(String buscar) {
+
+        SQL = "select idcliente,iddeuda from deudas where idcliente='%"+buscar+"%' ";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+
+            while (rs.next()) {
+                id_deuda = rs.getString("iddeuda");
+                System.out.println("ID= " + id_deuda);
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+
+        }
+
+    }
+    
+    
+    public boolean insertarDeuda(vdeudas dts) {
+        SQL = "INSERT INTO deudas (idcliente,total_deuda,estado)"
+                + "values (?,'0','SIN DEUDA')";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(SQL);
+
+            pst.setInt(1, dts.getIdcliente());
+//            pst.setLong(2, dts.getTotal_deuda());
+//            pst.setString(3, dts.getEstado());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    
+    public boolean editarDeuda(vdeudas dts) {
+         SQL = " update deudas set total_deuda=?, estado=? where idcliente=?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(SQL);
+            pst.setLong(1, dts.getTotal_deuda());
+            pst.setString(2, dts.getEstado());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+        
+    }
+    
+    
 }
