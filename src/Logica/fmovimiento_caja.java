@@ -6,6 +6,7 @@
 package Logica;
 
 import Datos.vmovimiento_caja;
+import Presentacion.FrmCerrarCaja;
 import Presentacion.frmprincipal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,8 +45,8 @@ public class fmovimiento_caja {
                 + "from movimiento_caja cj \n"
                 + "join usuarios em on em.idusuarios=cj.idusuarios\n"
                 + "join persona p on em.idusuarios=p.idpersona\n"
-                + "join egresos e on cj.idmovimiento=e.idmovimiento where cj.estado='ACTIVO' and cj.idusuarios='" + buscar + "' order by cj.idmovimiento Desc";
-        ;
+                + "join egresos e on cj.idmovimiento=e.idmovimiento where cj.estado='ACTIVO' and cj.idusuarios='" + buscar + "' AND e.estado='EGRESO' order by cj.idmovimiento Desc";
+        
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -466,6 +467,26 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
+  public Double ingresohoycierre(String buscar) {
+        Double t = 0.0;
+
+        sSQL = "SELECT sum(monto)as ingreso FROM egresos where estado='INGRESO' AND idmovimiento='" + buscar + "' ";
+       try {
+           Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getDouble("ingreso");
+                FrmCerrarCaja.txtotros.setText(format.format(t));
+//                frmprincipal.txthoy.setText(""+t);
+//                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
 
  
  public Double aperturahoy(String buscar) {
@@ -591,7 +612,7 @@ DecimalFormat format = new DecimalFormat("###,###.##");
 
      public void mostrar_ultimo_id() {
 
-        sSQL = "select max(idmovimiento)as id from movimiento_caja ";
+        sSQL = "select max(idmovimiento)as id from movimiento_caja WHERE estado='ACTIVO' ";
 
         try {
             Statement st = cn.createStatement();

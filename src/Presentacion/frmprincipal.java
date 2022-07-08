@@ -21,7 +21,13 @@ import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -40,13 +46,19 @@ public class frmprincipal extends javax.swing.JFrame {
     public static String documento;
 
     public frmprincipal() {
+        
+        
         this.setContentPane(fondo);//establecemos la imagen solo al jframe
         initComponents();
         StyloTabla st = new StyloTabla();
         this.setExtendedState(frmprincipal.MAXIMIZED_BOTH);
         ocultar();
+        
+        
+        fecha();
         mostrarhoy("");
- 
+        
+        
     }
     
     void ocultar(){
@@ -71,7 +83,10 @@ public class frmprincipal extends javax.swing.JFrame {
         txtapertura.setEnabled(false);
         txtegresos.setEnabled(false);
     }
-    
+    void fecha(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        lblfechahoy.setText(dtf.format(LocalDateTime.now()));
+    }
 //    void mostrar() {
 //        try {
 //            fmovimiento_caja func = new fmovimiento_caja();
@@ -155,6 +170,8 @@ public class frmprincipal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtingresos = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        lblfechahoy1 = new javax.swing.JLabel();
+        lblfechahoy = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menumovimiento = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -199,6 +216,8 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("USUARIO:");
@@ -218,6 +237,9 @@ public class frmprincipal extends javax.swing.JFrame {
         lblcodusuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblcodusuario.setText("Cod_USUARIO");
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CAMBIAR USUARIO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,7 +260,7 @@ public class frmprincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbldocumento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 523, Short.MAX_VALUE)
                 .addComponent(lblcodusuario)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel5)
@@ -259,17 +281,19 @@ public class frmprincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbldocumento))
+            .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel5)
-                .addComponent(lblacceso)
-                .addComponent(jLabel4)
-                .addComponent(lblcodusuario)
-                .addComponent(lblusuario)
-                .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblacceso)
+                    .addComponent(jLabel4)
+                    .addComponent(lblcodusuario)
+                    .addComponent(lblusuario)))
         );
 
-        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporte diario"));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("VENDIDO HOY:");
@@ -429,7 +453,7 @@ public class frmprincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtapertura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -437,8 +461,15 @@ public class frmprincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtcaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        lblfechahoy1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblfechahoy1.setForeground(new java.awt.Color(255, 255, 255));
+        lblfechahoy1.setText("Fecha y hora:");
+
+        lblfechahoy.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblfechahoy.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -446,16 +477,26 @@ public class frmprincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1331, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblfechahoy1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblfechahoy1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -561,7 +602,7 @@ public class frmprincipal extends javax.swing.JFrame {
         registros.add(menupaciente1);
 
         menupaciente2.setMnemonic('t');
-        menupaciente2.setText("Egresos");
+        menupaciente2.setText("Ingresos y Egresos");
         menupaciente2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menupaciente2ActionPerformed(evt);
@@ -1138,6 +1179,8 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblacceso;
     public static javax.swing.JLabel lblcodusuario;
     public static javax.swing.JLabel lbldocumento;
+    public static javax.swing.JLabel lblfechahoy;
+    public static javax.swing.JLabel lblfechahoy1;
     public static javax.swing.JLabel lblidmovimiento2;
     public static javax.swing.JLabel lblusuario;
     public static javax.swing.JMenuBar menuBar;
@@ -1168,7 +1211,7 @@ public class frmprincipal extends javax.swing.JFrame {
 
         @Override
         public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/Iconos/icononutricion.jpg")).getImage();//selecciona el paquete y la imagen que se quiere usar
+            imagen = new ImageIcon(getClass().getResource("/Iconos/fondo.jpg")).getImage();//selecciona el paquete y la imagen que se quiere usar
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);//obtiene el tamaño del panel para ajustar la imagen
             setOpaque(false);//sirve para que se vea la imagen
             super.paint(g);//para mostrar todos los componentes del panel que estan estableci

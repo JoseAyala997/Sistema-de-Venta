@@ -538,6 +538,7 @@ public class frmEgresos extends javax.swing.JInternalFrame {
                 func.eliminar(dts);
                 mostrar("");
                 cancelar();
+                 frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());
 
             }
 
