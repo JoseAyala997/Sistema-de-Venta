@@ -10,6 +10,8 @@ import CONSULTAS.frmhistorial_ventas;
 import CONSULTAS.frmpaciente_consulta;
 import CONSULTAS.frmusuarios_consulta;
 import CONSULTAS.frmImprimir_factura;
+import CONSULTAS.frmventa_general;
+import CONSULTAS.frmventas_diarias;
 import Logica.StyloTabla;
 import Logica.fmovimiento_caja;
 import Respaldos.Backup;
@@ -84,7 +86,7 @@ public class frmprincipal extends javax.swing.JFrame {
         txtegresos.setEnabled(false);
     }
     void fecha(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         lblfechahoy.setText(dtf.format(LocalDateTime.now()));
     }
 //    void mostrar() {
@@ -144,15 +146,6 @@ public class frmprincipal extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jPanel2 = new Fondopanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        lblusuario = new javax.swing.JLabel();
-        lblacceso = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        lblcodusuario = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        lbldocumento = new javax.swing.JLabel();
-        lblidmovimiento2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtcontado = new javax.swing.JTextField();
@@ -172,6 +165,14 @@ public class frmprincipal extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         lblfechahoy1 = new javax.swing.JLabel();
         lblfechahoy = new javax.swing.JLabel();
+        lbldocumento = new javax.swing.JLabel();
+        lblcodusuario = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblacceso = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblusuario = new javax.swing.JLabel();
+        lblidmovimiento2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menumovimiento = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -192,6 +193,9 @@ public class frmprincipal extends javax.swing.JFrame {
         rpaciente = new javax.swing.JMenuItem();
         cutMenuItem5 = new javax.swing.JMenuItem();
         historialventas1 = new javax.swing.JMenuItem();
+        historialventas2 = new javax.swing.JMenuItem();
+        historialventas3 = new javax.swing.JMenuItem();
+        historialventas4 = new javax.swing.JMenuItem();
         menurespaldo = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -214,83 +218,7 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("USUARIO:");
-
-        lblusuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        lblusuario.setForeground(new java.awt.Color(102, 102, 102));
-        lblusuario.setText("LABEL1");
-
-        lblacceso.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        lblacceso.setForeground(new java.awt.Color(102, 102, 102));
-        lblacceso.setText("LABEL2");
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("ACCESO:");
-
-        lblcodusuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        lblcodusuario.setText("Cod_USUARIO");
-
-        jButton1.setBackground(new java.awt.Color(0, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CAMBIAR USUARIO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        lbldocumento.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        lbldocumento.setText("Cod_USUARIO");
-
-        lblidmovimiento2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        lblidmovimiento2.setText("a");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbldocumento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 523, Short.MAX_VALUE)
-                .addComponent(lblcodusuario)
-                .addGap(48, 48, 48)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblacceso, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbldocumento))
-            .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblacceso)
-                    .addComponent(jLabel4)
-                    .addComponent(lblcodusuario)
-                    .addComponent(lblusuario)))
-        );
+        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporte diario"));
@@ -466,27 +394,78 @@ public class frmprincipal extends javax.swing.JFrame {
 
         lblfechahoy1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblfechahoy1.setForeground(new java.awt.Color(255, 255, 255));
-        lblfechahoy1.setText("Fecha y hora:");
+        lblfechahoy1.setText("Fecha :");
 
         lblfechahoy.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblfechahoy.setForeground(new java.awt.Color(255, 255, 255));
+
+        lbldocumento.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lbldocumento.setText("Cod_USUARIO");
+
+        lblcodusuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lblcodusuario.setText("Cod_USUARIO");
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("ACCESO:");
+
+        lblacceso.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lblacceso.setForeground(new java.awt.Color(255, 255, 255));
+        lblacceso.setText("LABEL2");
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("USUARIO:");
+
+        lblusuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lblusuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblusuario.setText("LABEL1");
+
+        lblidmovimiento2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lblidmovimiento2.setText("a");
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("CAMBIAR USUARIO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblfechahoy1)
+                        .addComponent(lblfechahoy1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1189, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lbldocumento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 544, Short.MAX_VALUE)
+                .addComponent(lblcodusuario)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblacceso, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +476,16 @@ public class frmprincipal extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbldocumento)
+                    .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblcodusuario)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addComponent(lblacceso)
+                        .addComponent(jLabel4)
+                        .addComponent(lblusuario))))
         );
 
         jDesktopPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -670,6 +658,33 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
         menureporte.add(historialventas1);
+
+        historialventas2.setMnemonic('t');
+        historialventas2.setText("Ventas del dia");
+        historialventas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialventas2ActionPerformed(evt);
+            }
+        });
+        menureporte.add(historialventas2);
+
+        historialventas3.setMnemonic('t');
+        historialventas3.setText("Venta general");
+        historialventas3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialventas3ActionPerformed(evt);
+            }
+        });
+        menureporte.add(historialventas3);
+
+        historialventas4.setMnemonic('t');
+        historialventas4.setText("Ingresos y Egresos");
+        historialventas4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialventas4ActionPerformed(evt);
+            }
+        });
+        menureporte.add(historialventas4);
 
         menuBar.add(menureporte);
 
@@ -1112,6 +1127,40 @@ public class frmprincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtingresosActionPerformed
 
+    private void historialventas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas2ActionPerformed
+       String x = frmventas_diarias.x;
+        try {
+            if (x == null) {
+                frmventas_diarias form = new frmventas_diarias();
+                jDesktopPane2.add(form);
+                jDesktopPane2.moveToFront(form);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_historialventas2ActionPerformed
+
+    private void historialventas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas3ActionPerformed
+       String x = frmventa_general.x;
+        try {
+            if (x == null) {
+                frmventa_general form = new frmventa_general();
+                jDesktopPane2.add(form);
+                jDesktopPane2.moveToFront(form);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_historialventas3ActionPerformed
+
+    private void historialventas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_historialventas4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1154,6 +1203,9 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem cutMenuItem6;
     public static javax.swing.JMenuItem historialventas;
     public static javax.swing.JMenuItem historialventas1;
+    public static javax.swing.JMenuItem historialventas2;
+    public static javax.swing.JMenuItem historialventas3;
+    public static javax.swing.JMenuItem historialventas4;
     public static javax.swing.JMenuItem husuarios;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JDesktopPane jDesktopPane1;
@@ -1173,7 +1225,6 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem jMenuItem4;
     public static javax.swing.JMenuItem jMenuItem5;
     public static javax.swing.JMenuItem jMenuItem6;
-    public static javax.swing.JPanel jPanel1;
     public static javax.swing.JPanel jPanel2;
     public static javax.swing.JPanel jPanel3;
     public static javax.swing.JLabel lblacceso;

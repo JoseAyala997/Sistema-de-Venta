@@ -26,14 +26,14 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Jose Ayala
  */
-public class frmhistorial_ventas extends javax.swing.JInternalFrame {
+public class frmventas_diarias extends javax.swing.JInternalFrame {
 
     private Conexion mysql = new Conexion();
     private Connection cn = mysql.conectar();
     public static int comprobar;
     public static String x;
 
-    public frmhistorial_ventas() {
+    public frmventas_diarias() {
         initComponents();
         txtidcliente.setVisible(false);
         x = "x";
@@ -125,25 +125,21 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         });
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        dcFecha_Inicio.setEnabled(false);
         dcFecha_Inicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jPanel3.add(dcFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 150, 30));
 
+        dcFecha_termino.setEnabled(false);
         dcFecha_termino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jPanel3.add(dcFecha_termino, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel10.setText("HISTORIAL DE VENTAS");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 292, -1));
+        jLabel10.setText("Ventas del dia");
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Fecha fin:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setText("Fecha de inicio:");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, 31));
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
@@ -155,7 +151,6 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 btnnuevoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 95, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,8 +165,6 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1184, 380));
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -179,13 +172,10 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 80, 113, 35));
 
         cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONTADO", "CREDITO", " " }));
-        jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 80, 150, 30));
 
         txtcliente.setEnabled(false);
-        jPanel3.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 240, 31));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -193,8 +183,75 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 36, 35));
-        jPanel3.add(txtidcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 25, 31));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(372, Short.MAX_VALUE)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(428, 428, 428)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(519, 519, 519))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11)
+                                .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnnuevo)
+                .addGap(18, 18, 18))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,9 +261,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -217,14 +272,13 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-      
+        String estador = cmbestado.getSelectedItem().toString();
         if (txtidcliente.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
             txtidcliente.requestFocus();
             return;
         }
-        String idcliente=txtidcliente.getText();
-        String estador = cmbestado.getSelectedItem().toString();
+          String idcliente=txtidcliente.getText();
         int fila = jTable1.getRowCount();
         if (fila == 0) {
             JOptionPane.showMessageDialog(rootPane, "La tabla no puede estar vacia");
@@ -235,7 +289,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 p.put("fecha_inicio", dcFecha_Inicio.getDate());
                 p.put("fecha_fin", dcFecha_termino.getDate());
                 p.put("estado", estador);
-                p.put("id", idcliente);
+                p.put("id",idcliente);
                 JasperReport report;
                 JasperPrint print;
 
@@ -256,7 +310,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 p.put("fecha_inicio", dcFecha_Inicio.getDate());
                 p.put("fecha_fin", dcFecha_termino.getDate());
                 p.put("estado", estador);
-                p.put("id", idcliente);
+                p.put("id",idcliente);
                 JasperReport report;
                 JasperPrint print;
 
@@ -281,7 +335,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String id=txtidcliente.getText();
+        String id=txtidcliente.getText();
         if (txtidcliente.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
             txtidcliente.requestFocus();
@@ -291,7 +345,6 @@ String id=txtidcliente.getText();
         SimpleDateFormat sdf_desde = new SimpleDateFormat("yyyy-MM-dd");
         desde = dcFecha_Inicio.getDate();
         String p_fecha_Desde = sdf_desde.format(desde);
-        
 
         java.util.Date hasta = new java.util.Date();
         SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
@@ -312,7 +365,7 @@ String id=txtidcliente.getText();
         FrmVista2 form = new FrmVista2();
         form.setVisible(true);
         form.toFront();
-        form.dondebuscar = 5;
+        form.dondebuscar = 6;
         form.lbltitulovista.setText("Historial ventas");
         form.buscador();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -333,14 +386,18 @@ String id=txtidcliente.getText();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmhistorial_ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmventas_diarias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmhistorial_ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmventas_diarias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmhistorial_ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmventas_diarias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmhistorial_ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmventas_diarias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -349,7 +406,7 @@ String id=txtidcliente.getText();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmhistorial_ventas().setVisible(true);
+                new frmventas_diarias().setVisible(true);
             }
         });
     }

@@ -9,13 +9,19 @@
 	<parameter name="fecha_inicio" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="estado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT v.idventa,d.idservicios,v.fecha,v.idmovimiento, (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto,
  d.precio,d.cantidad,v.nro_factura,d.sub_total,v.total, CONCAT(p.nombre, ' ', p.apellido)as cliente,concat(u.nombre, ' ', u.apellido)as usuario
  FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa
  inner join persona p on p.idpersona=v.idpaciente
  inner join persona u on u.idpersona=v.idusuarios where v.fecha
-BETWEEN $P{fecha_inicio} AND $P{fecha_fin} order by v.idventa desc]]>
+BETWEEN $P{fecha_inicio} AND $P{fecha_fin} AND v.estado=$P{estado} AND v.idpaciente=$P{id} order by v.idventa desc]]>
 	</queryString>
 	<field name="idventa" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -161,7 +167,7 @@ BETWEEN $P{fecha_inicio} AND $P{fecha_fin} order by v.idventa desc]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nro_factura}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="588" y="0" width="68" height="11" uuid="40fdf6f3-219f-4dfe-ab9e-66f26eea4da9"/>
 				<textElement>
 					<font size="8"/>
