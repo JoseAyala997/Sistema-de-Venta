@@ -374,7 +374,7 @@ DecimalFormat format = new DecimalFormat("###,###.##");
                 t = t + rs.getInt("total");
                 frmprincipal.txtcontado.setText(String.valueOf((format.format((int) t))));
 //                frmprincipal.txthoy.setText(""+t);
-                System.out.println(t);
+//                System.out.println(t);
 
             }
             return Double.parseDouble(String.valueOf(t));
@@ -437,7 +437,7 @@ DecimalFormat format = new DecimalFormat("###,###.##");
                 t = t + rs.getDouble("egreso");
                 frmprincipal.txtegresos.setText(format.format(t));
 //                frmprincipal.txthoy.setText(""+t);
-                System.out.println(t);
+//                System.out.println(t);
 
             }
             return Double.parseDouble(String.valueOf(t));

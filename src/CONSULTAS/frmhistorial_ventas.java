@@ -3,6 +3,7 @@ package CONSULTAS;
 import Logica.Conexion;
 import Logica.StyloTabla;
 import Logica.fventa;
+import Presentacion.FrmVista2;
 import Presentacion.frmprincipal;
 import java.awt.Color;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.util.GregorianCalendar;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -33,12 +35,13 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
 
     public frmhistorial_ventas() {
         initComponents();
-         x="x";
-        int a =frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
-        int b =frmprincipal.jDesktopPane2.getHeight()- this.getHeight();
-        setLocation(a/2, b/2);
+        txtidcliente.setVisible(false);
+        x = "x";
+        int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
+        int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
+        setLocation(a / 2, b / 2);
         setVisible(true);
-        
+
         Calendar mifecha = new GregorianCalendar();
         dcFecha_Inicio.setCalendar(mifecha);
         dcFecha_termino.setCalendar(mifecha);
@@ -46,18 +49,34 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         StyloTabla st = new StyloTabla();
 //        mostrar("","");
     }
-    void mostrar(String inicio,String fin) {
+
+    void mostrarcontado(String inicio, String fin, String estado,String id) {
         try {
             DefaultTableModel modelo;
 
             fventa Funcion = new fventa();
 
-            modelo = Funcion.mostrarhventa(inicio, fin);
+            modelo = Funcion.mostrarhventacont(inicio, fin, estado,id);
 
 //            int total = Funcion.totalregistros;
-
 //            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
+            jTable1.setModel(modelo);
 
+        } catch (Exception e) {
+        }
+
+    }
+
+    void mostrarcredito(String inicio, String fin, String estado,String id) {
+        try {
+            DefaultTableModel modelo;
+
+            fventa Funcion = new fventa();
+
+            modelo = Funcion.mostrarhventacred(inicio, fin, estado,id);
+
+//            int total = Funcion.totalregistros;
+//            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
             jTable1.setModel(modelo);
 
         } catch (Exception e) {
@@ -79,6 +98,10 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        cmbestado = new javax.swing.JComboBox<>();
+        txtcliente = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        txtidcliente = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -102,19 +125,25 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         });
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dcFecha_Inicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jPanel3.add(dcFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 150, 30));
 
         dcFecha_termino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jPanel3.add(dcFecha_termino, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel10.setText("HISTORIAL DE VENTAS");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 292, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Fecha fin:");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setText("Fecha de inicio:");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, 31));
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
@@ -126,6 +155,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 btnnuevoActionPerformed(evt);
             }
         });
+        jPanel3.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 95, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,6 +170,8 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1184, 380));
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,52 +179,22 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 80, 113, 35));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(328, 328, 328)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(445, 445, 445)
-                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 147, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jButton1)
-                .addGap(124, 124, 124))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10)
-                .addGap(64, 64, 64)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dcFecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnnuevo)
-                .addContainerGap())
-        );
+        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONTADO", "CREDITO", " " }));
+        jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 80, 150, 30));
+
+        txtcliente.setEnabled(false);
+        jPanel3.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 240, 31));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 36, 35));
+        jPanel3.add(txtidcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 25, 31));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,51 +204,119 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-       x = null;
+        x = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-        Map p = new HashMap();
-        p.put("fecha_inicio", dcFecha_Inicio.getDate());
-        p.put("fecha_fin", dcFecha_termino.getDate());
-
-        JasperReport report;
-        JasperPrint print;
-
-        try {
-            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/Reportes/rptventa_historial.jrxml");
-            print = JasperFillManager.fillReport(report, p, connection);
-            JasperViewer view = new JasperViewer(print, false);
-            view.setTitle("Historial ventas");
-            view.setVisible(true);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+      
+        if (txtidcliente.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
+            txtidcliente.requestFocus();
+            return;
         }
+        String idcliente=txtidcliente.getText();
+        String estador = cmbestado.getSelectedItem().toString();
+        int fila = jTable1.getRowCount();
+        if (fila == 0) {
+            JOptionPane.showMessageDialog(rootPane, "La tabla no puede estar vacia");
+        }else{
+             if (estador.equals("CONTADO")) {
+                estador = "FINALIZADO";
+                Map p = new HashMap();
+                p.put("fecha_inicio", dcFecha_Inicio.getDate());
+                p.put("fecha_fin", dcFecha_termino.getDate());
+                p.put("estado", estador);
+                p.put("id", idcliente);
+                JasperReport report;
+                JasperPrint print;
+
+                try {
+                    report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                            + "/src/Reportes/rptventa_historial.jrxml");
+                    print = JasperFillManager.fillReport(report, p, connection);
+                    JasperViewer view = new JasperViewer(print, false);
+                    view.setTitle("Historial ventas");
+                    view.setVisible(true);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Map p = new HashMap();
+                estador = "PENDIENTE";
+                p.put("fecha_inicio", dcFecha_Inicio.getDate());
+                p.put("fecha_fin", dcFecha_termino.getDate());
+                p.put("estado", estador);
+                p.put("id", idcliente);
+                JasperReport report;
+                JasperPrint print;
+
+                try {
+                    report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                            + "/src/Reportes/rptventa_historialcred.jrxml");
+                    print = JasperFillManager.fillReport(report, p, connection);
+                    JasperViewer view = new JasperViewer(print, false);
+                    view.setTitle("Historial ventas");
+                    view.setVisible(true);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+           
+        
+
+
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+String id=txtidcliente.getText();
+        if (txtidcliente.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
+            txtidcliente.requestFocus();
+            return;
+        }
         java.util.Date desde = new java.util.Date();
         SimpleDateFormat sdf_desde = new SimpleDateFormat("yyyy-MM-dd");
-    desde = dcFecha_Inicio.getDate();
-    String p_fecha_Desde = sdf_desde.format(desde);
+        desde = dcFecha_Inicio.getDate();
+        String p_fecha_Desde = sdf_desde.format(desde);
+        
 
-    java.util.Date hasta = new java.util.Date();
-    SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
-    hasta = dcFecha_termino.getDate();
-    String p_fecha_Hasta = sdf_hasta.format(hasta);
+        java.util.Date hasta = new java.util.Date();
+        SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
+        hasta = dcFecha_termino.getDate();
+        String p_fecha_Hasta = sdf_hasta.format(hasta);
+        String estado = cmbestado.getSelectedItem().toString();
+        if (estado.equals("CONTADO")) {
+            estado = "FINALIZADO";
+            mostrarcontado(p_fecha_Desde, p_fecha_Hasta, estado,id);
+        } else {
+            estado = "PENDIENTE";
+            mostrarcredito(p_fecha_Desde, p_fecha_Hasta, estado,id);
+        }
 
-       mostrar(p_fecha_Desde,p_fecha_Hasta ); 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FrmVista2 form = new FrmVista2();
+        form.setVisible(true);
+        form.toFront();
+        form.dondebuscar = 5;
+        form.lbltitulovista.setText("Historial ventas");
+        form.buscador();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private Connection connection = new Conexion().conectar();
 
     public static void main(String args[]) {
@@ -286,15 +356,19 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnnuevo;
+    private javax.swing.JComboBox<String> cmbestado;
     private com.toedter.calendar.JDateChooser dcFecha_Inicio;
     private com.toedter.calendar.JDateChooser dcFecha_termino;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    public static javax.swing.JTextField txtcliente;
+    public static javax.swing.JTextField txtidcliente;
     // End of variables declaration//GEN-END:variables
 
 }
