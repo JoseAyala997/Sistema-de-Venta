@@ -9,7 +9,6 @@ import Datos.vcompras;
 import Datos.vdetalle_compra;
 import Logica.StyloTabla;
 import Logica.fcompra;
-import Logica.freserva;
 import Logica.fproductos;
 import java.awt.Color;
 import java.sql.Date;
@@ -141,7 +140,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
         vdetalle_compra datos = new vdetalle_compra();
         fcompra funcion = new fcompra();
         fproductos cd = new fproductos();
-        freserva rs = new freserva();
+//        freserva rs = new freserva();
         if (true) {
 
         }

@@ -5,11 +5,9 @@
  */
 package Logica;
 
-import static Presentacion.FrmVista_Servicios.tablalistado;
-
 /**
  *
- * @author ALUMNO
+ * @author Jose Ayala
  */
 public class LOcultarColumna {
 

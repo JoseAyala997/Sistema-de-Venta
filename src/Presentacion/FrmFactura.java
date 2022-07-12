@@ -6,20 +6,11 @@
 package Presentacion;
 
 import Datos.vfactura;
-import Datos.vventas;
 import Logica.ffactura;
 import static Logica.fproductos.cn;
-import Logica.fventa;
-import static Presentacion.frmventas.dcfecha;
-import static Presentacion.frmventas.imsertarDetalle;
-import static Presentacion.frmventas.txtcodcliente;
 import static Presentacion.frmventas.txtnrofactura;
-import static Presentacion.frmventas.txttotal;
-
 import java.io.File;
-import java.sql.Date;
 import java.text.DecimalFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -29,14 +20,12 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
-import static Presentacion.frmventas.txtpulgadas;
 import net.sf.jasperreports.view.JasperViewer;
-import static Presentacion.frmventas.cbotipo;
 import static Presentacion.frmventas.insertarVenta;
 
 /**
  *
- * @author ALUMNO
+ * @author JOSE AYALA
  */
 public class FrmFactura extends javax.swing.JFrame {
 
@@ -276,7 +265,8 @@ public class FrmFactura extends javax.swing.JFrame {
 
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // codigo
+//         int monto=Integer.parseInt(txtMonto.getText().replaceAll("\\.", ""));
+//         int efe=Integer.parseInt(txtEfectivo.getText().replaceAll("\\.", ""));
      
        
         if (txtEfectivo.getText().length()==0) {
@@ -286,8 +276,8 @@ public class FrmFactura extends javax.swing.JFrame {
     
             
         }else{
-            insertarVenta();
-             insertarfactura();
+        insertarVenta();
+        insertarfactura();
         frmventas.NroFctura();
         imprimir();
 //            frmventas.insertarVenta();
@@ -318,12 +308,12 @@ public class FrmFactura extends javax.swing.JFrame {
                     + "/src/Reportes/rptventasclinica.jrxml");//Jasper para tener vista en exel y demas editores de texto
 
             jp = JasperFillManager.fillReport(jr, p, cn);
-//            JasperPrintManager.printReport(jp, true);
+            JasperPrintManager.printReport(jp, true);
 
             JasperViewer view = new JasperViewer(jp, false);
             view.setTitle("Comprobante Venta");
             view.setVisible(true);
-            System.out.println("imprimiendo2");
+//            System.out.println("imprimiendo2");
 
         } catch (Exception e) {
         }

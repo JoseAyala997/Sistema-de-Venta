@@ -70,9 +70,85 @@ public class fegresos {
         }
 
     }
+
+    public DefaultTableModel mostrarIE(String inicio, String fin, String estado) {
+        DefaultTableModel modelo;
+        String[] titulos = {"ID", "DESCRIPCION", "MONTO", "FECHA", "HORA", "ESTADO", "ID MOV."};
+        String[] registro = new String[7];
+        modelo = new DefaultTableModel(null, titulos);
+        SQL = "SELECT idegresos, descripcion, monto,fecha,hora, estado, idmovimiento from egresos \n"
+                + "WHERE fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND estado='" + estado + "' order by idegresos desc";
+
+        TotalRegistros = 0;
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("idegresos");
+                registro[1] = rs.getString("descripcion");
+                registro[2] = rs.getString("monto");
+                registro[3] = rs.getString("fecha");
+                registro[4] = rs.getString("hora");
+                registro[5] = rs.getString("estado");
+                registro[6] = rs.getString("idmovimiento");
+
+                TotalRegistros = TotalRegistros + 1;
+
+                modelo.addRow(registro);
+
+            }
+
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return null;
+        }
+
+    }
+
+    public DefaultTableModel mostrarIE_Resumen(String inicio, String fin) {
+        DefaultTableModel modelo;
+        String[] titulos = {"ID", "DESCRIPCION", "MONTO", "FECHA", "HORA", "ESTADO"};
+        String[] registro = new String[6];
+        modelo = new DefaultTableModel(null, titulos);
+        SQL = "select idegresos,descripcion,sum(monto)as total,fecha,hora, estado FROM egresos where \n"
+                + "fecha BETWEEN '" + inicio + "' AND '" + fin + "' and (estado ='INGRESO'|| estado='EGRESO') group by descripcion order by idegresos desc";
+
+        TotalRegistros = 0;
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("idegresos");
+                registro[1] = rs.getString("descripcion");
+                registro[2] = rs.getString("total");
+                registro[3] = rs.getString("fecha");
+                registro[4] = rs.getString("hora");
+                registro[5] = rs.getString("estado");
+
+                TotalRegistros = TotalRegistros + 1;
+
+                modelo.addRow(registro);
+
+            }
+
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return null;
+        }
+
+    }
+
     public DefaultTableModel mostrar_deudores(String buscar) {
         DefaultTableModel modelo;
-        String[] titulos = {"ID VENTA", "PRODUCTO", "CANT.", "PRECIO", "PULGADAS","ESTADO","TIPO","DEUDA","TOTAL PAGADO"};
+        String[] titulos = {"ID VENTA", "PRODUCTO", "CANT.", "PRECIO", "PULGADAS", "ESTADO", "TIPO", "DEUDA", "TOTAL PAGADO"};
         String[] registro = new String[9];
         modelo = new DefaultTableModel(null, titulos);
         SQL = "SELECT v.idventa,p.nombre_producto,d.cantidad,d.precio,d.pulgadas,v.estado,v.tipo,pe.numDocumento,v.saldo,v.total from detalle_venta d\n"
@@ -229,10 +305,9 @@ public class fegresos {
         }
     }
 
-
     public void id_cliente(String buscar) {
 
-        SQL = "select idcliente,iddeuda from deudas where idcliente='%"+buscar+"%' ";
+        SQL = "select idcliente,iddeuda from deudas where idcliente='%" + buscar + "%' ";
 
         try {
             Statement st = cn.createStatement();
@@ -250,8 +325,7 @@ public class fegresos {
         }
 
     }
-    
-    
+
     public boolean insertarDeuda(vdeudas dts) {
         SQL = "INSERT INTO deudas (idcliente,total_deuda,estado)"
                 + "values (?,'0','SIN DEUDA')";
@@ -274,10 +348,9 @@ public class fegresos {
             return false;
         }
     }
-    
-    
+
     public boolean editarDeuda(vdeudas dts) {
-         SQL = " update deudas set total_deuda=?, estado=? where idcliente=?";
+        SQL = " update deudas set total_deuda=?, estado=? where idcliente=?";
         try {
             PreparedStatement pst = cn.prepareStatement(SQL);
             pst.setLong(1, dts.getTotal_deuda());
@@ -293,8 +366,7 @@ public class fegresos {
             JOptionPane.showMessageDialog(null, e);
             return false;
         }
-        
+
     }
-    
-    
+
 }

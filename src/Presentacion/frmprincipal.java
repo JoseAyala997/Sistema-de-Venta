@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import CONSULTAS.frmconsulta_paciente;
@@ -10,6 +5,8 @@ import CONSULTAS.frmhistorial_ventas;
 import CONSULTAS.frmpaciente_consulta;
 import CONSULTAS.frmusuarios_consulta;
 import CONSULTAS.frmImprimir_factura;
+import CONSULTAS.frm_ingreso_egreso;
+import CONSULTAS.frm_ingreso_egreso_final;
 import CONSULTAS.frmventa_general;
 import CONSULTAS.frmventas_diarias;
 import Logica.StyloTabla;
@@ -23,13 +20,9 @@ import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -106,13 +99,13 @@ public class frmprincipal extends javax.swing.JFrame {
     public static void mostrarhoy(String buscar) {
         try {
             fmovimiento_caja func = new fmovimiento_caja();
-
+            
             func.mostrar_ultimo_id();
-            func.ventashoy(lblidmovimiento2.getText());
-            func.creditohoy(lblidmovimiento2.getText());
-            func.cobradohoy(lblidmovimiento2.getText());
-            func.egresohoy(lblidmovimiento2.getText());
-            func.ingresohoy(lblidmovimiento2.getText());
+            func.ventashoy(lblidmovimiento2.getText(),lblfechahoy.getText());
+            func.creditohoy(lblidmovimiento2.getText(),lblfechahoy.getText());
+            func.cobradohoy(lblidmovimiento2.getText(),lblfechahoy.getText());
+            func.egresohoy(lblidmovimiento2.getText(),lblfechahoy.getText());
+            func.ingresohoy(lblidmovimiento2.getText(),lblfechahoy.getText());
             func.aperturahoy(lblidmovimiento2.getText());
             
             int egre = Integer.parseInt(txtegresos.getText().replace(".", ""));
@@ -196,6 +189,7 @@ public class frmprincipal extends javax.swing.JFrame {
         historialventas2 = new javax.swing.JMenuItem();
         historialventas3 = new javax.swing.JMenuItem();
         historialventas4 = new javax.swing.JMenuItem();
+        historialventas5 = new javax.swing.JMenuItem();
         menurespaldo = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -218,7 +212,7 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporte diario"));
@@ -398,6 +392,7 @@ public class frmprincipal extends javax.swing.JFrame {
 
         lblfechahoy.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblfechahoy.setForeground(new java.awt.Color(255, 255, 255));
+        lblfechahoy.setText("FECHA");
 
         lbldocumento.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lbldocumento.setText("Cod_USUARIO");
@@ -448,7 +443,7 @@ public class frmprincipal extends javax.swing.JFrame {
                         .addComponent(lblfechahoy1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1189, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(lbldocumento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 544, Short.MAX_VALUE)
@@ -494,7 +489,7 @@ public class frmprincipal extends javax.swing.JFrame {
         jDesktopPane2.setLayout(jDesktopPane2Layout);
         jDesktopPane2Layout.setHorizontalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -685,6 +680,15 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
         menureporte.add(historialventas4);
+
+        historialventas5.setMnemonic('t');
+        historialventas5.setText("Resumen Ingresos y Egresos");
+        historialventas5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialventas5ActionPerformed(evt);
+            }
+        });
+        menureporte.add(historialventas5);
 
         menuBar.add(menureporte);
 
@@ -1158,8 +1162,34 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_historialventas3ActionPerformed
 
     private void historialventas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas4ActionPerformed
-        // TODO add your handling code here:
+         String x = frm_ingreso_egreso.x;
+        try {
+            if (x == null) {
+                frm_ingreso_egreso form = new frm_ingreso_egreso();
+                jDesktopPane2.add(form);
+                jDesktopPane2.moveToFront(form);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_historialventas4ActionPerformed
+
+    private void historialventas5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas5ActionPerformed
+          String x = frm_ingreso_egreso_final.x;
+        try {
+            if (x == null) {
+                frm_ingreso_egreso_final form = new frm_ingreso_egreso_final();
+                jDesktopPane2.add(form);
+                jDesktopPane2.moveToFront(form);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_historialventas5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1206,6 +1236,7 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem historialventas2;
     public static javax.swing.JMenuItem historialventas3;
     public static javax.swing.JMenuItem historialventas4;
+    public static javax.swing.JMenuItem historialventas5;
     public static javax.swing.JMenuItem husuarios;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JDesktopPane jDesktopPane1;

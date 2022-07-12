@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_cierre caja" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="897a5cf1-8e9d-45d4-92e9-7718b2598a03">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT m.idmovimiento, m.fecha_cierre, m.monto_apertura, m.monto_cierre
+ from movimiento_caja m where m.idmovimiento =81 order by m.idmovimiento desc limit 1;
+
+select @usuario :=(select concat(nombre ,' ', apellido) from persona p inner join movimiento_caja m where p.idpersona = m.idusuarios order by m.idusuarios desc limit 1);
+select  @credito:=(select sum(v.saldo) from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento and v.tipo='CREDITO' and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
+select @credito, if(@credito is null, @credito:=0,@credito)as credito;
+select @cobranza:=(select sum(v.total) from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento and v.tipo='CREDITO' and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
+select @contado:=(select sum(v.total) from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento and v.tipo='CONTADO' and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
+select @egresos:=(select sum(e.monto) from egresos e inner join movimiento_caja m where e.idmovimiento = m.idmovimiento and m.idmovimiento =81 order by m.idmovimiento desc limit 1);
+select @egresos, if(@egresos is null, @egresos:=0,@egresos)as egresos;
+select ((@contado-@egresos)+@cobranza) as caja,@contado as contado,@cobranza as cobranza,@egresos as egresos,@usuario as usuario]]>
+	</queryString>
+	<field name="idmovimiento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_cierre" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="monto_apertura" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="monto_cierre" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario" class="java.lang.String"/>
+	<field name="credito" class="java.math.BigDecimal"/>
+	<field name="cobranza" class="java.math.BigDecimal"/>
+	<field name="contado" class="java.math.BigDecimal"/>
+	<field name="egresos" class="java.math.BigDecimal"/>
+	<field name="caja" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="10" width="59" height="20" uuid="1f32e6ba-47df-4b26-9daf-11d49fc48c29"/>
+				<text><![CDATA[SAN JOSÉ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="30" width="227" height="15" uuid="f557b717-c306-4cad-bc44-a1097054b280"/>
+				<text><![CDATA[Ruta 8 y Bvard. Yeggros     Cel: 0983 118 032]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="45" width="86" height="20" uuid="b442e91f-941b-4a5d-88e9-a926c09d7757"/>
+				<text><![CDATA[RUC: 3930572-4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="65" width="113" height="15" uuid="090d6f94-2732-4eef-bfe7-048dbec054ff"/>
+				<text><![CDATA[-- CIERRE DE CAJA --]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="4" width="49" height="15" uuid="884762fa-5c04-4d76-b9a2-6820e80cdb02"/>
+				<text><![CDATA[USUARIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="19" width="38" height="15" uuid="00f9a054-c190-489a-923b-9aa80f8b2868"/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="129" y="48" width="100" height="15" uuid="aab08c87-eefc-4e97-bd1c-820e7648da43"/>
+				<textFieldExpression><![CDATA[$F{monto_apertura}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="48" width="103" height="15" uuid="e1df8596-22ae-4677-bfd1-105947b36fef"/>
+				<text><![CDATA[MONTO APERTURA:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="64" y="19" width="100" height="15" uuid="d971b29f-7353-4eaf-95c1-09d29b851528"/>
+				<textFieldExpression><![CDATA[$F{fecha_cierre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="4" width="100" height="15" uuid="0b1cb694-16e2-47ce-9ebf-3bad880f8e7c"/>
+				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="29" y="65" width="200" height="1" uuid="046b2beb-b2b7-4506-bcac-1bb9beb1d5e3"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="29" y="45" width="200" height="1" uuid="74de628d-e6f8-49a9-bd26-e252f4adc055"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="134" splitType="Stretch">
+			<staticText>
+				<reportElement x="28" y="3" width="85" height="15" uuid="13cec3c1-d66d-4c4a-8e72-eddaeb8aaab9"/>
+				<text><![CDATA[(+)  APERTURA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="20" width="85" height="15" uuid="984113fc-9e6b-4bd0-8d02-ed63a26b5ebd"/>
+				<text><![CDATA[(+)  CONTADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="50" width="61" height="15" uuid="8898584e-6c74-47d6-bd0f-eac224792197"/>
+				<text><![CDATA[(-)  GASTOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="35" width="74" height="15" uuid="51047a70-ad91-4937-b6c3-6f1528e95eee"/>
+				<text><![CDATA[(+)  CRÉDITO:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="107" y="3" width="100" height="15" uuid="51c62087-2869-4b48-a325-c75fc3dfab6f"/>
+				<textFieldExpression><![CDATA[$F{monto_apertura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="104" y="20" width="100" height="15" uuid="bd01dacb-f057-4d05-9a17-04b35b658dbc"/>
+				<textFieldExpression><![CDATA[$F{contado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="96" y="35" width="100" height="15" uuid="8c25fc18-1b97-4311-acc4-75be15155472"/>
+				<textFieldExpression><![CDATA[$F{credito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="91" width="68" height="15" uuid="66592157-7f3e-4be4-acaa-33fee2092a75"/>
+				<text><![CDATA[TOTAL CAJA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="29" y="88" width="200" height="1" uuid="ed4d11d9-5b37-4306-8f5c-7d77c560a119"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="29" y="108" width="200" height="1" uuid="dd32851f-e45e-4764-b670-261aa4c0d8fe"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="29" y="65" width="78" height="15" uuid="de743cd1-b256-42cc-a4e3-858860d8d39c"/>
+				<text><![CDATA[(+)  COBRANZA:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="106" y="65" width="100" height="15" uuid="7079bb70-61e5-4f89-86be-2ad1ea030b65"/>
+				<textFieldExpression><![CDATA[$F{cobranza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="50" width="100" height="15" uuid="58622792-b335-4dba-a72d-fc3935236547"/>
+				<textFieldExpression><![CDATA[$F{egresos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="91" width="100" height="15" uuid="cbecae67-4db8-4c27-bd88-c59fcfab63a2"/>
+				<textFieldExpression><![CDATA[$F{caja}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

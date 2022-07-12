@@ -281,7 +281,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String id=txtidcliente.getText();
+        String id=txtidcliente.getText();
         if (txtidcliente.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
             txtidcliente.requestFocus();
@@ -297,6 +297,7 @@ String id=txtidcliente.getText();
         SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
         hasta = dcFecha_termino.getDate();
         String p_fecha_Hasta = sdf_hasta.format(hasta);
+        
         String estado = cmbestado.getSelectedItem().toString();
         if (estado.equals("CONTADO")) {
             estado = "FINALIZADO";

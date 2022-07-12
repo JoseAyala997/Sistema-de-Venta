@@ -7,7 +7,6 @@ import Logica.StyloTabla;
 import Logica.fdeudas;
 import Logica.fegresos;
 import static Logica.fegresos.id_deuda;
-import Logica.freserva;
 import Logica.fproductos;
 import Logica.fventa;
 import java.awt.Color;
@@ -218,7 +217,6 @@ public class frmventas extends javax.swing.JInternalFrame {
         vdetalle_venta datos = new vdetalle_venta();
         fventa funcion = new fventa();
         fproductos cd = new fproductos();
-        freserva rs = new freserva();
 
         for (int i = 0; i < tablaventas.getRowCount(); i++) {
             String cat = (tablaventas.getValueAt(i, 6).toString());
@@ -283,7 +281,6 @@ public class frmventas extends javax.swing.JInternalFrame {
         vdetalle_venta datos = new vdetalle_venta();
         fventa funcion = new fventa();
         fproductos cd = new fproductos();
-        freserva rs = new freserva();
 
         for (int i = 0; i < tablaventas.getRowCount(); i++) {
 

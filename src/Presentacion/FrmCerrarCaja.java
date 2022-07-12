@@ -203,20 +203,20 @@ private Connection connection = new Conexion().conectar();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -346,7 +346,7 @@ private Connection connection = new Conexion().conectar();
         jLabel10.setBackground(new java.awt.Color(222, 220, 220));
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("NOM. Y APELLIDO");
+        jLabel10.setText("USUARIO");
 
         jLabel5.setBackground(new java.awt.Color(222, 220, 220));
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -525,7 +525,7 @@ private Connection connection = new Conexion().conectar();
         txtotros.setEditable(false);
         txtotros.setBackground(new java.awt.Color(255, 255, 153));
         txtotros.setForeground(new java.awt.Color(0, 153, 0));
-        txtotros.setDisabledTextColor(new java.awt.Color(255, 255, 153));
+        txtotros.setDisabledTextColor(new java.awt.Color(102, 204, 0));
         txtotros.setEnabled(false);
         txtotros.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

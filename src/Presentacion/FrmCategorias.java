@@ -101,7 +101,8 @@ public class FrmCategorias extends javax.swing.JInternalFrame {
         txtcategoria.setText("");
     }
 
-    void mostrar(String buscar) {
+  
+     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
 
@@ -110,9 +111,7 @@ public class FrmCategorias extends javax.swing.JInternalFrame {
             modelo = Funcion.mostrar(buscar);
 
             int total = Funcion.TotalRegistros;
-
             lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
-
             tablalistado.setModel(modelo);
 
         } catch (Exception e) {
@@ -514,14 +513,14 @@ public class FrmCategorias extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 class Fondopanel extends JPanel {
 
-        private Image imagen;//se declara una variable
-
-        @Override
-        public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/Iconos/icononutricion.jpg")).getImage();//selecciona el paquete y la imagen que se quiere usar
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);//obtiene el tamaño del panel para ajustar la imagen
-            setOpaque(false);//sirve para que se vea la imagen
-            super.paint(g);//para mostrar todos los componentes del panel que estan estableci
-        }
+//        private Image imagen;//se declara una variable
+//
+//        @Override
+//        public void paint(Graphics g) {
+//            imagen = new ImageIcon(getClass().getResource("/Iconos/icononutricion.jpg")).getImage();//selecciona el paquete y la imagen que se quiere usar
+//            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);//obtiene el tamaño del panel para ajustar la imagen
+//            setOpaque(false);//sirve para que se vea la imagen
+//            super.paint(g);//para mostrar todos los componentes del panel que estan estableci
+//        }
     }
 }

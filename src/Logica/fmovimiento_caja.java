@@ -362,11 +362,11 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return t;
         }
     }
- public Double ventashoy(String buscar) {
+ public Double ventashoy(String buscar,String fecha) {
         int t = 0;
         sSQL = "select total"
                 + "  from venta "
-                + " where idmovimiento='" + buscar + "' ";
+                + " where idmovimiento='" + buscar + "' AND fecha='" +fecha+ "' ";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -383,10 +383,10 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
-  public Double cobradohoy(String buscar) {
+  public Double cobradohoy(String buscar,String fecha) {
         int t = 0;
         sSQL = "select sum(v.total)as cobrado from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
-                + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "' order by m.idmovimiento desc limit 1";
+                + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "' AND fecha='" +fecha+ "' order by m.idmovimiento desc limit 1";
         try {
            Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -403,11 +403,11 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
- public Double creditohoy(String buscar) {
+ public Double creditohoy(String buscar,String fecha) {
         Double t = 0.0;
 
         sSQL = "select sum(v.saldo)as credito from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
-                + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "' order by m.idmovimiento desc limit 1";
+                + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "' AND fecha='" +fecha+ "' order by m.idmovimiento desc limit 1";
        try {
            Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -426,10 +426,10 @@ DecimalFormat format = new DecimalFormat("###,###.##");
     }
  
  
- public Double egresohoy(String buscar) {
+ public Double egresohoy(String buscar,String fecha) {
         Double t = 0.0;
 
-        sSQL = "SELECT sum(monto)as egreso FROM egresos where estado='EGRESO' AND idmovimiento='" + buscar + "' ";
+        sSQL = "SELECT sum(monto)as egreso FROM egresos where estado='EGRESO' AND idmovimiento='" + buscar + "' AND fecha='" +fecha+ "'";
        try {
            Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -447,10 +447,10 @@ DecimalFormat format = new DecimalFormat("###,###.##");
         }
     }
  
-  public Double ingresohoy(String buscar) {
+  public Double ingresohoy(String buscar,String fecha) {
         Double t = 0.0;
 
-        sSQL = "SELECT sum(monto)as ingreso FROM egresos where estado='INGRESO' AND idmovimiento='" + buscar + "' ";
+        sSQL = "SELECT sum(monto)as ingreso FROM egresos where estado='INGRESO' AND idmovimiento='" + buscar + "' AND fecha='" +fecha+ "' ";
        try {
            Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);

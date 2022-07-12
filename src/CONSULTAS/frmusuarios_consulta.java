@@ -260,12 +260,13 @@ private String accion = "guardar";
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         Map p = new HashMap();
              p.put("buscar", txtbuscar.getText());
-         
-           
-            JasperReport report;
+            
+            
+             JasperReport report;
             JasperPrint print;
 
             try {
+              
                 report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                         + "/src/Reportes/rptusuarios.jrxml");
                 print = JasperFillManager.fillReport(report, p, connection);
@@ -276,6 +277,10 @@ private String accion = "guardar";
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            
+            
+            
     }//GEN-LAST:event_btnguardarActionPerformed
 
     /**
