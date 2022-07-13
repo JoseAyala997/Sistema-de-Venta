@@ -6,22 +6,39 @@ import Logica.fegresos;
 import Logica.fventa;
 import Presentacion.FrmVista2;
 import Presentacion.frmprincipal;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfWriter;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.JTable;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.BorderLayout;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.io.FileOutputStream;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfWriter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+
+
+
+
 
 /**
  *
@@ -29,6 +46,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
 
+    private JTable table;
     private Conexion mysql = new Conexion();
     private Connection cn = mysql.conectar();
     public static int comprobar;
@@ -38,7 +56,7 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
     public frm_ingreso_egreso_final() {
         initComponents();
         x = "x";
-        btnnuevo.setVisible(false);
+//        btnnuevo.setVisible(false);
         int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
         int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
         setLocation(a / 2, b / 2);
@@ -51,6 +69,36 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
         StyloTabla st = new StyloTabla();
         mortrar(mifecha.toString(),mifecha.toString());
     }
+
+
+private void pdf() {
+    Document document = new Document(PageSize.A4.rotate());
+    try {
+      PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("jTable.pdf"));
+
+      document.open();
+      PdfContentByte cb = writer.getDirectContent();
+
+      cb.saveState();
+      Graphics2D g2 = cb.createGraphicsShapes(500, 500);
+
+      Shape oldClip = g2.getClip();
+      g2.clipRect(0, 0, 500, 500);
+
+      jTable1.print(g2);
+      g2.setClip(oldClip);
+
+      g2.dispose();
+      cb.restoreState();
+    } catch (Exception e) {
+      System.err.println(e.getMessage());
+    }
+    JOptionPane.showConfirmDialog(rootPane, "imprimir");
+//    document.close();
+  }
+  
+
+
 
     void mortrar(String inicio, String fin) {
         try {
@@ -80,10 +128,11 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        btnnuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -121,17 +170,6 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setText("Fecha de inicio:");
 
-        btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
-        btnnuevo.setText("Imprimir");
-        btnnuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnnuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnuevoActionPerformed(evt);
-            }
-        });
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -153,15 +191,27 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pdf.png"))); // NOI18N
+        jButton2.setText("Exportar PDF");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
+        jButton3.setText("Imprimir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(541, 541, 541))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(343, 343, 343)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,6 +228,12 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(187, 187, 187)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(370, 370, 370))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,10 +249,12 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11)
                         .addComponent(dcFecha_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnnuevo)
-                .addGap(18, 18, 18))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,9 +275,28 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
         x = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
-    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
+     
+        java.util.Date desde = new java.util.Date();
+        SimpleDateFormat sdf_desde = new SimpleDateFormat("yyyy-MM-dd");
+        desde = dcFecha_Inicio.getDate();
+        String p_fecha_Desde = sdf_desde.format(desde);
+
+        java.util.Date hasta = new java.util.Date();
+        SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
+        hasta = dcFecha_termino.getDate();
+        String p_fecha_Hasta = sdf_hasta.format(hasta);
+        
+//        String estado = cmbestado.getSelectedItem().toString();
+       
+        mortrar(p_fecha_Desde, p_fecha_Hasta);
+//        JOptionPane.showConfirmDialog(rootPane, estado);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+          
 //        String estador = cmbestado.getSelectedItem().toString();
 //        int fila = jTable1.getRowCount();
 //        if (fila == 0) {
@@ -268,31 +345,12 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
 //
 //            }
 //        }
-           
-        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        pdf();
 
-    }//GEN-LAST:event_btnnuevoActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
-     
-        java.util.Date desde = new java.util.Date();
-        SimpleDateFormat sdf_desde = new SimpleDateFormat("yyyy-MM-dd");
-        desde = dcFecha_Inicio.getDate();
-        String p_fecha_Desde = sdf_desde.format(desde);
-
-        java.util.Date hasta = new java.util.Date();
-        SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
-        hasta = dcFecha_termino.getDate();
-        String p_fecha_Hasta = sdf_hasta.format(hasta);
-        
-//        String estado = cmbestado.getSelectedItem().toString();
-       
-        mortrar(p_fecha_Desde, p_fecha_Hasta);
-//        JOptionPane.showConfirmDialog(rootPane, estado);
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private Connection connection = new Conexion().conectar();
 
@@ -392,10 +450,11 @@ public class frm_ingreso_egreso_final extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnnuevo;
     private com.toedter.calendar.JDateChooser dcFecha_Inicio;
     private com.toedter.calendar.JDateChooser dcFecha_termino;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
