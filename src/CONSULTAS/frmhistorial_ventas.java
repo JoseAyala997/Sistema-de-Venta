@@ -128,10 +128,10 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dcFecha_Inicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jPanel3.add(dcFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 150, 30));
+        jPanel3.add(dcFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 150, 30));
 
         dcFecha_termino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jPanel3.add(dcFecha_termino, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 150, 30));
+        jPanel3.add(dcFecha_termino, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel10.setText("HISTORIAL DE VENTAS");
@@ -139,23 +139,22 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Fecha fin:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setText("Fecha de inicio:");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, 31));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 31));
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
         btnnuevo.setText("Imprimir");
-        btnnuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnnuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnnuevo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnnuevoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 95, -1));
+        jPanel3.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 150, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,7 +169,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1184, 380));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1184, 380));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton1.setText("Buscar");
@@ -179,13 +178,18 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 80, 113, 35));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 80, 113, 30));
 
         cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONTADO", "CREDITO", " " }));
-        jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 80, 150, 30));
+        jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 150, 30));
 
         txtcliente.setEnabled(false);
-        jPanel3.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 240, 31));
+        txtcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtclienteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 220, 31));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +197,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 36, 35));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 36, 35));
         jPanel3.add(txtidcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 25, 31));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -317,6 +321,10 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         form.lbltitulovista.setText("Historial ventas");
         form.buscador();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtclienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtclienteActionPerformed
 
     private Connection connection = new Conexion().conectar();
 

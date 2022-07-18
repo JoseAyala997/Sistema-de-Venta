@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class fproductos {
 
-    public static String SQL = "";
+  public static String SQL = "";
     public static Conexion mysql = new Conexion();
     public static Connection cn = mysql.conectar();
 

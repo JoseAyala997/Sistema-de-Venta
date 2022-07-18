@@ -25,8 +25,9 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
      */
     public FrmVista_Servicios() {
         initComponents();
-        mostrar("");
         jtable();
+        mostrar("");
+        
  
          jPanel1.setBackground(new Color(0, 102, 100, 200));
          jPanel2.setBackground(new Color(0, 102, 100, 200));

@@ -188,6 +188,7 @@ public class frmprincipal extends javax.swing.JFrame {
         historialventas1 = new javax.swing.JMenuItem();
         historialventas2 = new javax.swing.JMenuItem();
         historialventas3 = new javax.swing.JMenuItem();
+        historialventas6 = new javax.swing.JMenuItem();
         historialventas4 = new javax.swing.JMenuItem();
         historialventas5 = new javax.swing.JMenuItem();
         menurespaldo = new javax.swing.JMenu();
@@ -671,6 +672,15 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
         menureporte.add(historialventas3);
+
+        historialventas6.setMnemonic('t');
+        historialventas6.setText("Historial Compras");
+        historialventas6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialventas6ActionPerformed(evt);
+            }
+        });
+        menureporte.add(historialventas6);
 
         historialventas4.setMnemonic('t');
         historialventas4.setText("Ingresos y Egresos");
@@ -1191,6 +1201,10 @@ public class frmprincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_historialventas5ActionPerformed
 
+    private void historialventas6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_historialventas6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1237,6 +1251,7 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem historialventas3;
     public static javax.swing.JMenuItem historialventas4;
     public static javax.swing.JMenuItem historialventas5;
+    public static javax.swing.JMenuItem historialventas6;
     public static javax.swing.JMenuItem husuarios;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JDesktopPane jDesktopPane1;

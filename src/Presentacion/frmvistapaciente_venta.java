@@ -55,7 +55,7 @@ public class frmvistapaciente_venta extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtbuscar = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +82,7 @@ public class frmvistapaciente_venta extends javax.swing.JFrame {
         lbltotalregistros.setText("REGISTROS");
 
         P.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        P.setText("Pacientes");
+        P.setText("Clientes");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("BUSCAR:");

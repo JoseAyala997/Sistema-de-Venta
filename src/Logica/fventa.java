@@ -56,9 +56,8 @@ public class fventa {
             JOptionPane.showMessageDialog(null, e);
             return false;
         }
-        
+
     }
-    
 
     public boolean insertarDetalle(vdetalle_venta dts) {
         SQL = "INSERT INTO detalle_venta (idventa, idservicios, cantidad, precio, sub_total,pulgadas)"
@@ -88,7 +87,7 @@ public class fventa {
     public int NroFactura() {
 
         int NroFactura = 0;
-        SQL = "SELECT (count(*) + 1) contador FROM venta;";
+        SQL = "SELECT (count(*) + 1) contador FROM venta";
 
         try {
             Statement st = cn.createStatement();
@@ -158,11 +157,11 @@ public class fventa {
 
         modelo = new DefaultTableModel(null, titulos);
         SQL = "SELECT v.idventa,d.idservicios,v.idmovimiento,v.fecha, (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto,\n"
-                + " d.precio,d.cantidad,v.nro_factura,total, CONCAT(p.nombre, ' ', p.apellido)as cliente,concat(u.nombre, ' ', u.apellido)as usuario\n"
-                + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
-                + " inner join persona p on p.idpersona=v.idpaciente\n"
-                + " inner join persona u on u.idpersona=v.idusuarios\n"
-                + " WHERE v.nro_factura= '" + buscar + "' order by v.idventa desc";
+                + "                d.precio,d.cantidad,v.nro_factura,d.sub_total, v.total, CONCAT(p.nombre, ' ', p.apellido)as cliente,concat(u.nombre, ' ', u.apellido)as usuario\n"
+                + "                FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
+                + "                 inner join persona p on p.idpersona=v.idpaciente\n"
+                + "                inner join persona u on u.idpersona=v.idusuarios\n"
+                + "              WHERE v.nro_factura= '" + buscar + "' order by v.idventa desc";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -178,7 +177,7 @@ public class fventa {
                 registro[5] = formatear.format(rs.getDouble("precio"));
                 registro[6] = rs.getString("cantidad");
                 registro[7] = rs.getString("nro_factura");
-                registro[8] = rs.getString("nro_factura");
+                registro[8] = formatear.format(rs.getDouble("sub_total"));
                 registro[9] = formatear.format(rs.getDouble("total"));
                 registro[10] = rs.getString("cliente");
                 registro[11] = rs.getString("usuario");
@@ -191,7 +190,8 @@ public class fventa {
             return null;
         }
     }
-     public DefaultTableModel mostrarcontnombre(String inicio, String fin,String estado,String id) {
+
+    public DefaultTableModel mostrarcontnombre(String inicio, String fin, String estado, String id) {
         DefaultTableModel modelo;
 
         String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "SUB-TOTAL", "NUM. FACTURA", "TOTAL",};
@@ -203,7 +203,7 @@ public class fventa {
                 + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
                 + " inner join persona p on p.idpersona=v.idpaciente\n"
                 + " inner join persona u on u.idpersona=v.idusuarios\n"
-                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='"+estado+"' AND v.idpaciente='"+id+"' order by v.idventa desc";
+                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='" + estado + "' AND v.idpaciente='" + id + "' order by v.idventa desc";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -221,7 +221,7 @@ public class fventa {
                 registro[7] = rs.getString("sub_total");
                 registro[8] = rs.getString("nro_factura");
                 registro[9] = formatear.format(rs.getDouble("total"));
-            
+
                 modelo.addRow(registro);
             }
 
@@ -231,7 +231,8 @@ public class fventa {
             return null;
         }
     }
-      public DefaultTableModel mostrarcrednombre(String inicio, String fin,String estado,String id) {
+
+    public DefaultTableModel mostrarcrednombre(String inicio, String fin, String estado, String id) {
         DefaultTableModel modelo;
 
         String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "SUB-TOTAL", "NUM. FACTURA", "TOTAL",};
@@ -243,7 +244,7 @@ public class fventa {
                 + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
                 + " inner join persona p on p.idpersona=v.idpaciente\n"
                 + " inner join persona u on u.idpersona=v.idusuarios\n"
-                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='"+estado+"' AND v.idpaciente='"+id+"' order by v.idventa desc";
+                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='" + estado + "' AND v.idpaciente='" + id + "' order by v.idventa desc";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -261,7 +262,7 @@ public class fventa {
                 registro[7] = rs.getString("sub_total");
                 registro[8] = rs.getString("nro_factura");
                 registro[9] = formatear.format(rs.getDouble("saldo"));
-            
+
                 modelo.addRow(registro);
             }
 
@@ -271,8 +272,8 @@ public class fventa {
             return null;
         }
     }
-     
-    public DefaultTableModel mostrarhventacont(String inicio, String fin,String estado,String id) {
+
+    public DefaultTableModel mostrarhventacont(String inicio, String fin, String estado, String id) {
         DefaultTableModel modelo;
 
         String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "SUB-TOTAL", "NUM. FACTURA", "TOTAL", "CLIENTE", "USUARIO"};
@@ -284,7 +285,7 @@ public class fventa {
                 + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
                 + " inner join persona p on p.idpersona=v.idpaciente\n"
                 + " inner join persona u on u.idpersona=v.idusuarios\n"
-                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='"+estado+"' AND v.idpaciente='"+id+"' order by v.idventa desc";
+                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='" + estado + "' AND v.idpaciente='" + id + "' order by v.idventa desc";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -313,7 +314,8 @@ public class fventa {
             return null;
         }
     }
-    public DefaultTableModel mostrarhventacred(String inicio, String fin,String estado,String id) {
+
+    public DefaultTableModel mostrarhventacred(String inicio, String fin, String estado, String id) {
         DefaultTableModel modelo;
 
         String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "SUB-TOTAL", "NUM. FACTURA", "TOTAL", "CLIENTE", "USUARIO"};
@@ -325,7 +327,7 @@ public class fventa {
                 + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
                 + " inner join persona p on p.idpersona=v.idpaciente\n"
                 + " inner join persona u on u.idpersona=v.idusuarios\n"
-                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='"+estado+"' AND v.idpaciente='"+id+"' order by v.idventa desc";
+                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='" + estado + "' AND v.idpaciente='" + id + "' order by v.idventa desc";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -354,7 +356,7 @@ public class fventa {
             return null;
         }
     }
-    
+
 //    public void mostrar_ultimo_id() {
 //
 //        SQL = "select max(idmovimiento)as id from movimiento_caja ";
@@ -375,5 +377,4 @@ public class fventa {
 //        }
 //
 //    }
-
 }

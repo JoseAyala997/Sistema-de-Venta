@@ -15,6 +15,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -26,10 +27,11 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Jose Ayala
  */
-public class frmImprimir_factura extends javax.swing.JInternalFrame{
+public class frmImprimir_factura extends javax.swing.JInternalFrame {
 
     public static String x;
     public static Connection cn = mysql.conectar();
+
     public frmImprimir_factura() {
         initComponents();
         //codigo para centrar internalframe
@@ -38,19 +40,17 @@ public class frmImprimir_factura extends javax.swing.JInternalFrame{
         int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
         setLocation(a / 2, b / 2);
         setVisible(true);
-         mostrar("");
-   
-    
-        
-         jPanel1.setBackground(new Color(0, 102, 100, 200));
-         jPanel2.setBackground(new Color(0, 102, 100, 200));
-        
+        mostrar("");
+
+        jPanel1.setBackground(new Color(0, 102, 100, 200));
+        jPanel2.setBackground(new Color(0, 102, 100, 200));
+
         StyloTabla st = new StyloTabla();
 
-       
         setTitle("Imprimir factura");
     }
- void mostrar(String buscar) {
+
+    void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
 
@@ -59,16 +59,13 @@ public class frmImprimir_factura extends javax.swing.JInternalFrame{
             modelo = Funcion.mostrarventa(buscar);
 
 //            int total = Funcion.totalregistros;
-
 //            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
-
             jTable1.setModel(modelo);
 
         } catch (Exception e) {
         }
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -191,22 +188,22 @@ public class frmImprimir_factura extends javax.swing.JInternalFrame{
                             .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1044, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(457, 457, 457)
+                        .addGap(496, 496, 496)
                         .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnguardar)
-                .addContainerGap())
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,36 +235,41 @@ public class frmImprimir_factura extends javax.swing.JInternalFrame{
     private void txtbuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtbuscarKeyTyped
-private String accion = "guardar";
-    private Connection connection=new Conexion().conectar();
+    private String accion = "guardar";
+    private Connection connection = new Conexion().conectar();
     private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_formPropertyChange
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-      x=null;
+        x = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-          try {
-           Map p = new HashMap();
-            p.put("buscar", txtbuscar.getText());
-           
-            JasperReport jr;
-            JasperPrint jp;
+        int fila = jTable1.getRowCount();
+        if (fila == 0) {
+            JOptionPane.showMessageDialog(rootPane, "La tabla no puede estar vacia");
+        } else {
+            try {
+                Map p = new HashMap();
+                p.put("buscar", txtbuscar.getText());
 
-            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/Reportes/rptfacturaventa.jrxml");//Jasper para tener vista en exel y demas editores de texto
+                JasperReport jr;
+                JasperPrint jp;
 
-            jp = JasperFillManager.fillReport(jr, p, cn);
+                jr = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/rptfacturaventa.jrxml");//Jasper para tener vista en exel y demas editores de texto
+
+                jp = JasperFillManager.fillReport(jr, p, cn);
 //            JasperPrintManager.printReport(jp, true);
 
-            JasperViewer view = new JasperViewer(jp, false);
-            view.setTitle("Imprimir factura");
-            view.setVisible(true);
+                JasperViewer view = new JasperViewer(jp, false);
+                view.setTitle("Imprimir factura");
+                view.setVisible(true);
 
-        } catch (Exception e) {
-        }  
+            } catch (Exception e) {
+            }
+        }
     }//GEN-LAST:event_btnguardarActionPerformed
 
     /**

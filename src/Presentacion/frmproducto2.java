@@ -211,7 +211,8 @@ public class frmproducto2 extends javax.swing.JInternalFrame {
         txtcategoria.setText("");
         txtidcategoria.setText("");
     }
-
+    
+   
     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
@@ -753,6 +754,7 @@ public class frmproducto2 extends javax.swing.JInternalFrame {
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         FrmVista2 form = new FrmVista2();
+        form.jComboBox1.setVisible(false);
         form.setVisible(true);
         form.toFront();
         form.dondebuscar = 3;
@@ -762,6 +764,7 @@ public class frmproducto2 extends javax.swing.JInternalFrame {
 
     private void btnbuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar1ActionPerformed
         FrmVista2 form = new FrmVista2();
+        form.jComboBox1.setVisible(false);
         form.setVisible(true);
         form.toFront();
         form.dondebuscar = 4;

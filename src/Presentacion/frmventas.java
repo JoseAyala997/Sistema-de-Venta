@@ -115,6 +115,14 @@ public class frmventas extends javax.swing.JInternalFrame {
         txtnrofactura.setText(formateador.format(NroFactura));//asignamos el numero de factura al txt
 
     }
+      public static void NroPresupuesto() {
+
+        fventa funcion = new fventa();
+
+        int NroFactura = funcion.NroFactura();//llamamos la funcion nrofactura
+        txtnrofactura.setText(formateador.format(NroFactura));//asignamos el numero de factura al txt
+
+    }
 
     public static void insertarVenta() {
         String tipo = cbotipo.getSelectedItem().toString();

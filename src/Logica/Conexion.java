@@ -4,29 +4,32 @@
  * and open the template in the editor.
  */
 package Logica;
+
+import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 
 public class Conexion {
 
-    public String db = "ventas";
-    public String url="jdbc:mysql://localhost:3306/" +db;
-    public String user = "root";
-    public String pass = "12345";
+    public String db = "ventas";// creamos una variable para almacenar el nombre de la bd
+    public String url="jdbc:mysql://localhost:3306/" +db;//cargamos la url dentro de una variable
+    public String user = "root";//creamos una variable donde almacenar el usuario
+    public String pass = "12345";//creamos una variable para almacenar la contraseña de la bd
 
-    public Conexion() {
+    public Conexion() {//constructor de la clase
     }
-    public java.sql.Connection conectar(){
+    public java.sql.Connection conectar(){//creamos un metodo llamado conectar para la conexion de la bd
         java.sql.Connection link=null;
       
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            link=DriverManager.getConnection(this.url, this.user, this.pass);
+            link=DriverManager.getConnection(this.url, this.user, this.pass);//hacemos una conexion con la base de datos
             
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showConfirmDialog(null, e);
+            JOptionPane.showConfirmDialog(null, e);//enviamos un sqlException en caso de que no se conecte a la bd
             
         }
         

@@ -308,7 +308,7 @@ public class FrmFactura extends javax.swing.JFrame {
                     + "/src/Reportes/rptventasclinica.jrxml");//Jasper para tener vista en exel y demas editores de texto
 
             jp = JasperFillManager.fillReport(jr, p, cn);
-            JasperPrintManager.printReport(jp, true);
+//            JasperPrintManager.printReport(jp, true);
 
             JasperViewer view = new JasperViewer(jp, false);
             view.setTitle("Comprobante Venta");
