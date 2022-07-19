@@ -218,7 +218,7 @@ public class fventa {
 
                 registro[5] = formatear.format(rs.getDouble("precio"));
                 registro[6] = rs.getString("cantidad");
-                registro[7] = rs.getString("sub_total");
+                registro[7] = formatear.format(rs.getDouble("sub_total"));
                 registro[8] = rs.getString("nro_factura");
                 registro[9] = formatear.format(rs.getDouble("total"));
 
@@ -259,7 +259,7 @@ public class fventa {
 
                 registro[5] = formatear.format(rs.getDouble("precio"));
                 registro[6] = rs.getString("cantidad");
-                registro[7] = rs.getString("sub_total");
+                registro[7] = formatear.format(rs.getDouble("sub_total"));
                 registro[8] = rs.getString("nro_factura");
                 registro[9] = formatear.format(rs.getDouble("saldo"));
 
@@ -300,7 +300,7 @@ public class fventa {
 
                 registro[5] = formatear.format(rs.getDouble("precio"));
                 registro[6] = rs.getString("cantidad");
-                registro[7] = rs.getString("sub_total");
+                registro[7] = formatear.format(rs.getDouble("sub_total"));
                 registro[8] = rs.getString("nro_factura");
                 registro[9] = formatear.format(rs.getDouble("total"));
                 registro[10] = rs.getString("cliente");
@@ -342,7 +342,7 @@ public class fventa {
 
                 registro[5] = formatear.format(rs.getDouble("precio"));
                 registro[6] = rs.getString("cantidad");
-                registro[7] = rs.getString("sub_total");
+                registro[7] = formatear.format(rs.getDouble("sub_total"));
                 registro[8] = rs.getString("nro_factura");
                 registro[9] = formatear.format(rs.getDouble("saldo"));
                 registro[10] = rs.getString("cliente");

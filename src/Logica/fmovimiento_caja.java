@@ -63,7 +63,7 @@ public class fmovimiento_caja {
                 registro[7] = rs.getString("idusuarios");
                 registro[8] = rs.getString("funcionario");
                 registro[9] = rs.getString("numDocumento");
-                registro[10] = rs.getString("egresos");
+                registro[10] = formatear.format(rs.getDouble("egresos"));
                 modelo.addRow(registro);
             }
 

@@ -7,6 +7,7 @@ import CONSULTAS.frmusuarios_consulta;
 import CONSULTAS.frmImprimir_factura;
 import CONSULTAS.frm_ingreso_egreso;
 import CONSULTAS.frm_ingreso_egreso_final;
+import CONSULTAS.frmhistorial_compras;
 import CONSULTAS.frmventa_general;
 import CONSULTAS.frmventas_diarias;
 import Logica.StyloTabla;
@@ -136,7 +137,6 @@ public class frmprincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jPanel2 = new Fondopanel();
         jPanel3 = new javax.swing.JPanel();
@@ -181,8 +181,8 @@ public class frmprincipal extends javax.swing.JFrame {
         menupaciente2 = new javax.swing.JMenuItem();
         menupaciente3 = new javax.swing.JMenuItem();
         menureporte = new javax.swing.JMenu();
-        historialventas = new javax.swing.JMenuItem();
         husuarios = new javax.swing.JMenuItem();
+        historialventas = new javax.swing.JMenuItem();
         rpaciente = new javax.swing.JMenuItem();
         cutMenuItem5 = new javax.swing.JMenuItem();
         historialventas1 = new javax.swing.JMenuItem();
@@ -194,17 +194,6 @@ public class frmprincipal extends javax.swing.JFrame {
         menurespaldo = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -444,12 +433,12 @@ public class frmprincipal extends javax.swing.JFrame {
                         .addComponent(lblfechahoy1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1015, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(lbldocumento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 544, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblcodusuario)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblacceso, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,7 +446,7 @@ public class frmprincipal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(68, 68, 68)
                 .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -494,7 +483,7 @@ public class frmprincipal extends javax.swing.JFrame {
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menumovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/caja.png"))); // NOI18N
@@ -610,15 +599,6 @@ public class frmprincipal extends javax.swing.JFrame {
         menureporte.setText("Reportes");
         menureporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        historialventas.setMnemonic('t');
-        historialventas.setText("Imprimir Factura");
-        historialventas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historialventasActionPerformed(evt);
-            }
-        });
-        menureporte.add(historialventas);
-
         husuarios.setMnemonic('t');
         husuarios.setText("Reporte Usuarios");
         husuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -627,6 +607,15 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
         menureporte.add(husuarios);
+
+        historialventas.setMnemonic('t');
+        historialventas.setText("Imprimir Factura");
+        historialventas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialventasActionPerformed(evt);
+            }
+        });
+        menureporte.add(historialventas);
 
         rpaciente.setMnemonic('t');
         rpaciente.setText("Reporte Clientes");
@@ -1202,7 +1191,18 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_historialventas5ActionPerformed
 
     private void historialventas6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas6ActionPerformed
-        // TODO add your handling code here:
+         String x = frmhistorial_compras.x;
+        try {
+            if (x == null) {
+                frmhistorial_compras form = new frmhistorial_compras();
+                jDesktopPane2.add(form);
+                jDesktopPane2.moveToFront(form);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Esta ventana ya esta abierta!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_historialventas6ActionPerformed
 
     /**
@@ -1254,7 +1254,6 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem historialventas6;
     public static javax.swing.JMenuItem husuarios;
     public static javax.swing.JButton jButton1;
-    public static javax.swing.JDesktopPane jDesktopPane1;
     public static javax.swing.JDesktopPane jDesktopPane2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel10;

@@ -71,6 +71,7 @@ public class fproveedor {
         }
 
     }
+     
 
     public boolean insertar(vproveedor dts) {
         SQL = "INSERT INTO proveedor (nombre, telefono, direccion,ruc,razon,estado)"

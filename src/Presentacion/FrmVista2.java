@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import CONSULTAS.frmhistorial_compras;
 import CONSULTAS.frmhistorial_ventas;
 import CONSULTAS.frmventa_general;
 import CONSULTAS.frmventas_diarias;
@@ -318,6 +319,13 @@ public class FrmVista2 extends javax.swing.JFrame {
             //lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
 
         }
+         if (dondebuscar == 9) {
+
+            fproveedor func = new fproveedor();
+            modelo = func.mostrar(txtbuscar.getText());
+            tablalistado.setModel(modelo);
+
+        }
     }
     public static DefaultTableModel modelo = new DefaultTableModel();
 
@@ -441,6 +449,12 @@ public class FrmVista2 extends javax.swing.JFrame {
              frmventa_general.txtidcliente.setText(tablalistado.getValueAt(fila, 0).toString());
             frmventa_general.txtcliente.setText(tablalistado.getValueAt(fila, 1).toString());
 //            FrmApertura_Caja.txtnombreapellido.setText(tablalistado.getValueAt(fila, 2).toString());
+
+            this.dispose();
+        }
+         if (dondebuscar == 9) {
+             frmhistorial_compras.txtidcliente.setText(tablalistado.getValueAt(fila, 0).toString());
+            frmhistorial_compras.txtcliente.setText(tablalistado.getValueAt(fila, 1).toString());
 
             this.dispose();
         }
