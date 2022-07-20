@@ -57,7 +57,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
 
     public static void habilitar(boolean f) {
         txtMontoApertura.setEnabled(true);
-        txtNroCaja.setEnabled(true);
+        txtNroCaja.setEnabled(false);
         txtmontocierre.setEnabled(false);
         jFechaApertura.setEnabled(true);
         jFechaCierre.setEnabled(false);
@@ -680,12 +680,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtmontocierreKeyReleased
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//        FrmVista2 form = new FrmVista2();
-//        form.setVisible(true);
-//        form.toFront();
-//        form.dondebuscar = 7;
-//        form.lbltitulovista.setText("EMPLEADOS");
-//        form.buscador();             // TODO add your handling code here:
+
         FrmVista2 form = new FrmVista2();
         form.setVisible(true);
         form.toFront();
@@ -809,7 +804,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
 
         if (opciones.equals("nuevo")) {
             if (func.insertar(dts)) {
-                func.mostrar_ultimo_id();
+                func.mostrar_ultimo_id(frmprincipal.lblcodusuario.getText());
                 JOptionPane.showMessageDialog(null, "APERTURA CAJA EXITOSA CON : " + txtMontoApertura.getText() + " Gs.");
                 inhabilitar();
                 
@@ -817,7 +812,7 @@ public class FrmApertura_Caja extends javax.swing.JInternalFrame {
         } else {
             dts.setIdmovimiento(Integer.parseInt(txtIDCaja.getText()));
             if (func.editar(dts)) {
-                func.mostrar_ultimo_id();
+                func.mostrar_ultimo_id(frmprincipal.lblcodusuario.getText());
                 JOptionPane.showMessageDialog(null, "DATOS EDITADOS CORRECTAMENTE");
                 inhabilitar();
             }

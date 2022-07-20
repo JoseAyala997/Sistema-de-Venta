@@ -39,6 +39,14 @@ public class FrmVista2 extends javax.swing.JFrame {
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
 
+        tablalistado.getColumnModel().getColumn(3).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(3).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(3).setPreferredWidth(0);
+
+        tablalistado.getColumnModel().getColumn(4).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(4).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(4).setPreferredWidth(0);
+
         tablalistado.getColumnModel().getColumn(5).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(5).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(5).setPreferredWidth(0);
@@ -255,16 +263,16 @@ public class FrmVista2 extends javax.swing.JFrame {
             Integer idmo = fmovimiento_caja.idm;
             // System.out.println("no es igual: " + id + " : " + idmo);
             if (!id.equals(0)) {
-                modelo = func.mostrarcaja(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
+                modelo = func.mostrarcaja(txtbuscar.getText(), jComboBox1.getSelectedItem().toString(),frmprincipal.lblidmovimiento2.getText(),frmprincipal.lblfechahoy.getText());
 
                 tablalistado.setModel(modelo);
-//                ocultar_columnas();
+                ocultar_columnas();
 //                System.out.println("igual: " + id + " : " + idmo);
             } else {
 //                if (id.equals(0)) {
                 modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
                 tablalistado.setModel(modelo);
-//                ocultar_columnas();
+                ocultar_columnas();
 //                System.out.println("no es igual: " + id + " : " + idmo);
 //                }
 
@@ -296,7 +304,7 @@ public class FrmVista2 extends javax.swing.JFrame {
             //lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
 
         }
-          if (dondebuscar == 6) {
+        if (dondebuscar == 6) {
 
             fpacientes func = new fpacientes();
             modelo = func.mostrar(txtbuscar.getText());
@@ -319,7 +327,7 @@ public class FrmVista2 extends javax.swing.JFrame {
             //lbltotalregistros.setText("TOTAL PEDIDOS" + Integer.toString(func.totalregistros));
 
         }
-         if (dondebuscar == 9) {
+        if (dondebuscar == 9) {
 
             fproveedor func = new fproveedor();
             modelo = func.mostrar(txtbuscar.getText());
@@ -363,14 +371,16 @@ public class FrmVista2 extends javax.swing.JFrame {
             if (!id.equals(0)) {
                 double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
                 double egreso = Double.parseDouble(tablalistado.getValueAt(fila, 10).toString().replace(".", ""));
+                double compras = Double.parseDouble(tablalistado.getValueAt(fila, 11).toString().replace(".", ""));
 
                 double ingreso = func.mostrarTotalAcumuladoPagosVentas(tablalistado.getValueAt(fila, 0).toString());
                 double cobrado = func.mostrarcobrado(tablalistado.getValueAt(fila, 0).toString());
                 double credito = func.mostrarcredito(tablalistado.getValueAt(fila, 0).toString());
+
 //            egreso = func.mostrarTotalegreso(tablalistado.getValueAt(fila, 0).toString());
                 double acumulado = ingreso + apertura;
                 double caja = ingreso;
-                double capital = (acumulado - egreso) + otros;
+                double capital = ((acumulado - egreso) + otros)-compras;
 //            FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) acumulado))));
                 FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
                 FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
@@ -378,7 +388,10 @@ public class FrmVista2 extends javax.swing.JFrame {
                 FrmCerrarCaja.txtcobrado.setText(String.valueOf((format.format((int) cobrado))));
                 FrmCerrarCaja.txtcredito.setText(String.valueOf((format.format((int) credito))));
                 FrmCerrarCaja.txtcontado.setText(String.valueOf((format.format((int) ingreso))));
+                FrmCerrarCaja.txtcompras.setText(String.valueOf((format.format((int) compras))));
+//                FrmCerrarCaja.txtmontocierre.setText(String.valueOf((format.format((int) capital))));
                 func.ingresohoycierre(frmprincipal.lblidmovimiento2.getText());
+                FrmCerrarCaja.txtmontocierre.requestFocus();
             } else {
 //              
                 double cobrado = func.mostrarcobrado(tablalistado.getValueAt(fila, 0).toString());
@@ -397,6 +410,7 @@ public class FrmVista2 extends javax.swing.JFrame {
                 FrmCerrarCaja.txtcredito.setText(String.valueOf((format.format((int) credito))));
                 FrmCerrarCaja.txtcobrado.setText(String.valueOf((format.format((int) cobrado))));
                 func.ingresohoycierre(frmprincipal.lblidmovimiento2.getText());
+                FrmCerrarCaja.txtmontocierre.requestFocus();
             }
 
             this.dispose();
@@ -445,16 +459,16 @@ public class FrmVista2 extends javax.swing.JFrame {
 //            FrmApertura_Caja.as.setText("EDITAR");
             this.dispose();
         }
-         if (dondebuscar == 8) {
-             frmventa_general.txtidcliente.setText(tablalistado.getValueAt(fila, 0).toString());
+        if (dondebuscar == 8) {
+            frmventa_general.txtidcliente.setText(tablalistado.getValueAt(fila, 0).toString());
             frmventa_general.txtcliente.setText(tablalistado.getValueAt(fila, 1).toString());
 //            FrmApertura_Caja.txtnombreapellido.setText(tablalistado.getValueAt(fila, 2).toString());
 
             this.dispose();
         }
-         if (dondebuscar == 9) {
-             frmhistorial_compras.txtidcliente.setText(tablalistado.getValueAt(fila, 0).toString());
-            frmhistorial_compras.txtcliente.setText(tablalistado.getValueAt(fila, 1).toString());
+        if (dondebuscar == 9) {
+            frmhistorial_compras.txtidproveedor.setText(tablalistado.getValueAt(fila, 0).toString());
+            frmhistorial_compras.txtproveedor.setText(tablalistado.getValueAt(fila, 1).toString());
 
             this.dispose();
         }

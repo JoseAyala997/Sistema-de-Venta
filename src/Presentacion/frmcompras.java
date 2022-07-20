@@ -62,6 +62,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
         modelo.addColumn("PULGADAS");
         modelo.addColumn("CANTIDAD");
         modelo.addColumn("SUB TOTAL");
+        modelo.addColumn("ID PROV");
 
         this.tablaventas.setModel(modelo);
         txtcantidad.requestFocus();
@@ -121,6 +122,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
          datos.setNro_factura(txtnum_compra.getText());
         datos.setTotal(Long.parseLong(txttotal.getText().replaceAll("\\.", "")));
         datos.setIdmovimiento(Integer.parseInt(frmprincipal.idcaja1));
+        
 
         Calendar cal = dcfecha.getCalendar();
         int a, m, d;
@@ -155,6 +157,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
 //        modelo.addColumn("CANTIDAD");
 //        modelo.addColumn("SUB TOTAL");
             datos.setIdservicios(Integer.parseInt(tablaventas.getValueAt(i, 0).toString()));
+             datos.setIdproveedor(Integer.parseInt(tablaventas.getValueAt(i, 6).toString()));
             datos.setCantidad(Integer.parseInt(tablaventas.getValueAt(i, 4).toString()));
             datos.setPrecio(Long.parseLong(tablaventas.getValueAt(i, 2).toString().replaceAll("\\.", "")));
             datos.setSub_total(Long.parseLong(tablaventas.getValueAt(i, 5).toString().replaceAll("\\.", "")));
@@ -208,7 +211,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
         txtpulgadas = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtproducto = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        idproveedor = new javax.swing.JLabel();
         lblidproducto = new javax.swing.JLabel();
         txtestado = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -216,6 +219,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtnum_compra = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -353,6 +357,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 102, 58, -1));
 
         cbotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONTADO", "CREDITO" }));
+        cbotipo.setEnabled(false);
         cbotipo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbotipoItemStateChanged(evt);
@@ -402,7 +407,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
                 txtpulgadasKeyTyped(evt);
             }
         });
-        jPanel3.add(txtpulgadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 54, 100, 30));
+        jPanel3.add(txtpulgadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 100, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("PULGADAS");
@@ -412,9 +417,9 @@ public class frmcompras extends javax.swing.JInternalFrame {
         txtproducto.setMinimumSize(new java.awt.Dimension(6, 30));
         jPanel3.add(txtproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 54, 245, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("PRODUCTO");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 24, 80, 20));
+        idproveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        idproveedor.setText("idproveedor");
+        jPanel3.add(idproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 80, 20));
         jPanel3.add(lblidproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 111, 50, 24));
 
         txtestado.setEnabled(false);
@@ -437,6 +442,10 @@ public class frmcompras extends javax.swing.JInternalFrame {
         txtnum_compra.setEnabled(false);
         txtnum_compra.setMinimumSize(new java.awt.Dimension(6, 30));
         jPanel3.add(txtnum_compra, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 54, 100, 30));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("PRODUCTO");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 24, 80, 20));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1060, 180));
 
@@ -494,7 +503,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        String[] agregar = new String[6];
+        String[] agregar = new String[7];
         if (txtproducto.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Debes seleccionar el Producto");
 //            btn.requestFocus();
@@ -534,6 +543,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
         agregar[4] = txtcantidad.getText();
         int subttotal = Integer.parseInt(txtcantidad.getText()) * Integer.parseInt(txtprecio.getText()) - Integer.parseInt(txtdescuento.getText());
         agregar[5] = String.valueOf(format.format(Integer.parseInt("" + subttotal)));
+        agregar[6] = idproveedor.getText();
         modelo.addRow(agregar);
         sumarsubtotal();
 
@@ -544,6 +554,7 @@ public class frmcompras extends javax.swing.JInternalFrame {
         txtprecio.setText("");
         txtpulgadas.setText("0");
         txtdescuento.setText("0");
+        idproveedor.setText("0");
         
 
 //        }
@@ -652,14 +663,15 @@ public class frmcompras extends javax.swing.JInternalFrame {
     public static javax.swing.JButton btnquitar;
     public static javax.swing.JComboBox<String> cbotipo;
     public static com.toedter.calendar.JDateChooser dcfecha;
+    public static javax.swing.JLabel idproveedor;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JButton jButton3;
     public static javax.swing.JLabel jLabel10;
     public static javax.swing.JLabel jLabel11;
+    public static javax.swing.JLabel jLabel12;
     public static javax.swing.JLabel jLabel13;
     public static javax.swing.JLabel jLabel2;
-    public static javax.swing.JLabel jLabel3;
     public static javax.swing.JLabel jLabel4;
     public static javax.swing.JLabel jLabel5;
     public static javax.swing.JLabel jLabel6;

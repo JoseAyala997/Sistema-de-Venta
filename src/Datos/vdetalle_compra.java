@@ -11,24 +11,17 @@ package Datos;
  */
 public class vdetalle_compra {
 //    iddetalle, idservicios, cantidad, precio, sub_total, pulgadas, idcompra
+
     private int iddetalle;
     private int idcompra;
     private int idservicios;
     private int cantidad;
     private Long precio;
     private Long sub_total;
-private int pulgadas;
-    public vdetalle_compra() {
-    }
+    private int pulgadas;
+    private int idproveedor;
 
-    public vdetalle_compra(int iddetalle, int idcompra, int idservicios, int cantidad, Long precio, Long sub_total, int pulgadas) {
-        this.iddetalle = iddetalle;
-        this.idcompra = idcompra;
-        this.idservicios = idservicios;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.sub_total = sub_total;
-        this.pulgadas = pulgadas;
+    public vdetalle_compra() {
     }
 
     public int getIddetalle() {
@@ -87,6 +80,12 @@ private int pulgadas;
         this.pulgadas = pulgadas;
     }
 
-  
-    
+    public int getIdproveedor() {
+        return idproveedor;
+    }
+
+    public void setIdproveedor(int idproveedor) {
+        this.idproveedor = idproveedor;
+    }
+
 }

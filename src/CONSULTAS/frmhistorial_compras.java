@@ -36,7 +36,7 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
 
     public frmhistorial_compras() {
         initComponents();
-        txtidcliente.setVisible(false);
+        txtidproveedor.setVisible(false);
         x = "x";
         
         int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
@@ -50,16 +50,16 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
         dcFecha_termino.setCalendar(mifecha);
         jPanel3.setBackground(new Color(0, 102, 100, 200));
         StyloTabla st = new StyloTabla();
-        mostrarcontado("", "");
+        mostrarcontado("", "","");
     }
 
-    void mostrarcontado(String inicio, String fin) {
+    void mostrarcontado(String inicio, String fin,String buscar) {
         try {
             DefaultTableModel modelo;
 
             fcompra Funcion = new fcompra();
 
-            modelo = Funcion.mostrarhventacont(inicio, fin);
+            modelo = Funcion.mostrarhventacont(inicio, fin,buscar);
 
 //            int total = Funcion.totalregistros;
 //            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
@@ -87,9 +87,9 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         cmbestado = new javax.swing.JComboBox<>();
-        txtcliente = new javax.swing.JTextField();
+        txtproveedor = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        txtidcliente = new javax.swing.JTextField();
+        txtidproveedor = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
 
@@ -125,7 +125,7 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel10.setText("HISTORIAL DE COMPRAS");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 292, -1));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 320, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Estado:");
@@ -174,13 +174,13 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
         cmbestado.setEnabled(false);
         jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 150, 30));
 
-        txtcliente.setEnabled(false);
-        txtcliente.addActionListener(new java.awt.event.ActionListener() {
+        txtproveedor.setEnabled(false);
+        txtproveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtclienteActionPerformed(evt);
+                txtproveedorActionPerformed(evt);
             }
         });
-        jPanel3.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 220, 31));
+        jPanel3.add(txtproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 220, 31));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +189,7 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
             }
         });
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 36, 35));
-        jPanel3.add(txtidcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 25, 31));
+        jPanel3.add(txtidproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 25, 31));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel14.setText("Fecha de inicio:");
@@ -221,12 +221,12 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
       
-        if (txtidcliente.getText().length() == 0) {
+        if (txtidproveedor.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
-            txtidcliente.requestFocus();
+            txtidproveedor.requestFocus();
             return;
         }
-        String idcliente=txtidcliente.getText();
+        String idcliente=txtidproveedor.getText();
         String estador = cmbestado.getSelectedItem().toString();
         int fila = jTable1.getRowCount();
         if (fila == 0) {
@@ -237,8 +237,6 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
                 Map p = new HashMap();
                 p.put("fecha_inicio", dcFecha_Inicio.getDate());
                 p.put("fecha_fin", dcFecha_termino.getDate());
-                p.put("estado", estador);
-                p.put("id", idcliente);
                 JasperReport report;
                 JasperPrint print;
 
@@ -284,10 +282,10 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String id=txtidcliente.getText();
-        if (txtidcliente.getText().length() == 0) {
+        String id=txtidproveedor.getText();
+        if (txtidproveedor.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL PROVEEDOR");
-            txtidcliente.requestFocus();
+            txtidproveedor.requestFocus();
             return;
         }
         java.util.Date desde = new java.util.Date();
@@ -300,10 +298,10 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
         SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
         hasta = dcFecha_termino.getDate();
         String p_fecha_Hasta = sdf_hasta.format(hasta);
-        
+        String proveedor=txtidproveedor.getText();
 //        String estado = cmbestado.getSelectedItem().toString();
        
-            mostrarcontado(p_fecha_Desde, p_fecha_Hasta);
+            mostrarcontado(p_fecha_Desde, p_fecha_Hasta,proveedor);
         
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -318,9 +316,9 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
         form.buscador();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtclienteActionPerformed
+    private void txtproveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproveedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtclienteActionPerformed
+    }//GEN-LAST:event_txtproveedorActionPerformed
 
     private Connection connection = new Conexion().conectar();
 
@@ -386,8 +384,8 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    public static javax.swing.JTextField txtcliente;
-    public static javax.swing.JTextField txtidcliente;
+    public static javax.swing.JTextField txtidproveedor;
+    public static javax.swing.JTextField txtproveedor;
     // End of variables declaration//GEN-END:variables
 
 }

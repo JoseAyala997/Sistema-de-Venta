@@ -28,44 +28,42 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
         jtable();
         mostrar("");
         
- 
-         jPanel1.setBackground(new Color(0, 102, 100, 200));
-         jPanel2.setBackground(new Color(0, 102, 100, 200));
+        jPanel1.setBackground(new Color(0, 102, 100, 200));
+        jPanel2.setBackground(new Color(0, 102, 100, 200));
         
         StyloTabla st = new StyloTabla();
-
-       
+        
         setTitle("Vista Productos");
     }
-     void jtable(){
-         //metodo para no editar el jtable
-                for (int c = 0; c < tablalistado.getColumnCount(); c++)
 
-        {
- 
+    void jtable() {
+        //metodo para no editar el jtable
+        for (int c = 0; c < tablalistado.getColumnCount(); c++) {
+            
             Class<?> col_class = tablalistado.getColumnClass(c);
-
+            
             tablalistado.setDefaultEditor(col_class, null); // remove editor
 
         }
-     }
+    }
+
     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-
+            
             fproductos Funcion = new fproductos();
-
+            
             modelo = Funcion.mostrar(buscar);
-
+            
             int total = Funcion.TotalRegistros;
-
+            
             lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
-
+            
             tablalistado.setModel(modelo);
-
+            
         } catch (Exception e) {
         }
-
+        
     }
 
     /**
@@ -219,51 +217,50 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtbuscarKeyTyped
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
-     
+        
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
-         int fila = tablalistado.rowAtPoint(evt.getPoint());
+        int fila = tablalistado.rowAtPoint(evt.getPoint());
         if (evt.getClickCount() == 2) {
             seleccionar_esta_fila(fila);
         }
-    }                                    
+    }    
+
     void seleccionar_esta_fila(int fila) {
         if (dondebuscar == 1) {
             
             fproductos cc = new fproductos();
-            cc.controlarStock(tablalistado.getValueAt(fila, 0).toString());    
-            if (cc.cantidadproducto<=0) {
-                int confirmacion=JOptionPane.showConfirmDialog(rootPane, "EL PRODUCTO ESTA AGOTADO.. DESEAS AGREGARLO IGUAL..?");
-                if (JOptionPane.OK_OPTION==confirmacion) {
+            cc.controlarStock(tablalistado.getValueAt(fila, 0).toString());            
+            if (cc.cantidadproducto <= 0) {
+                int confirmacion = JOptionPane.showConfirmDialog(rootPane, "EL PRODUCTO ESTA AGOTADO.. DESEAS AGREGARLO IGUAL..?");
+                if (JOptionPane.OK_OPTION == confirmacion) {
                     
+                    frmventas.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
+                    frmventas.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
+                    frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 3).toString());
+                    frmventas.txtcategoria.setText(tablalistado.getValueAt(fila, 9).toString());
+                    frmventas.txtcantidad.setText("1");
+                    frmventas.txtcantidad.requestFocus();
+                    this.dispose();
                     
-            frmventas.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
-            frmventas.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
-            frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 3).toString());
-            frmventas.txtcategoria.setText(tablalistado.getValueAt(fila, 9).toString());
-            frmventas.txtcantidad.setText("1");
-            frmventas.txtcantidad.requestFocus();
-            this.dispose();
-                    
-                }else{
+                } else {
                     return;
-                }              
+                }                
             }
-           
+            
             frmventas.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
-           
+            
             frmventas.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
             frmventas.txtprecio.setText(tablalistado.getValueAt(fila, 3).toString());
             frmventas.txtcategoria.setText(tablalistado.getValueAt(fila, 9).toString());
             frmventas.txtcantidad.setText("1");
             frmventas.txtcantidad.requestFocus();
-            this.dispose();       
+            this.dispose();            
         }
-       
         
         if (dondebuscar == 2) {
-
+            
             frmventas.txtcodcliente.setText(tablalistado.getValueAt(fila, 0).toString());
             frmventas.txtcliente.setText(tablalistado.getValueAt(fila, 3).toString());
             frmventas.jButton2.requestFocus();
@@ -272,38 +269,39 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
         if (dondebuscar == 3) {
             
             fproductos cc = new fproductos();
-            cc.controlarStock(tablalistado.getValueAt(fila, 0).toString());    
-            if (cc.cantidadproducto<=0) {
-                int confirmacion=JOptionPane.showConfirmDialog(rootPane, "EL PRODUCTO ESTA AGOTADO.. DESEAS AGREGARLO IGUAL..?");
-                if (JOptionPane.OK_OPTION==confirmacion) {
+            cc.controlarStock(tablalistado.getValueAt(fila, 0).toString());            
+            if (cc.cantidadproducto <= 0) {
+                int confirmacion = JOptionPane.showConfirmDialog(rootPane, "EL PRODUCTO ESTA AGOTADO.. DESEAS AGREGARLO IGUAL..?");
+                if (JOptionPane.OK_OPTION == confirmacion) {
                     
+                    frmcompras.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
+                    frmcompras.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
+                    frmcompras.txtprecio.setText(tablalistado.getValueAt(fila, 5).toString());
+                    frmcompras.txtcantidad.setText("1");
+                    frmcompras.idproveedor.setText(tablalistado.getValueAt(fila, 11).toString());
+                    frmcompras.txtcantidad.requestFocus();
+                    this.dispose();
                     
-            frmcompras.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
-            frmcompras.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
-            frmcompras.txtprecio.setText(tablalistado.getValueAt(fila, 5).toString());
-            frmcompras.txtcantidad.setText("1");
-            frmcompras.txtcantidad.requestFocus();
-            this.dispose();
-                    
-                }else{
+                } else {
                     return;
-                }              
+                }                
             }
-           
+            
             frmcompras.lblidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
-           
+            
             frmcompras.txtproducto.setText(tablalistado.getValueAt(fila, 1).toString());
             frmcompras.txtprecio.setText(tablalistado.getValueAt(fila, 5).toString());
+            frmcompras.idproveedor.setText(tablalistado.getValueAt(fila, 11).toString());
             frmcompras.txtcantidad.setText("1");
             frmcompras.txtcantidad.requestFocus();
-            this.dispose();       
+            this.dispose();            
         }
-
+        
     }
-
+    
     public static DefaultTableModel modelo;
     public static int dondebuscar = 0;
-
+    
     public static void buscador() {
         if (dondebuscar == 1) {
             fproductos func = new fproductos();
@@ -317,7 +315,7 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
             modelo = func.mostrar(txtbuscar.getText());
             tablalistado.setModel(modelo);
             LOcultarColumna ocultar = new LOcultarColumna();
-                ocultar.ocultar_esta_columna(tablalistado, 0);
+            ocultar.ocultar_esta_columna(tablalistado, 0);
         }
         if (dondebuscar == 3) {
             fproductos func = new fproductos();
@@ -326,9 +324,8 @@ public class FrmVista_Servicios extends javax.swing.JFrame {
             LOcultarColumna ocultar = new LOcultarColumna();
             ocultar.ocultar_esta_columna(tablalistado, 0);
         }
-    
+        
     }//GEN-LAST:event_tablalistadoMousePressed
-
 
     /**
      * @param args the command line arguments

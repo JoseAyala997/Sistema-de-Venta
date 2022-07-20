@@ -76,6 +76,9 @@ public class fproductos {
         }
 
     }
+    
+    
+    
     /*Funcion para controlar el stock por esta forma..tambien llamando en frmVista en la hora de seleccionar el producto*/
     public static int cantidadproducto;
 

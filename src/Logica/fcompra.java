@@ -26,19 +26,18 @@ import javax.swing.table.DefaultTableModel;
     public static Connection cn = mysql.conectar();
      DecimalFormat formatear = new DecimalFormat();
     
-     public DefaultTableModel mostrarhventacont(String inicio, String fin) {
+     public DefaultTableModel mostrarhventacont(String inicio, String fin,String buscar) {
         DefaultTableModel modelo;
 
         String[] titulos = { "PRODUCTO", "FECHA", "PRECIO.", "CANTIDAD", "NUM. FACTURA", "SUB-TOTAL", "TOTAL", "PROVEEDOR", "USUARIO"};
         String[] registro = new String[9];
 
         modelo = new DefaultTableModel(null, titulos);
-        SQL = "SELECT (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto, c.fecha,\n" +
-"                 d.precio,d.cantidad,c.nro_factura,d.sub_total,c.total, p.nombre as proveedor,concat(u.nombre, ' ', u.apellido)as usuario\n" +
-"             FROM detalle_compra d INNER JOIN compras c  ON d.idcompra = c.idcompra\n" +
-"                inner join proveedor p on p.idproveedor=idproveedor\n" +
+        SQL = "SELECT (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto, c.fecha,(SELECT nombre FROM proveedor pro WHERE pro.idproveedor = d.idproveedor)as proveedor,\n" +
+"               d.precio,d.cantidad,c.nro_factura,d.sub_total,c.total,concat(u.nombre, ' ', u.apellido)as usuario\n" +
+"            FROM detalle_compra d INNER JOIN compras c  ON d.idcompra = c.idcompra\n" +
 "                inner join persona u on u.idpersona=c.idusuarios\n" +
-"                 WHERE c.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND c.estado='FINALIZADO'  order by c.idcompra desc";
+"                 WHERE c.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND c.estado='FINALIZADO' AND d.idproveedor='" +buscar+ "' order by c.idcompra desc";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -136,8 +135,8 @@ import javax.swing.table.DefaultTableModel;
     }
   
    public boolean insertarDetalle(vdetalle_compra dts) {
-        SQL = "INSERT INTO detalle_compra (idcompra, idservicios, cantidad, precio, sub_total, pulgadas)"
-                + "values ((select idcompra from compras order by idcompra desc limit 1 ),?,?,?,?,?)";
+        SQL = "INSERT INTO detalle_compra (idcompra, idservicios, cantidad, precio, sub_total, pulgadas,idproveedor)"
+                + "values ((select idcompra from compras order by idcompra desc limit 1 ),?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(SQL);
@@ -147,6 +146,7 @@ import javax.swing.table.DefaultTableModel;
             pst.setLong(3, dts.getPrecio());
             pst.setLong(4, dts.getSub_total());
             pst.setInt(5, dts.getPulgadas());
+            pst.setInt(6, dts.getIdproveedor());
             
       
             int n = pst.executeUpdate();
