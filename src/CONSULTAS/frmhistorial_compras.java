@@ -97,20 +97,20 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setResizable(false);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -125,7 +125,7 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel10.setText("HISTORIAL DE COMPRAS");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 320, -1));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 320, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Estado:");
@@ -222,7 +222,7 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
       
         if (txtidproveedor.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
+            JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL PROVEEDOR");
             txtidproveedor.requestFocus();
             return;
         }
@@ -237,43 +237,44 @@ public class frmhistorial_compras extends javax.swing.JInternalFrame {
                 Map p = new HashMap();
                 p.put("fecha_inicio", dcFecha_Inicio.getDate());
                 p.put("fecha_fin", dcFecha_termino.getDate());
+                p.put("idproveedor",txtidproveedor.getText());
                 JasperReport report;
                 JasperPrint print;
 
                 try {
                     report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                            + "/src/Reportes/rptventa_historial.jrxml");
+                            + "/src/Reportes/rptcompra_historial.jrxml");
                     print = JasperFillManager.fillReport(report, p, connection);
                     JasperViewer view = new JasperViewer(print, false);
-                    view.setTitle("Historial ventas");
+                    view.setTitle("Historial compras");
                     view.setVisible(true);
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
-                Map p = new HashMap();
-                estador = "PENDIENTE";
-                p.put("fecha_inicio", dcFecha_Inicio.getDate());
-                p.put("fecha_fin", dcFecha_termino.getDate());
-                p.put("estado", estador);
-                p.put("id", idcliente);
-                JasperReport report;
-                JasperPrint print;
-
-                try {
-                    report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                            + "/src/Reportes/rptventa_historialcred.jrxml");
-                    print = JasperFillManager.fillReport(report, p, connection);
-                    JasperViewer view = new JasperViewer(print, false);
-                    view.setTitle("Historial ventas");
-                    view.setVisible(true);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
+            } 
+//             else {
+//                Map p = new HashMap();
+//                estador = "PENDIENTE";
+//                p.put("fecha_inicio", dcFecha_Inicio.getDate());
+//                p.put("fecha_fin", dcFecha_termino.getDate());
+//                p.put("idproveedor",txtidproveedor.getText());
+//                JasperReport report;
+//                JasperPrint print;
+//
+//                try {
+//                    report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+//                            + "/src/Reportes/rptcompra_historial.jrxml");
+//                    print = JasperFillManager.fillReport(report, p, connection);
+//                    JasperViewer view = new JasperViewer(print, false);
+//                    view.setTitle("Historial compras");
+//                    view.setVisible(true);
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
         }
            
         

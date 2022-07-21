@@ -1,6 +1,7 @@
 package CONSULTAS;
 
 import Logica.Conexion;
+import Logica.LOcultarColumna;
 import Logica.StyloTabla;
 import Logica.fventa;
 import Presentacion.FrmVista2;
@@ -8,6 +9,7 @@ import Presentacion.frmprincipal;
 import java.awt.Color;
 import java.io.File;
 import java.sql.Connection;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -35,7 +37,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
 
     public frmhistorial_ventas() {
         initComponents();
-        txtidcliente.setVisible(false);
+
         x = "x";
         int a = frmprincipal.jDesktopPane2.getWidth() - this.getWidth();
         int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
@@ -46,17 +48,40 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         dcFecha_Inicio.setCalendar(mifecha);
         dcFecha_termino.setCalendar(mifecha);
         jPanel3.setBackground(new Color(0, 102, 100, 200));
-        StyloTabla st = new StyloTabla();
+//        StyloTabla st = new StyloTabla();
 //        mostrar("","");
     }
+    public static DecimalFormat format = new DecimalFormat("###,###.###");
+    public static float sumatoria;
+    public static float sumador;
+    public static float pulgadas;
+    public static float des1;
+    public static float des2;
 
-    void mostrarcontado(String inicio, String fin, String estado,String id) {
+    public static void sumarsubtotal() {
+        int totalrow = jTable1.getRowCount();
+        totalrow -= 1;
+        sumatoria = 0;
+        des1 = 0;
+        des2 = 0;
+        for (int i = 0; i <= (totalrow); i++) {
+            sumador = Float.valueOf(jTable1.getValueAt(i, 7).toString().replaceAll("\\.", ""));
+            sumatoria += sumador;
+//            des1 = Float.valueOf(jTable1.getValueAt(i, 7).toString().replaceAll("\\.", ""));
+            des2 += des1;
+
+        }
+        lbltotalventa.setText(String.valueOf(format.format(sumatoria)));
+//        txttotal_descuento.setText(String.valueOf(format.format(des2)));
+    }
+
+    void mostrarcontado(String inicio, String fin, String estado) {
         try {
             DefaultTableModel modelo;
 
             fventa Funcion = new fventa();
 
-            modelo = Funcion.mostrarhventacont(inicio, fin, estado,id);
+            modelo = Funcion.mostrarhventatotal(inicio, fin, estado);
 
 //            int total = Funcion.totalregistros;
 //            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
@@ -67,13 +92,13 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
 
     }
 
-    void mostrarcredito(String inicio, String fin, String estado,String id) {
+    void mostrarcredito(String inicio, String fin, String estado) {
         try {
             DefaultTableModel modelo;
 
             fventa Funcion = new fventa();
 
-            modelo = Funcion.mostrarhventacred(inicio, fin, estado,id);
+            modelo = Funcion.mostrarhventacredtotal(inicio, fin, estado);
 
 //            int total = Funcion.totalregistros;
 //            lbltotalregistros.setText("Total Registros : " + String.valueOf(total));
@@ -99,28 +124,27 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         cmbestado = new javax.swing.JComboBox<>();
-        txtcliente = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        txtidcliente = new javax.swing.JTextField();
+        lbltotalventa = new javax.swing.JLabel();
+        lbltotalventa1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setResizable(false);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -128,22 +152,28 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dcFecha_Inicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jPanel3.add(dcFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 150, 30));
+        jPanel3.add(dcFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 150, 30));
 
         dcFecha_termino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jPanel3.add(dcFecha_termino, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 150, 30));
+        jPanel3.add(dcFecha_termino, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("HISTORIAL DE VENTAS");
+        jLabel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 292, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel11.setText("Fecha fin:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, -1));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Fecha fin");
+        jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel12.setText("Fecha de inicio:");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 31));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Fecha de inicio");
+        jLabel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, 30));
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
@@ -169,7 +199,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1184, 380));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 1184, 400));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
         jButton1.setText("Buscar");
@@ -178,27 +208,22 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 80, 113, 30));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, 113, 30));
 
         cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONTADO", "CREDITO", " " }));
-        jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 150, 30));
+        jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 150, 30));
 
-        txtcliente.setEnabled(false);
-        txtcliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtclienteActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 220, 31));
+        lbltotalventa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbltotalventa.setForeground(new java.awt.Color(255, 255, 255));
+        lbltotalventa.setText("0");
+        lbltotalventa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(lbltotalventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 540, 110, 30));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar32.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 36, 35));
-        jPanel3.add(txtidcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 25, 31));
+        lbltotalventa1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbltotalventa1.setForeground(new java.awt.Color(255, 255, 255));
+        lbltotalventa1.setText("Total Venta:");
+        lbltotalventa1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(lbltotalventa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,31 +246,24 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-      
-        if (txtidcliente.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
-            txtidcliente.requestFocus();
-            return;
-        }
-        String idcliente=txtidcliente.getText();
+
         String estador = cmbestado.getSelectedItem().toString();
         int fila = jTable1.getRowCount();
         if (fila == 0) {
             JOptionPane.showMessageDialog(rootPane, "La tabla no puede estar vacia");
-        }else{
-             if (estador.equals("CONTADO")) {
+        } else {
+            if (estador.equals("CONTADO")) {
                 estador = "FINALIZADO";
                 Map p = new HashMap();
                 p.put("fecha_inicio", dcFecha_Inicio.getDate());
                 p.put("fecha_fin", dcFecha_termino.getDate());
                 p.put("estado", estador);
-                p.put("id", idcliente);
                 JasperReport report;
                 JasperPrint print;
 
                 try {
                     report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                            + "/src/Reportes/rptventa_historial.jrxml");
+                            + "/src/Reportes/rptventa_historial_total.jrxml");
                     print = JasperFillManager.fillReport(report, p, connection);
                     JasperViewer view = new JasperViewer(print, false);
                     view.setTitle("Historial ventas");
@@ -260,13 +278,12 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
                 p.put("fecha_inicio", dcFecha_Inicio.getDate());
                 p.put("fecha_fin", dcFecha_termino.getDate());
                 p.put("estado", estador);
-                p.put("id", idcliente);
                 JasperReport report;
                 JasperPrint print;
 
                 try {
                     report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                            + "/src/Reportes/rptventa_historialcred.jrxml");
+                            + "/src/Reportes/rptventa_historialcred_total.jrxml");
                     print = JasperFillManager.fillReport(report, p, connection);
                     JasperViewer view = new JasperViewer(print, false);
                     view.setTitle("Historial ventas");
@@ -278,53 +295,36 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
 
             }
         }
-           
-        
 
 
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String id=txtidcliente.getText();
-        if (txtidcliente.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "DEBES INGRESAR EL NOMBRE");
-            txtidcliente.requestFocus();
-            return;
-        }
+
         java.util.Date desde = new java.util.Date();
         SimpleDateFormat sdf_desde = new SimpleDateFormat("yyyy-MM-dd");
         desde = dcFecha_Inicio.getDate();
         String p_fecha_Desde = sdf_desde.format(desde);
-        
 
         java.util.Date hasta = new java.util.Date();
         SimpleDateFormat sdf_hasta = new SimpleDateFormat("yyyy-MM-dd");
         hasta = dcFecha_termino.getDate();
         String p_fecha_Hasta = sdf_hasta.format(hasta);
-        
+
         String estado = cmbestado.getSelectedItem().toString();
         if (estado.equals("CONTADO")) {
             estado = "FINALIZADO";
-            mostrarcontado(p_fecha_Desde, p_fecha_Hasta, estado,id);
+            mostrarcontado(p_fecha_Desde, p_fecha_Hasta, estado);
+            LOcultarColumna.ocultar_esta_columna2(jTable1, 0, 1, 2);
+            sumarsubtotal();
         } else {
             estado = "PENDIENTE";
-            mostrarcredito(p_fecha_Desde, p_fecha_Hasta, estado,id);
+            mostrarcredito(p_fecha_Desde, p_fecha_Hasta, estado);
+            LOcultarColumna.ocultar_esta_columna2(jTable1, 0, 1, 2);
+            sumarsubtotal();
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        FrmVista2 form = new FrmVista2();
-        form.setVisible(true);
-        form.toFront();
-        form.dondebuscar = 5;
-        form.lbltitulovista.setText("Historial ventas");
-        form.buscador();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txtclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtclienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtclienteActionPerformed
 
     private Connection connection = new Conexion().conectar();
 
@@ -369,15 +369,14 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser dcFecha_Inicio;
     private com.toedter.calendar.JDateChooser dcFecha_termino;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    public static javax.swing.JTextField txtcliente;
-    public static javax.swing.JTextField txtidcliente;
+    public static javax.swing.JTable jTable1;
+    public static javax.swing.JLabel lbltotalventa;
+    public static javax.swing.JLabel lbltotalventa1;
     // End of variables declaration//GEN-END:variables
 
 }

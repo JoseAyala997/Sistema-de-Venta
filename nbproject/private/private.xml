@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/fcompra.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/frmprincipal.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Logica/fcategoria.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/CONSULTAS/frmhistorial_compras.java</file>
-            <file>file:/C:/Xampp/htdocs/Sistema-de-Venta/src/Presentacion/FrmVista2.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/Presentacion/frmventas.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/Logica/StyloTabla.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/Logica/fventa.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/CONSULTAS/frmventas_diarias.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/Presentacion/FrmVista2.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/Presentacion/frmproducto2.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/CONSULTAS/frmventa_general.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/Logica/LOcultarColumna.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/CONSULTAS/frmhistorial_ventas.java</file>
+            <file>file:/C:/xampp/htdocs/Sistema-de-venta/Sistema-de-Venta/src/Presentacion/frmprincipal.java</file>
         </group>
     </open-files>
 </project-private>

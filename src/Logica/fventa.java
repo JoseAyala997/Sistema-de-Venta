@@ -314,6 +314,47 @@ public class fventa {
             return null;
         }
     }
+     public DefaultTableModel mostrarhventatotal(String inicio, String fin, String estado) {
+        DefaultTableModel modelo;
+
+        String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "SUB-TOTAL", "NUM. FACTURA", "TOTAL", "CLIENTE", "USUARIO"};
+        String[] registro = new String[12];
+
+        modelo = new DefaultTableModel(null, titulos);
+        SQL = "SELECT v.idventa,d.idservicios,v.fecha,v.idmovimiento, (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto,\n"
+                + " d.precio,d.cantidad,v.nro_factura,d.sub_total,v.total, CONCAT(p.nombre, ' ', p.apellido)as cliente,concat(u.nombre, ' ', u.apellido)as usuario\n"
+                + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
+                + " inner join persona p on p.idpersona=v.idpaciente\n"
+                + " inner join persona u on u.idpersona=v.idusuarios\n"
+                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='" + estado + "'  order by v.idventa desc";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+//                idm = rs.getInt("idmovimiento");
+//                idm = rs.getInt("idmovimiento");
+                registro[0] = rs.getString("idventa");
+                registro[1] = rs.getString("idservicios");
+                registro[2] = rs.getString("idmovimiento");
+                registro[3] = rs.getString("fecha");
+                registro[4] = rs.getString("producto");
+
+                registro[5] = formatear.format(rs.getDouble("precio"));
+                registro[6] = rs.getString("cantidad");
+                registro[7] = formatear.format(rs.getDouble("sub_total"));
+                registro[8] = rs.getString("nro_factura");
+                registro[9] = formatear.format(rs.getDouble("total"));
+                registro[10] = rs.getString("cliente");
+                registro[11] = rs.getString("usuario");
+                modelo.addRow(registro);
+            }
+
+            return modelo;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: 1112" + e);
+            return null;
+        }
+    }
 
     public DefaultTableModel mostrarhventacred(String inicio, String fin, String estado, String id) {
         DefaultTableModel modelo;
@@ -328,6 +369,47 @@ public class fventa {
                 + " inner join persona p on p.idpersona=v.idpaciente\n"
                 + " inner join persona u on u.idpersona=v.idusuarios\n"
                 + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='" + estado + "' AND v.idpaciente='" + id + "' order by v.idventa desc";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+//                idm = rs.getInt("idmovimiento");
+//                idm = rs.getInt("idmovimiento");
+                registro[0] = rs.getString("idventa");
+                registro[1] = rs.getString("idservicios");
+                registro[2] = rs.getString("idmovimiento");
+                registro[3] = rs.getString("fecha");
+                registro[4] = rs.getString("producto");
+
+                registro[5] = formatear.format(rs.getDouble("precio"));
+                registro[6] = rs.getString("cantidad");
+                registro[7] = formatear.format(rs.getDouble("sub_total"));
+                registro[8] = rs.getString("nro_factura");
+                registro[9] = formatear.format(rs.getDouble("saldo"));
+                registro[10] = rs.getString("cliente");
+                registro[11] = rs.getString("usuario");
+                modelo.addRow(registro);
+            }
+
+            return modelo;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: 1112" + e);
+            return null;
+        }
+    }
+     public DefaultTableModel mostrarhventacredtotal(String inicio, String fin, String estado) {
+        DefaultTableModel modelo;
+
+        String[] titulos = {"IDVENTA", "ID PRO.", "ID MOV", "FECHA", "PRODUCTO", "PRECIO.", "CANTIDAD", "SUB-TOTAL", "NUM. FACTURA", "TOTAL", "CLIENTE", "USUARIO"};
+        String[] registro = new String[12];
+
+        modelo = new DefaultTableModel(null, titulos);
+        SQL = "SELECT v.idventa,d.idservicios,v.fecha,v.idmovimiento, (SELECT nombre_producto FROM productos s WHERE s.idservicios = d.idservicios)as producto,\n"
+                + " d.precio,d.cantidad,v.nro_factura,d.sub_total,v.saldo, CONCAT(p.nombre, ' ', p.apellido)as cliente,concat(u.nombre, ' ', u.apellido)as usuario\n"
+                + " FROM detalle_venta d INNER JOIN venta v ON d.idventa = v.idventa\n"
+                + " inner join persona p on p.idpersona=v.idpaciente\n"
+                + " inner join persona u on u.idpersona=v.idusuarios\n"
+                + " WHERE v.fecha BETWEEN '" + inicio + "' AND '" + fin + "' AND v.estado='" + estado + "' order by v.idventa desc";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);

@@ -93,7 +93,7 @@ public class frmproducto2 extends javax.swing.JInternalFrame {
 
     void jtable() {
         //metodo para no editar el jtable
-        for (int c = 0; c < tablalistado.getColumnCount(); c++) {
+        for (int c = 0; c < tablalistado .getColumnCount(); c++) {
 
             Class<?> col_class = tablalistado.getColumnClass(c);
 

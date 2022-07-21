@@ -431,8 +431,8 @@ public class FrmVista2 extends javax.swing.JFrame {
             this.dispose();
         }
         if (dondebuscar == 5) {
-            frmhistorial_ventas.txtidcliente.setText(tablalistado.getValueAt(fila, 0).toString());
-            frmhistorial_ventas.txtcliente.setText(tablalistado.getValueAt(fila, 1).toString());
+//            frmhistorial_ventas.txtidcliente.setText(tablalistado.getValueAt(fila, 0).toString());
+//            frmhistorial_ventas.txtcliente.setText(tablalistado.getValueAt(fila, 1).toString());
 //            FrmApertura_Caja.txtnombreapellido.setText(tablalistado.getValueAt(fila, 2).toString());
 
             this.dispose();

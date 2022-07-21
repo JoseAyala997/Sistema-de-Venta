@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptventa_historial" language="groovy" pageWidth="700" pageHeight="800" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6eef56b9-f416-4388-bd32-0413ac3f8b14">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptventa_historial" language="groovy" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6eef56b9-f416-4388-bd32-0413ac3f8b14">
 	<property name="ireport.zoom" value="1.4641000000000013"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -70,66 +70,66 @@ BETWEEN $P{fecha_inicio} AND $P{fecha_fin} AND v.estado=$P{estado} AND v.idpacie
 	<columnHeader>
 		<band height="38" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="0" y="10" width="660" height="24" uuid="1e934885-c673-44ca-aae7-4954c07a2226"/>
+				<reportElement x="-2" y="10" width="576" height="24" uuid="1e934885-c673-44ca-aae7-4954c07a2226"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="8" y="14" width="70" height="20" uuid="dd4f2e76-6195-4ccc-b251-51ae017a5efd"/>
+				<reportElement x="3" y="14" width="70" height="20" uuid="dd4f2e76-6195-4ccc-b251-51ae017a5efd"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="86" y="14" width="70" height="20" uuid="c9fa39a2-0fd5-4603-b86b-44ade427bdbd"/>
+				<reportElement x="77" y="14" width="70" height="20" uuid="c9fa39a2-0fd5-4603-b86b-44ade427bdbd"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="166" y="14" width="88" height="20" uuid="df2c8148-74f4-41ac-9940-95eb212c1fc9"/>
+				<reportElement x="147" y="14" width="88" height="20" uuid="df2c8148-74f4-41ac-9940-95eb212c1fc9"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="279" y="15" width="43" height="20" uuid="7d4e4353-72f3-43b7-8653-343a8dabd1ea"/>
+				<reportElement x="244" y="15" width="43" height="20" uuid="7d4e4353-72f3-43b7-8653-343a8dabd1ea"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="326" y="15" width="64" height="20" uuid="621fe256-93c8-44fb-898b-ae801c8cd2d5"/>
+				<reportElement x="286" y="15" width="55" height="20" uuid="621fe256-93c8-44fb-898b-ae801c8cd2d5"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="529" y="14" width="53" height="20" uuid="06594445-e934-47ba-abec-a92e4f179418"/>
+				<reportElement x="462" y="14" width="53" height="20" uuid="06594445-e934-47ba-abec-a92e4f179418"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[N. factura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="588" y="13" width="40" height="20" uuid="6478787b-db6d-464f-8e56-9bc53a260d2d"/>
+				<reportElement x="517" y="13" width="40" height="20" uuid="6478787b-db6d-464f-8e56-9bc53a260d2d"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="402" y="13" width="64" height="20" uuid="2ee69625-be90-4e85-85ef-21a4d5df9a4e"/>
+				<reportElement x="343" y="13" width="55" height="20" uuid="2ee69625-be90-4e85-85ef-21a4d5df9a4e"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Sub-Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="466" y="14" width="64" height="20" uuid="91b7823d-e7c7-4429-87cc-881f17fe329a"/>
+				<reportElement x="402" y="14" width="56" height="20" uuid="91b7823d-e7c7-4429-87cc-881f17fe329a"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -140,63 +140,63 @@ BETWEEN $P{fecha_inicio} AND $P{fecha_fin} AND v.estado=$P{estado} AND v.idpacie
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement x="166" y="1" width="100" height="11" uuid="efb7658b-0920-42b0-8330-59a28fbf3263"/>
+				<reportElement x="147" y="1" width="100" height="11" uuid="efb7658b-0920-42b0-8330-59a28fbf3263"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="279" y="1" width="38" height="11" uuid="3efbf6c8-ef2c-4121-8dc4-c54efd8b1cb5"/>
+				<reportElement x="255" y="1" width="24" height="11" uuid="3efbf6c8-ef2c-4121-8dc4-c54efd8b1cb5"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="326" y="1" width="65" height="11" uuid="260739fc-ac51-4f99-b44e-6f942ee25af1"/>
+				<reportElement x="286" y="1" width="55" height="11" uuid="260739fc-ac51-4f99-b44e-6f942ee25af1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="529" y="0" width="53" height="11" uuid="66f58707-9799-4d66-8468-66eb898a64ce"/>
+				<reportElement x="463" y="0" width="53" height="11" uuid="66f58707-9799-4d66-8468-66eb898a64ce"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nro_factura}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="588" y="0" width="68" height="11" uuid="40fdf6f3-219f-4dfe-ab9e-66f26eea4da9"/>
+				<reportElement x="517" y="0" width="55" height="11" uuid="40fdf6f3-219f-4dfe-ab9e-66f26eea4da9"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="8" y="0" width="70" height="11" uuid="10abc7db-ae18-41e8-b592-551f60a647f8"/>
+				<reportElement x="-3" y="1" width="78" height="11" uuid="10abc7db-ae18-41e8-b592-551f60a647f8"/>
 				<textElement>
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="86" y="0" width="70" height="11" uuid="8f99ed8d-e8b2-4be1-9e00-776eaf951eed"/>
+				<reportElement x="77" y="0" width="70" height="11" uuid="8f99ed8d-e8b2-4be1-9e00-776eaf951eed"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="402" y="0" width="54" height="11" uuid="0dda8ddb-1309-434d-8e07-25ce13b3c993"/>
+				<reportElement x="343" y="0" width="55" height="11" uuid="0dda8ddb-1309-434d-8e07-25ce13b3c993"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sub_total}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="466" y="0" width="50" height="11" uuid="0e8c9c35-5227-4d22-a319-c5912fe175ee"/>
+				<reportElement x="403" y="0" width="55" height="11" uuid="0e8c9c35-5227-4d22-a319-c5912fe175ee"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
