@@ -263,14 +263,14 @@ public class FrmVista2 extends javax.swing.JFrame {
             Integer idmo = fmovimiento_caja.idm;
             // System.out.println("no es igual: " + id + " : " + idmo);
             if (!id.equals(0)) {
-                modelo = func.mostrarcaja(txtbuscar.getText(), jComboBox1.getSelectedItem().toString(),frmprincipal.lblidmovimiento2.getText(),frmprincipal.lblfechahoy.getText());
+                modelo = func.mostrarcaja(txtbuscar.getText(), jComboBox1.getSelectedItem().toString(),frmprincipal.lblidmovimiento2.getText());
 
                 tablalistado.setModel(modelo);
                 ocultar_columnas();
 //                System.out.println("igual: " + id + " : " + idmo);
             } else {
 //                if (id.equals(0)) {
-                modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
+                modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString(),frmprincipal.lblidmovimiento2.getText());
                 tablalistado.setModel(modelo);
                 ocultar_columnas();
 //                System.out.println("no es igual: " + id + " : " + idmo);
@@ -316,7 +316,7 @@ public class FrmVista2 extends javax.swing.JFrame {
             jComboBox1.setVisible(true);
             fmovimiento_caja func = new fmovimiento_caja();
 
-            modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString());
+            modelo = func.mostrar(txtbuscar.getText(), jComboBox1.getSelectedItem().toString(),frmprincipal.lblidmovimiento2.getText());
             tablalistado.setModel(modelo);
         }
         if (dondebuscar == 8) {
@@ -358,7 +358,7 @@ public class FrmVista2 extends javax.swing.JFrame {
             FrmCerrarCaja.txtDocumento.setText(tablalistado.getValueAt(fila, 9).toString());
             FrmCerrarCaja.txtnombreapellido.setText(tablalistado.getValueAt(fila, 8).toString());
             FrmCerrarCaja.txtMontoApertura.setText(tablalistado.getValueAt(fila, 2).toString());
-            FrmCerrarCaja.txtmontocierre.setText(tablalistado.getValueAt(fila, 3).toString());
+//            FrmCerrarCaja.txtmontocierre.setText(tablalistado.getValueAt(fila, 3).toString());
 
             fmovimiento_caja func = new fmovimiento_caja();
 
@@ -366,7 +366,7 @@ public class FrmVista2 extends javax.swing.JFrame {
             Integer id = fmovimiento_caja.ultimoMonto;
             Integer idmo = fmovimiento_caja.idm;
 
-            double otros = Double.parseDouble(frmprincipal.txtingresos.getText().replace(".", ""));
+            double otros = Double.parseDouble(frmprincipal.txtingresos1.getText().replace(".", ""));
 
             if (!id.equals(0)) {
                 double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
@@ -376,6 +376,7 @@ public class FrmVista2 extends javax.swing.JFrame {
                 double ingreso = func.mostrarTotalAcumuladoPagosVentas(tablalistado.getValueAt(fila, 0).toString());
                 double cobrado = func.mostrarcobrado(tablalistado.getValueAt(fila, 0).toString());
                 double credito = func.mostrarcredito(tablalistado.getValueAt(fila, 0).toString());
+              
 
 //            egreso = func.mostrarTotalegreso(tablalistado.getValueAt(fila, 0).toString());
                 double acumulado = ingreso + apertura;
@@ -398,11 +399,12 @@ public class FrmVista2 extends javax.swing.JFrame {
                 double credito = func.mostrarcredito(tablalistado.getValueAt(fila, 0).toString());
                 double apertura = Double.parseDouble(tablalistado.getValueAt(fila, 2).toString().replace(".", ""));
                 double egreso = 0;
+                double compras = Double.parseDouble(tablalistado.getValueAt(fila, 10).toString().replace(".", ""));
 
                 double ingreso = func.mostrarTotalAcumuladoPagosVentas(tablalistado.getValueAt(fila, 0).toString());
                 double acumulado = ingreso + apertura;
                 double caja = ingreso;
-                double capital = (acumulado - egreso) + otros;
+                double capital = ((acumulado - egreso) + otros)-compras;
                 FrmCerrarCaja.txtmontoacumulado.setText(String.valueOf((format.format((int) caja))));
                 FrmCerrarCaja.txtmontoegreso.setText(String.valueOf((format.format((int) egreso))));
                 FrmCerrarCaja.txtcapitalcaja.setText(String.valueOf((format.format((int) capital))));

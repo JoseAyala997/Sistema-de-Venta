@@ -16,7 +16,7 @@ public class Conexion {
 
     public String db = "ventas";// creamos una variable para almacenar el nombre de la bd
     public String url="jdbc:mysql://localhost:3306/" +db;//cargamos la url dentro de una variable
-    public String user = "root";//creamos una variable donde almacenar el usuario
+    public String user = "db_ventas_user";// db_ventas_user creamos una variable donde almacenar el usuario
     public String pass = "12345";//creamos una variable para almacenar la contraseña de la bd
 
     public Conexion() {//constructor de la clase

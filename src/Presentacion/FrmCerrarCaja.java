@@ -43,14 +43,14 @@ public class FrmCerrarCaja extends javax.swing.JInternalFrame {
 //        int b = frmprincipal.jDesktopPane2.getHeight() - this.getHeight();
 //        setLocation(a / 2, b / 2);
 //        setVisible(true);
-
         inhabilitar();
         txtID.setVisible(false);
         txtIDCaja.setVisible(false);
         cargarpasodefocus();
         centrar_Frm();
     }
-private Connection connection = new Conexion().conectar();
+    private Connection connection = new Conexion().conectar();
+
     void centrar_Frm() {
         //codigo para centrar internalframe
         x = "x";
@@ -129,6 +129,7 @@ private Connection connection = new Conexion().conectar();
         btnguardar.setEnabled(false);
         txtNroCaja.requestFocus();
     }
+
     public static void imprimir_cierre() {
 
         try {
@@ -140,7 +141,6 @@ private Connection connection = new Conexion().conectar();
             p.put("cobrado", txtcobrado.getText());
             p.put("credito", txtcredito.getText());
             p.put("egresos", txtmontoegreso.getText());
-            
 
             JasperReport jr;
             JasperPrint jp;
@@ -157,7 +157,7 @@ private Connection connection = new Conexion().conectar();
 //            System.out.println("imprimiendo2");
 
         } catch (Exception e) {
-        }  
+        }
     }
 
     /**
@@ -743,7 +743,7 @@ private Connection connection = new Conexion().conectar();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FrmVista2 form = new FrmVista2();
-        
+
         form.setVisible(true);
         form.toFront();
         form.dondebuscar = 2;
@@ -828,8 +828,8 @@ private Connection connection = new Conexion().conectar();
         frmprincipal.mostrarhoy(frmprincipal.lblidmovimiento2.getText());
         frmprincipal.txtapertura.setText("0");
         frmprincipal.txtcaja.setText("0");
-        
-        
+
+
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void txtmontoacumuladoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmontoacumuladoFocusGained
@@ -972,7 +972,6 @@ private Connection connection = new Conexion().conectar();
         String montoApertura = txtMontoApertura.getText();
         String montoCierre = txtmontocierre.getText();
         String montototal = txtcapitalcaja.getText();
-        
 
         try {
 
@@ -987,13 +986,12 @@ private Connection connection = new Conexion().conectar();
             montoCierre = montoCierre.replace(",", ".");
             montototal = montototal.replace(".", "");
             montoCierre = montoCierre.replace(",", ".");
-            
+
             if (Double.parseDouble(montototal) != Double.parseDouble(montoCierre)) {
                 JOptionPane.showMessageDialog(null, "EL MONTO NO PUEDE SER MENOR A 0 NI DIFERENTE AL TOTAL DE LA CAJA");
                 return;
             }
-           
-         
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "LA CANTIDAD INGRESADA DEL MONTO APERTURA O MONTO CIERRE ES INVALIDO");
             return;
@@ -1018,13 +1016,13 @@ private Connection connection = new Conexion().conectar();
 
         dts.setIdmovimiento(Integer.parseInt(txtIDCaja.getText()));
         if (func.cerraCaja(dts)) {
-            
+
             JOptionPane.showMessageDialog(null, "CAJA CERRADA CORRECTAMENTE");
 //            ();
-            inhabilitar();
             imprimir_cierre();
+            inhabilitar();
             frmprincipal.lblidmovimiento2.setText("0");
-            
+
         }
 
     }
@@ -1033,7 +1031,7 @@ private Connection connection = new Conexion().conectar();
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmCerrarCaja().setVisible(true);

@@ -3,7 +3,6 @@ package CONSULTAS;
 import Logica.Conexion;
 import Logica.StyloTabla;
 import Logica.fcompra;
-import Logica.fventa;
 import Presentacion.FrmVista2;
 import Presentacion.frmprincipal;
 import java.awt.Color;

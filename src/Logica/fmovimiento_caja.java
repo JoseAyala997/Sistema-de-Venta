@@ -33,7 +33,7 @@ public class fmovimiento_caja {
     DecimalFormat formatear = new DecimalFormat();
     public Integer totalregistros;
 
-    public DefaultTableModel mostrarcaja(String buscar, String estado,String idm,String fecha) {
+    public DefaultTableModel mostrarcaja(String buscar, String estado,String idm) {
         DefaultTableModel modelo;
 
         String[] titulos = {"IDCAJA", "NRO CAJA", "MONTO APERTURA", "MONTO CIERRE", "FECHA APERT.", "FECHA CIERRE", "ESTADO", "IDPERSONA", "FUNCIONARIO", "DOC", "EGRESOS","COMPRAS"};
@@ -41,7 +41,7 @@ public class fmovimiento_caja {
 
         modelo = new DefaultTableModel(null, titulos);
         sSQL = "select cj.idmovimiento,cj.num_Caja,cj.monto_apertura,cj.monto_cierre,cj.fecha_apertura, cj.fecha_cierre, cj.estado, \n"
-                + "cj.idusuarios,concat(p.nombre,' ',p.apellido) as funcionario,p.numDocumento , sum(e.monto)as egresos,(SELECT sum(total)as compra FROM compras where estado='FINALIZADO' AND idmovimiento='" + idm + "' AND fecha='" + fecha + "' )as compras\n"
+                + "cj.idusuarios,concat(p.nombre,' ',p.apellido) as funcionario,p.numDocumento , sum(e.monto)as egresos,(SELECT sum(total)as compra FROM compras where estado='FINALIZADO' AND idmovimiento='" + idm + "' )as compras\n"
                 + "from movimiento_caja cj \n"
                 + "join usuarios em on em.idusuarios=cj.idusuarios\n"
                 + "join persona p on em.idusuarios=p.idpersona\n"
@@ -75,7 +75,7 @@ public class fmovimiento_caja {
         }
     }
 
-    public DefaultTableModel mostrar(String buscar, String estado) {
+    public DefaultTableModel mostrar(String buscar, String estado,String idm) {
         DefaultTableModel modelo;
 
         String[] titulos = {"IDCAJA", "NRO CAJA", "MONTO APERTURA", "MONTO CIERRE", "FECHA APERT.", "FECHA CIERRE", "ESTADO", "IDPERSONA", "FUNCIONARIO", "DOC","COMPRAS"};
@@ -83,7 +83,7 @@ public class fmovimiento_caja {
 
         modelo = new DefaultTableModel(null, titulos);
         sSQL = "select cj.idmovimiento,cj.num_Caja,cj.monto_apertura,cj.monto_cierre,cj.fecha_apertura, cj.fecha_cierre, cj.estado, \n"
-                + "cj.idusuarios,concat(p.nombre,' ',p.apellido) as funcionario,p.numDocumento,(SELECT sum(total)as compra FROM compras where estado='FINALIZADO' AND idmovimiento='99' AND fecha='2022-07-20' )as compras\n"
+                + "cj.idusuarios,concat(p.nombre,' ',p.apellido) as funcionario,p.numDocumento,(SELECT sum(total)as compra FROM compras where estado='FINALIZADO' AND idmovimiento='" + idm + "' )as compras\n"
                 + "from movimiento_caja cj \n"
                 + "join usuarios em on em.idusuarios=cj.idusuarios \n"
                 + "join persona p on em.idusuarios=p.idpersona\n"
@@ -385,6 +385,27 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
+ public Double ventasmod(String buscar) {
+        int t = 0;
+        sSQL = "select total"
+                + "  from venta "
+                + " where idmovimiento='" + buscar + "' ";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getInt("total");
+                frmprincipal.txtcontado1.setText(String.valueOf((format.format((int) t))));
+//                frmprincipal.txthoy.setText(""+t);
+//                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
   public Double cobradohoy(String buscar,String fecha) {
         int t = 0;
         sSQL = "select sum(v.total)as cobrado from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
@@ -395,6 +416,26 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             while (rs.next()) {
                 t = t + rs.getInt("cobrado");
                 frmprincipal.txtpagado.setText(format.format(t));
+//                frmprincipal.txthoy.setText(""+t);
+//                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
+  public Double cobradomod(String buscar) {
+        int t = 0;
+        sSQL = "select sum(v.total)as cobrado from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
+                + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "' order by m.idmovimiento desc limit 1";
+        try {
+           Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getInt("cobrado");
+                frmprincipal.txtpagado1.setText(format.format(t));
 //                frmprincipal.txthoy.setText(""+t);
 //                System.out.println(t);
 
@@ -426,7 +467,27 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
- 
+ public Double creditomod(String buscar) {
+        Double t = 0.0;
+
+        sSQL = "select sum(v.saldo)as credito from venta v inner join movimiento_caja m where v.idmovimiento = m.idmovimiento "
+                + "and v.tipo='CREDITO' and m.idmovimiento ='" + buscar + "'order by m.idmovimiento desc limit 1";
+       try {
+           Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getDouble("credito");
+                frmprincipal.txtcredito1.setText(format.format(t));
+//                frmprincipal.txthoy.setText(""+t);
+//                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
  
  public Double egresohoy(String buscar,String fecha) {
         Double t = 0.0;
@@ -448,7 +509,26 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
- 
+ public Double egresomov(String buscar) {
+        Double t = 0.0;
+
+        sSQL = "SELECT sum(monto)as egreso FROM egresos where estado='EGRESO' AND idmovimiento='" + buscar + "' ";
+       try {
+           Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getDouble("egreso");
+                frmprincipal.txtegresos1.setText(format.format(t));
+//                frmprincipal.txthoy.setText(""+t);
+//                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
   public Double ingresohoy(String buscar,String fecha) {
         Double t = 0.0;
 
@@ -469,6 +549,26 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             return Double.parseDouble(String.valueOf(t));
         }
     }
+   public Double ingresomov(String buscar) {
+        Double t = 0.0;
+
+        sSQL = "SELECT sum(monto)as ingreso FROM egresos where estado='INGRESO' AND idmovimiento='" + buscar + "' ";
+       try {
+           Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getDouble("ingreso");
+                frmprincipal.txtingresos1.setText(format.format(t));
+//                frmprincipal.txthoy.setText(""+t);
+//                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
     public Double comprashoy(String buscar,String fecha) {
         Double t = 0.0;
 
@@ -479,6 +579,26 @@ DecimalFormat format = new DecimalFormat("###,###.##");
             while (rs.next()) {
                 t = t + rs.getDouble("compra");
                 frmprincipal.TXTCOMPRAS.setText(format.format(t));
+//                frmprincipal.txthoy.setText(""+t);
+//                System.out.println(t);
+
+            }
+            return Double.parseDouble(String.valueOf(t));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:sss " + e);
+            return Double.parseDouble(String.valueOf(t));
+        }
+    }
+     public Double comprasmov(String buscar) {
+        Double t = 0.0;
+
+        sSQL = "SELECT sum(total)as compra FROM compras where estado='FINALIZADO' AND idmovimiento='" + buscar + "' ";
+       try {
+           Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                t = t + rs.getDouble("compra");
+                frmprincipal.TXTCOMPRAS1.setText(format.format(t));
 //                frmprincipal.txthoy.setText(""+t);
 //                System.out.println(t);
 

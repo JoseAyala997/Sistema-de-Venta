@@ -49,7 +49,7 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         dcFecha_termino.setCalendar(mifecha);
         jPanel3.setBackground(new Color(0, 102, 100, 200));
 //        StyloTabla st = new StyloTabla();
-//        mostrar("","");
+        mostrarcontado("","","");
     }
     public static DecimalFormat format = new DecimalFormat("###,###.###");
     public static float sumatoria;
@@ -131,20 +131,20 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setResizable(false);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -158,22 +158,16 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jPanel3.add(dcFecha_termino, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("HISTORIAL DE VENTAS");
-        jLabel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 292, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Fecha fin");
-        jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, 30));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha de inicio");
-        jLabel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, 30));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, 30));
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/imprimir1.png"))); // NOI18N
@@ -214,15 +208,11 @@ public class frmhistorial_ventas extends javax.swing.JInternalFrame {
         jPanel3.add(cmbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 150, 30));
 
         lbltotalventa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lbltotalventa.setForeground(new java.awt.Color(255, 255, 255));
         lbltotalventa.setText("0");
-        lbltotalventa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.add(lbltotalventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 540, 110, 30));
 
         lbltotalventa1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lbltotalventa1.setForeground(new java.awt.Color(255, 255, 255));
         lbltotalventa1.setText("Total Venta:");
-        lbltotalventa1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.add(lbltotalventa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

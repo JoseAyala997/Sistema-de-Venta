@@ -50,7 +50,7 @@ public class frmprincipal extends javax.swing.JFrame {
         ocultar();
 
         fecha();
-        
+
         mostrarhoy(lblcodusuario.getText());
 
     }
@@ -76,6 +76,16 @@ public class frmprincipal extends javax.swing.JFrame {
         txtpagado.setEnabled(false);
         txtapertura.setEnabled(false);
         txtegresos.setEnabled(false);
+        
+        txtcontado1.setVisible(false);
+       
+        txthoy1.setVisible(false);
+        txtcredito1.setVisible(false);
+        txtpagado1.setVisible(false);
+        txtapertura1.setVisible(false);
+        txtegresos1.setVisible(false);
+        txtingresos1.setVisible(false);
+        TXTCOMPRAS1.setVisible(false);
     }
 
     void fecha() {
@@ -102,23 +112,30 @@ public class frmprincipal extends javax.swing.JFrame {
             fmovimiento_caja func = new fmovimiento_caja();
             func.mostrar_ultimo_id(lblcodusuario.getText());
             func.ventashoy(lblidmovimiento2.getText(), lblfechahoy.getText());
+            func.ventasmod(lblidmovimiento2.getText());
             func.creditohoy(lblidmovimiento2.getText(), lblfechahoy.getText());
+            func.creditomod(lblidmovimiento2.getText());
             func.cobradohoy(lblidmovimiento2.getText(), lblfechahoy.getText());
+            func.cobradomod(lblidmovimiento2.getText());
             func.egresohoy(lblidmovimiento2.getText(), lblfechahoy.getText());
+            func.egresomov(lblidmovimiento2.getText());
             func.ingresohoy(lblidmovimiento2.getText(), lblfechahoy.getText());
+            func.ingresomov(lblidmovimiento2.getText());
             func.comprashoy(lblidmovimiento2.getText(), lblfechahoy.getText());
+            func.comprasmov(lblidmovimiento2.getText());
             func.aperturahoy(lblidmovimiento2.getText());
 
-            int egre = Integer.parseInt(txtegresos.getText().replace(".", ""));
-            int ingre = Integer.parseInt(txtingresos.getText().replace(".", ""));
+            int egre = Integer.parseInt(txtegresos1.getText().replace(".", ""));
+            int ingre = Integer.parseInt(txtingresos1.getText().replace(".", ""));
             int cont = Integer.parseInt(txtcontado.getText().replace(".", ""));
+             int cont2 = Integer.parseInt(txtcontado1.getText().replace(".", ""));
             int cred = Integer.parseInt(txtcredito.getText().replace(".", ""));
             int aper = Integer.parseInt(txtapertura.getText().replace(".", ""));
-            int compra = Integer.parseInt(TXTCOMPRAS.getText().replace(".", ""));
+            int compra = Integer.parseInt(TXTCOMPRAS1.getText().replace(".", ""));
 
             int total = cont + cred;
 //            int egresos=(compra - cont - egre);
-            int caja = (cont - egre) + (aper + ingre) - compra;
+            int caja = (cont2 - egre) + (aper + ingre) - compra;
 
             txthoy.setText(String.valueOf(format.format((int) total)));
             txtcaja.setText(String.valueOf(format.format((int) caja)));
@@ -168,6 +185,14 @@ public class frmprincipal extends javax.swing.JFrame {
         lblusuario = new javax.swing.JLabel();
         lblidmovimiento2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txthoy1 = new javax.swing.JTextField();
+        txtcontado1 = new javax.swing.JTextField();
+        txtcredito1 = new javax.swing.JTextField();
+        txtpagado1 = new javax.swing.JTextField();
+        txtegresos1 = new javax.swing.JTextField();
+        txtingresos1 = new javax.swing.JTextField();
+        TXTCOMPRAS1 = new javax.swing.JTextField();
+        txtapertura1 = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
         menumovimiento = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -208,9 +233,11 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporte diario"));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("VENDIDO HOY:");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 34, -1, -1));
 
         txtcontado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtcontado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -220,9 +247,11 @@ public class frmprincipal extends javax.swing.JFrame {
                 txtcontadoActionPerformed(evt);
             }
         });
+        jPanel3.add(txtcontado, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 75, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("CONTADO:");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 82, 90, -1));
 
         txthoy.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txthoy.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -232,6 +261,7 @@ public class frmprincipal extends javax.swing.JFrame {
                 txthoyActionPerformed(evt);
             }
         });
+        jPanel3.add(txthoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 27, 130, 30));
 
         txtcredito.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtcredito.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -241,12 +271,15 @@ public class frmprincipal extends javax.swing.JFrame {
                 txtcreditoActionPerformed(evt);
             }
         });
+        jPanel3.add(txtcredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 123, 130, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("CREDITO:");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 130, 90, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("PAGADO:");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 178, 90, -1));
 
         txtpagado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtpagado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -256,9 +289,11 @@ public class frmprincipal extends javax.swing.JFrame {
                 txtpagadoActionPerformed(evt);
             }
         });
+        jPanel3.add(txtpagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 171, 130, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("TOTAL CAJA:");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 411, 96, -1));
 
         txtcaja.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtcaja.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -268,9 +303,11 @@ public class frmprincipal extends javax.swing.JFrame {
                 txtcajaActionPerformed(evt);
             }
         });
+        jPanel3.add(txtcaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 404, 130, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("EGRESOS:");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 225, 90, -1));
 
         txtegresos.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtegresos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -280,6 +317,7 @@ public class frmprincipal extends javax.swing.JFrame {
                 txtegresosActionPerformed(evt);
             }
         });
+        jPanel3.add(txtegresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 218, 130, 30));
 
         txtapertura.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtapertura.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -289,9 +327,11 @@ public class frmprincipal extends javax.swing.JFrame {
                 txtaperturaActionPerformed(evt);
             }
         });
+        jPanel3.add(txtapertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 360, 130, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("MONTO APERTURA:");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 367, 148, -1));
 
         txtingresos.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtingresos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -301,12 +341,15 @@ public class frmprincipal extends javax.swing.JFrame {
                 txtingresosActionPerformed(evt);
             }
         });
+        jPanel3.add(txtingresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 266, 130, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("INGRESOS:");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 273, 90, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("COMPRAS:");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 321, 90, -1));
 
         TXTCOMPRAS.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         TXTCOMPRAS.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -316,90 +359,7 @@ public class frmprincipal extends javax.swing.JFrame {
                 TXTCOMPRASActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtpagado, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtcredito, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txthoy, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtcontado, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(txtcaja, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtegresos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtapertura, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)))
-                        .addGap(45, 45, 45))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TXTCOMPRAS, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txthoy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtcontado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtcredito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtpagado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtegresos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(TXTCOMPRAS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtapertura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtcaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
-        );
+        jPanel3.add(TXTCOMPRAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 314, 130, 30));
 
         lblfechahoy1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblfechahoy1.setForeground(new java.awt.Color(255, 255, 255));
@@ -444,24 +404,111 @@ public class frmprincipal extends javax.swing.JFrame {
             }
         });
 
+        txthoy1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txthoy1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txthoy1.setEnabled(false);
+        txthoy1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txthoy1ActionPerformed(evt);
+            }
+        });
+
+        txtcontado1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtcontado1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtcontado1.setEnabled(false);
+        txtcontado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontado1ActionPerformed(evt);
+            }
+        });
+
+        txtcredito1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtcredito1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtcredito1.setEnabled(false);
+        txtcredito1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcredito1ActionPerformed(evt);
+            }
+        });
+
+        txtpagado1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtpagado1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtpagado1.setEnabled(false);
+        txtpagado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpagado1ActionPerformed(evt);
+            }
+        });
+
+        txtegresos1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtegresos1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtegresos1.setEnabled(false);
+        txtegresos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtegresos1ActionPerformed(evt);
+            }
+        });
+
+        txtingresos1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtingresos1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtingresos1.setEnabled(false);
+        txtingresos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtingresos1ActionPerformed(evt);
+            }
+        });
+
+        TXTCOMPRAS1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        TXTCOMPRAS1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        TXTCOMPRAS1.setEnabled(false);
+        TXTCOMPRAS1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TXTCOMPRAS1ActionPerformed(evt);
+            }
+        });
+
+        txtapertura1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtapertura1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtapertura1.setEnabled(false);
+        txtapertura1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtapertura1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblfechahoy1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(63, 63, 63)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TXTCOMPRAS1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtingresos1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtpagado1)
+                                .addComponent(txtcredito1)
+                                .addComponent(txtegresos1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtcontado1)
+                                .addComponent(txthoy1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(947, 947, 947))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtapertura1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(lbldocumento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblcodusuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -483,9 +530,28 @@ public class frmprincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblfechahoy, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblfechahoy1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(txthoy1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtcontado1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtcredito1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtpagado1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(txtegresos1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtingresos1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(TXTCOMPRAS1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(txtapertura1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbldocumento)
                     .addComponent(lblidmovimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1122,38 +1188,6 @@ public class frmprincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_historialventas1ActionPerformed
 
-    private void txtcontadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcontadoActionPerformed
-
-    private void txthoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthoyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txthoyActionPerformed
-
-    private void txtcreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcreditoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcreditoActionPerformed
-
-    private void txtpagadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpagadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpagadoActionPerformed
-
-    private void txtcajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcajaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcajaActionPerformed
-
-    private void txtegresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtegresosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtegresosActionPerformed
-
-    private void txtaperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaperturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtaperturaActionPerformed
-
-    private void txtingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtingresosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtingresosActionPerformed
-
     private void historialventas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialventas2ActionPerformed
         String x = frmventas_diarias.x;
         try {
@@ -1229,9 +1263,73 @@ public class frmprincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_historialventas6ActionPerformed
 
+    private void txtapertura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapertura1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtapertura1ActionPerformed
+
+    private void TXTCOMPRAS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTCOMPRAS1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TXTCOMPRAS1ActionPerformed
+
+    private void txtingresos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtingresos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtingresos1ActionPerformed
+
+    private void txtegresos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtegresos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtegresos1ActionPerformed
+
+    private void txtpagado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpagado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpagado1ActionPerformed
+
+    private void txtcredito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcredito1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcredito1ActionPerformed
+
+    private void txtcontado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcontado1ActionPerformed
+
+    private void txthoy1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthoy1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txthoy1ActionPerformed
+
     private void TXTCOMPRASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTCOMPRASActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TXTCOMPRASActionPerformed
+
+    private void txtingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtingresosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtingresosActionPerformed
+
+    private void txtaperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaperturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaperturaActionPerformed
+
+    private void txtegresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtegresosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtegresosActionPerformed
+
+    private void txtcajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcajaActionPerformed
+
+    private void txtpagadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpagadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpagadoActionPerformed
+
+    private void txtcreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcreditoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcreditoActionPerformed
+
+    private void txthoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthoyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txthoyActionPerformed
+
+    private void txtcontadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcontadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1272,6 +1370,7 @@ public class frmprincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JMenuItem MENUUSUARIO;
     public static javax.swing.JTextField TXTCOMPRAS;
+    public static javax.swing.JTextField TXTCOMPRAS1;
     public static javax.swing.JMenuItem cutMenuItem5;
     public static javax.swing.JMenuItem cutMenuItem6;
     public static javax.swing.JMenuItem historialventas;
@@ -1322,13 +1421,20 @@ public class frmprincipal extends javax.swing.JFrame {
     public static javax.swing.JMenu registros;
     public static javax.swing.JMenuItem rpaciente;
     public static javax.swing.JTextField txtapertura;
+    public static javax.swing.JTextField txtapertura1;
     public static javax.swing.JTextField txtcaja;
     public static javax.swing.JTextField txtcontado;
+    public static javax.swing.JTextField txtcontado1;
     public static javax.swing.JTextField txtcredito;
+    public static javax.swing.JTextField txtcredito1;
     public static javax.swing.JTextField txtegresos;
+    public static javax.swing.JTextField txtegresos1;
     public static javax.swing.JTextField txthoy;
+    public static javax.swing.JTextField txthoy1;
     public static javax.swing.JTextField txtingresos;
+    public static javax.swing.JTextField txtingresos1;
     public static javax.swing.JTextField txtpagado;
+    public static javax.swing.JTextField txtpagado1;
     // End of variables declaration//GEN-END:variables
 //codigo para agregar imgaen
     class Fondopanel extends JPanel {
